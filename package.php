@@ -47,21 +47,21 @@ $notes = 'Initial release.';
 /**
  * Description summary.
  */
-$summary = 'A full featured command-line options and arguments parser';
+$summary = 'A full featured command line options and arguments parser';
 
 /**
  * Full description
  */
 $description = <<<EOT
-Console_CommandLine is a full featured package for managing command-line
-options and arguments hightly inspired from python optparse module,
-it allows the developper to easily build complex command line interfaces.
+Console_CommandLine is a full featured package for managing command-line 
+options and arguments highly inspired from python optparse module, it allows 
+the developer to easily build complex command line interfaces.
 
 Main features:
   * handles sub commands (ie. $ myscript.php -q subcommand -f file),
   * can be completely built from an xml definition file,
   * generate --help and --version options automatically,
-  * can be completely customized by overriding the default renderer,
+  * can be completely customized,
   * builtin support for i18n,
   * and much more...
 EOT;
