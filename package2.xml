@@ -25,8 +25,8 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2007-12-15</date>
- <time>22:33:56</time>
+ <date>2007-12-17</date>
+ <time>10:02:41</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -164,7 +164,7 @@ Main features:
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2007-12-15</date>
+   <date>2007-12-17</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>Initial release.
     
