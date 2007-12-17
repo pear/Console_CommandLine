@@ -54,8 +54,8 @@ require_once 'Console/CommandLine/Exception.php';
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
- * @example   examples/ex1.php
- * @example   examples/ex2.php
+ * @example   docs/examples/ex1.php
+ * @example   docs/examples/ex2.php
  */
 class Console_CommandLine
 {
