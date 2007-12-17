@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Console_CommandLine</name>
+ <channel>pear.php.net</channel>
+ <summary>A full featured command-line options and arguments parser</summary>
+ <description>Console_CommandLine is a full featured package for managing command-line
+options and arguments hightly inspired from python optparse module,
+it allows the developper to easily build complex command line interfaces.
+
+Main features:
+  * handles sub commands (ie. $ myscript.php -q subcommand -f file),
+  * can be completely built from an xml definition file,
+  * generate --help and --version options automatically,
+  * can be completely customized by overriding the default renderer,
+  * builtin support for i18n,
+  * and much more...
+ 
+ </description>
+ <lead>
+  <name>David JEAN LOUIS</name>
+  <user>izi</user>
+  <email>izimobil@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2007-12-15</date>
+ <time>22:33:56</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license>MIT License</license>
+ <notes>Initial release.
+  
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="CommandLine">
+    <dir name="Action">
+     <file baseinstalldir="Console" name="Callback.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Counter.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Help.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreArray.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreFalse.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreFloat.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreInt.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreString.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreTrue.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Version.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /CommandLine/Action -->
+    <dir name="MessageProvider">
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /CommandLine/MessageProvider -->
+    <dir name="Outputter">
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /CommandLine/Outputter -->
+    <dir name="Renderer">
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /CommandLine/Renderer -->
+    <file baseinstalldir="Console" name="Action.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Argument.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Command.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Element.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Exception.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="MessageProvider.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Option.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Outputter.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Renderer.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="Result.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="XmlParser.php" role="php">
+     <tasks:replace from="@pear_data_dir@" to="data_dir" type="pear-config" />
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /CommandLine -->
+   <dir name="examples">
+    <file baseinstalldir="Console" name="ex1.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="ex2.php" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="Console" name="ex2.xml" role="doc">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /examples -->
+   <file baseinstalldir="Console" name="CommandLine.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" name="xmlschema.rng" role="data">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-12-15</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>Initial release.
+    
+   </notes>
+  </release>
+ </changelog>
+</package>
