@@ -118,21 +118,25 @@ Main features:
       <replace type="package-info" from="@package_version@" to="version"/>
      </file>
     </dir> <!-- /CommandLine -->
-    <dir name="examples">
-     <file role="doc" name="ex1.php">
+    <dir name="data">
+     <file role="data" name="xmlschema.rng">
       <replace type="package-info" from="@package_version@" to="version"/>
      </file>
-     <file role="doc" name="ex2.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="doc" name="ex2.xml">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-    </dir> <!-- /examples -->
+    </dir> <!-- /data -->
+    <dir name="docs">
+     <dir name="examples">
+      <file role="doc" name="ex1.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="ex2.php">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+      <file role="doc" name="ex2.xml">
+       <replace type="package-info" from="@package_version@" to="version"/>
+      </file>
+     </dir> <!-- /docs/examples -->
+    </dir> <!-- /docs -->
     <file role="php" name="CommandLine.php">
-     <replace type="package-info" from="@package_version@" to="version"/>
-    </file>
-    <file role="data" name="xmlschema.rng">
      <replace type="package-info" from="@package_version@" to="version"/>
     </file>
    </dir> <!-- / -->

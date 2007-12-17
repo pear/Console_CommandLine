@@ -80,14 +80,9 @@ $result = $package->setOptions(array(
     'simpleoutput'      => true,
     'baseinstalldir'    => 'Console',
     'packagedirectory'  => dirname(__FILE__),
-    'exceptions'        => array(
-        'xmlschema.rng' => 'data',
-        'LICENSE'       => 'doc',
-        'README'        => 'doc'
-    ),
     'dir_roles'         => array(
         'docs'     => 'doc',
-        'examples' => 'doc'
+        'data'     => 'data'
     )
 ));
 

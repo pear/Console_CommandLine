@@ -5,16 +5,16 @@ http://pear.php.net/dtd/package-2.0
 http://pear.php.net/dtd/package-2.0.xsd">
  <name>Console_CommandLine</name>
  <channel>pear.php.net</channel>
- <summary>A full featured command-line options and arguments parser</summary>
- <description>Console_CommandLine is a full featured package for managing command-line
-options and arguments hightly inspired from python optparse module,
-it allows the developper to easily build complex command line interfaces.
+ <summary>A full featured command line options and arguments parser</summary>
+ <description>Console_CommandLine is a full featured package for managing command-line 
+options and arguments highly inspired from python optparse module, it allows 
+the developer to easily build complex command line interfaces.
 
 Main features:
   * handles sub commands (ie. $ myscript.php -q subcommand -f file),
   * can be completely built from an xml definition file,
   * generate --help and --version options automatically,
-  * can be completely customized by overriding the default renderer,
+  * can be completely customized,
   * builtin support for i18n,
   * and much more...
  
@@ -26,7 +26,7 @@ Main features:
   <active>yes</active>
  </lead>
  <date>2007-12-17</date>
- <time>10:02:41</time>
+ <time>19:13:49</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -124,21 +124,25 @@ Main features:
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
    </dir> <!-- /CommandLine -->
-   <dir name="examples">
-    <file baseinstalldir="Console" name="ex1.php" role="doc">
+   <dir name="data">
+    <file baseinstalldir="Console" name="xmlschema.rng" role="data">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
-    <file baseinstalldir="Console" name="ex2.php" role="doc">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="Console" name="ex2.xml" role="doc">
-     <tasks:replace from="@package_version@" to="version" type="package-info" />
-    </file>
-   </dir> <!-- /examples -->
+   </dir> <!-- /data -->
+   <dir name="docs">
+    <dir name="examples">
+     <file baseinstalldir="Console" name="ex1.php" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="ex2.php" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="ex2.xml" role="doc">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /docs/examples -->
+   </dir> <!-- /docs -->
    <file baseinstalldir="Console" name="CommandLine.php" role="php">
-    <tasks:replace from="@package_version@" to="version" type="package-info" />
-   </file>
-   <file baseinstalldir="Console" name="xmlschema.rng" role="data">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir> <!-- / -->
