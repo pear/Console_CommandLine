@@ -161,12 +161,12 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
         $name   = '';
         $parent = $this->parser->parent;
         while ($parent) {
-            $name .= $parent->name;
+            $name .= $parent->name . ' ';
             if (count($parent->options) > 0) {
-                $name .= ' [' 
+                $name .= '[' 
                     . strtolower($this->parser->message_provider->get('OPTION_WORD',
                           array('plural' => 's'))) 
-                    . ']';
+                    . '] ';
             }
             $parent = $parent->parent;
         }
