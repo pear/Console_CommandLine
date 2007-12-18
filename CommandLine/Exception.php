@@ -57,23 +57,6 @@ class Console_CommandLine_Exception extends PEAR_Exception
     /**#@-*/
 
     // }}}
-    // Console_CommandLine_Exception::__construct() {{{
-
-    /**
-     * Constructor.
-     *
-     * @param string $message the exception message
-     * @param int    $code    the exception code
-     *
-     * @return void
-     * @access public
-     */
-    public function __construct($message, $code)
-    {
-        parent::__construct($message, $this, $code);
-    }
-
-    // }}}
     // Console_CommandLine_Exception::build() {{{
 
     /**
