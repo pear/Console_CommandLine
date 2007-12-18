@@ -445,7 +445,8 @@ class Console_CommandLine
             $command = $name;
         } else {
             include_once 'Console/CommandLine/Command.php';
-            $command = new Console_CommandLine_Command($name, $params);
+            $params['name'] = $name;
+            $command = new Console_CommandLine_Command($params);
         }
         $command->parent                = $this;
         $this->commands[$command->name] = $command;
