@@ -81,8 +81,9 @@ $result = $package->setOptions(array(
     'baseinstalldir'    => 'Console',
     'packagedirectory'  => dirname(__FILE__),
     'dir_roles'         => array(
-        'docs'     => 'doc',
-        'data'     => 'data'
+        'data'  => 'data',
+        'docs'  => 'doc',
+        'tests' => 'test'
     )
 ));
 

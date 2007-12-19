@@ -25,7 +25,7 @@ Main features:
   </maintainers>
  <release>
   <version>0.1.0</version>
-  <date>2007-12-17</date>
+  <date>2007-12-19</date>
   <license>MIT License</license>
   <state>alpha</state>
   <notes>Initial release.
@@ -136,6 +136,29 @@ Main features:
       </file>
      </dir> <!-- /docs/examples -->
     </dir> <!-- /docs -->
+    <dir name="tests">
+     <file role="test" name="console_commandline_addargument.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_addcommand.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_addoption.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_parse_1.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_parse_2.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_parse_3.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="tests.inc.php">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+    </dir> <!-- /tests -->
     <file role="php" name="CommandLine.php">
      <replace type="package-info" from="@package_version@" to="version"/>
     </file>
@@ -145,7 +168,7 @@ Main features:
  <changelog>
    <release>
     <version>0.1.0</version>
-    <date>2007-12-17</date>
+    <date>2007-12-19</date>
     <license>MIT License</license>
     <state>alpha</state>
     <notes>Initial release.
