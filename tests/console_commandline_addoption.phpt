@@ -1,0 +1,115 @@
+--TEST--
+Test for Console_CommandLine::addOption() method.
+--FILE--
+<?php
+
+require_once('Console/CommandLine.php');
+require_once('Console/CommandLine/Command.php');
+
+$parser = new Console_CommandLine();
+$parser->addOption('opt1', array(
+    'short_name' => '-a'
+));
+$parser->addOption('opt2', array(
+    'short_name' => '-b',
+    'long_name' => '--foo',
+    'description' => 'description of opt2',
+    'action' => 'StoreInt',
+    'help_name' => 'bar',
+    'choices' => array(1, 2, 3),
+    'default' => 2
+));
+$opt3 = new Console_CommandLine_Option('opt3', array(
+    'long_name' => '--bar',
+    'description' => 'description of opt3',
+));
+$parser->addOption($opt3);
+
+var_dump($parser->options);
+
+?>
+--EXPECT--
+array(3) {
+  ["opt1"]=>
+  object(Console_CommandLine_Option)#5 (10) {
+    ["short_name"]=>
+    string(2) "-a"
+    ["long_name"]=>
+    NULL
+    ["action"]=>
+    string(11) "StoreString"
+    ["default"]=>
+    NULL
+    ["choices"]=>
+    array(0) {
+    }
+    ["callback"]=>
+    NULL
+    ["action_params"]=>
+    array(0) {
+    }
+    ["name"]=>
+    string(4) "opt1"
+    ["help_name"]=>
+    string(4) "opt1"
+    ["description"]=>
+    NULL
+  }
+  ["opt2"]=>
+  object(Console_CommandLine_Option)#6 (10) {
+    ["short_name"]=>
+    string(2) "-b"
+    ["long_name"]=>
+    string(5) "--foo"
+    ["action"]=>
+    string(8) "StoreInt"
+    ["default"]=>
+    int(2)
+    ["choices"]=>
+    array(3) {
+      [0]=>
+      int(1)
+      [1]=>
+      int(2)
+      [2]=>
+      int(3)
+    }
+    ["callback"]=>
+    NULL
+    ["action_params"]=>
+    array(0) {
+    }
+    ["name"]=>
+    string(4) "opt2"
+    ["help_name"]=>
+    string(3) "bar"
+    ["description"]=>
+    string(19) "description of opt2"
+  }
+  ["opt3"]=>
+  object(Console_CommandLine_Option)#7 (10) {
+    ["short_name"]=>
+    NULL
+    ["long_name"]=>
+    string(5) "--bar"
+    ["action"]=>
+    string(11) "StoreString"
+    ["default"]=>
+    NULL
+    ["choices"]=>
+    array(0) {
+    }
+    ["callback"]=>
+    NULL
+    ["action_params"]=>
+    array(0) {
+    }
+    ["name"]=>
+    string(4) "opt3"
+    ["help_name"]=>
+    string(4) "opt3"
+    ["description"]=>
+    string(19) "description of opt3"
+  }
+}
+
