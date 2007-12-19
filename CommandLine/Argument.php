@@ -48,6 +48,26 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
     public $multiple = false;
 
     // }}}
+    // Console_CommandLine_Element::validate() {{{
+
+    /**
+     * Validate the option instance.
+     *
+     * @access public
+     * @return void
+     */
+    public function validate()
+    {
+        // check if the option name is valid
+        if (!preg_match('/^[a-zA-Z_\x7f-\xff]+[a-zA-Z0-9_\x7f-\xff]*$/',
+            $this->name)) {
+            Console_CommandLine::triggerError('argument_bad_name',
+                E_USER_ERROR, array('{$name}' => $this->name));
+        }
+        parent::validate();
+    }
+
+    // }}}
 }
 
 ?>

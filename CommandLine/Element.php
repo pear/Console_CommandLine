@@ -107,12 +107,6 @@ abstract class Console_CommandLine_Element
      */
     public function validate()
     {
-        // check if the option name is valid
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff]+[a-zA-Z0-9_\x7f-\xff]*$/',
-            $this->name)) {
-            Console_CommandLine::triggerError('option_bad_name',
-                E_USER_ERROR, array('{$name}' => $this->name));
-        }
         // if no help_name passed, default to name
         if ($this->help_name == null) {
             $this->help_name = $this->name;

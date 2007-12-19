@@ -69,6 +69,7 @@ class Console_CommandLine
      */
     public static $errors = array(
         'option_bad_name'                    => 'option name must be a valid php variable name (got: {$name})',
+        'argument_bad_name'                  => 'argument name must be a valid php variable name (got: {$name})',
         'option_long_and_short_name_missing' => 'you must provide at least an option short name or long name for option "{$name}"',
         'option_bad_short_name'              => 'option "{$name}" short name must be a dash followed by a letter (got: "{$short_name}")',
         'option_bad_long_name'               => 'option "{$name}" long name must be 2 dashes followed by a word (got: "{$long_name}")',

@@ -229,6 +229,12 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      */
     public function validate()
     {
+        // check if the option name is valid
+        if (!preg_match('/^[a-zA-Z_\x7f-\xff]+[a-zA-Z0-9_\x7f-\xff]*$/',
+            $this->name)) {
+            Console_CommandLine::triggerError('option_bad_name',
+                E_USER_ERROR, array('{$name}' => $this->name));
+        }
         // call the parent validate method
         parent::validate();
         // a short_name or a long_name must be provided
