@@ -104,6 +104,13 @@ function buildParser1()
         'help_name'   => 'ARRAY',
         'description' => 'test the StoreArray action'
     ));
+    $parser->addArgument('simple', array(
+        'description' => 'test a simple argument'
+    ));
+    $parser->addArgument('multiple', array(
+        'description' => 'test a multiple argument',
+        'multiple'    => true
+    ));
     return $parser;
 }
 

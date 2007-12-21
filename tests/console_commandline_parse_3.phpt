@@ -2,11 +2,8 @@
 Test for Console_CommandLine::parse() method (various options).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
---INI--
-register_argc_argv=1
-variables_order=GPS
 --ARGS--
--tfsfoo --int=3 --float=4.0 -cccc --callback=somestring -a foo bar baz
+-tfsfoo --int=3 --float=4.0 -cccc -a foo bar baz --callback=somestring foo bar
 --FILE--
 <?php
 
@@ -17,6 +14,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
 $parser = buildParser1();
 $result = $parser->parse();
 var_dump($result->options);
+var_dump($result->args);
 
 ?>
 --EXPECT--
@@ -48,4 +46,13 @@ array(10) {
   NULL
   ["version"]=>
   NULL
+}
+array(2) {
+  ["simple"]=>
+  string(3) "foo"
+  ["multiple"]=>
+  array(1) {
+    [0]=>
+    string(3) "bar"
+  }
 }

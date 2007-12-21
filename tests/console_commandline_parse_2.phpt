@@ -19,7 +19,7 @@ $parser->parse();
 Description of our parser goes here...
 
 Usage:
-  some_program [options]
+  some_program [options] <simple> <multiple...>
 
 Options:
   -t, --true           test the StoreTrue action
@@ -33,3 +33,6 @@ Options:
   -h, --help           show this help message and exit
   --version            show the program version and exit
 
+Arguments:
+  simple    test a simple argument
+  multiple  test a multiple argument
