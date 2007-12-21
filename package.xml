@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.6.1">
+<package version="1.0" packagerversion="1.5.4">
  <name>Console_CommandLine</name>
  <summary>A full featured command line options and arguments parser</summary>
  <description>Console_CommandLine is a full featured package for managing command-line 
@@ -24,11 +24,17 @@ Main features:
   </maintainer>
   </maintainers>
  <release>
-  <version>0.1.0</version>
-  <date>2007-12-19</date>
+  <version>0.1.1</version>
+  <date>2007-12-21</date>
   <license>MIT License</license>
   <state>alpha</state>
-  <notes>Initial release.
+  <notes>* bugs
+  - fixed bug #12711,
+  - fixed wrong error triggered when argument name is invalid.
+
+* changes
+  - some cosmetic changes,
+  - added a lot of phpt test files.
   </notes>
   <deps>
    <dep type="php" rel="ge" version="5.0.0" optional="no"/>
@@ -155,6 +161,15 @@ Main features:
      <file role="test" name="console_commandline_parse_3.phpt">
       <replace type="package-info" from="@package_version@" to="version"/>
      </file>
+     <file role="test" name="console_commandline_parse_4.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_parse_5.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
+     <file role="test" name="console_commandline_parse_6.phpt">
+      <replace type="package-info" from="@package_version@" to="version"/>
+     </file>
      <file role="test" name="tests.inc.php">
       <replace type="package-info" from="@package_version@" to="version"/>
      </file>
@@ -172,6 +187,20 @@ Main features:
     <license>MIT License</license>
     <state>alpha</state>
     <notes>Initial release.
+    </notes>
+   </release>
+   <release>
+    <version>0.1.1</version>
+    <date>2007-12-21</date>
+    <license>MIT License</license>
+    <state>alpha</state>
+    <notes>* bugs
+  - fixed bug #12711,
+  - fixed wrong error triggered when argument name is invalid.
+
+* changes
+  - some cosmetic changes,
+  - added a lot of phpt test files.
     </notes>
    </release>
  </changelog>

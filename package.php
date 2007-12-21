@@ -32,7 +32,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * Current version
  */
-$version = '0.1.0';
+$version = '0.1.1';
 
 /**
  * Current state
@@ -42,7 +42,15 @@ $state = 'alpha';
 /**
  * Release notes
  */
-$notes = 'Initial release.';
+$notes = '
+* bugs
+  - fixed bug #12711,
+  - fixed wrong error triggered when argument name is invalid.
+
+* changes
+  - some cosmetic changes,
+  - added a lot of phpt test files.
+';
 
 /**
  * Description summary.
