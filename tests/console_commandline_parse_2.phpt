@@ -22,16 +22,16 @@ Usage:
   some_program [options] <simple> <multiple...>
 
 Options:
-  -t, --true           test the StoreTrue action
-  -f, --false          test the StoreFalse action
-  --int=INT            test the StoreInt action
-  --float=FLOAT        test the StoreFloat action
-  -s, --string=STRING  test the StoreString action
-  -c, --counter        test the Counter action
-  --callback=callback  test the Callback action
-  -a, --array=ARRAY    test the StoreArray action
-  -h, --help           show this help message and exit
-  --version            show the program version and exit
+  -t, --true                  test the StoreTrue action
+  -f, --false                 test the StoreFalse action
+  --int=INT                   test the StoreInt action
+  --float=FLOAT               test the StoreFloat action
+  -s STRING, --string=STRING  test the StoreString action
+  -c, --counter               test the Counter action
+  --callback=callback         test the Callback action
+  -a ARRAY, --array=ARRAY     test the StoreArray action
+  -h, --help                  show this help message and exit
+  --version                   show the program version and exit
 
 Arguments:
   simple    test a simple argument
