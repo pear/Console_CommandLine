@@ -154,6 +154,15 @@ class Console_CommandLine
     public $message_provider = false;
 
     /**
+     * Boolean that tells the parser to be POSIX compliant, POSIX demands the 
+     * following behavior: the first non-option stops option processing.
+     *
+     * @var    bool $force_posix
+     * @access public
+     */
+    public $force_posix = false;
+
+    /**
      * An array of Console_CommandLine_Option objects.
      *
      * @var    array $options
@@ -226,7 +235,14 @@ class Console_CommandLine
      *     'version' => '0.0.1', // your program version
      *     'add_help_option' => true, // or false to disable --version option
      *     'add_version_option' => true, // or false to disable --help option
-     *     'renderer' => $rdr // and instance of Console_CommandLine_Renderer
+     *     'renderer' => $rdr,  // an instance that implements the
+     *                          // Console_CommandLine_Renderer interface
+     *     'outputter' => $out, // an instance that implements the
+     *                          // Console_CommandLine_Outputter interface
+     *     'message_provider' => $mp, // an instance that implements the
+     *                                // Console_CommandLine_MessageProvider
+     *                                // interface
+     *     'force_posix' => false // or true to force posix compliance
      * ));
      * </code>
      *
@@ -792,9 +808,10 @@ class Console_CommandLine
      */
     protected function parseToken($token, $result, &$args)
     {
-        static $lastopt = false;
+        static $lastopt  = false;
+        static $stopflag = false;
         $token = trim($token);
-        if ($lastopt) {
+        if (!$stopflag && $lastopt) {
             if (substr($token, 0, 1) == '-') {
                 // we expect a value
                 if (isset($result->options[$lastopt->name])) {
@@ -812,10 +829,16 @@ class Console_CommandLine
                 return;
             }
         }
-        if (substr($token, 0, 2) == '--') {
+        if (!$stopflag && substr($token, 0, 2) == '--') {
             // a long option
             $optkv = explode('=', $token, 2);
-            $opt   = $this->findOption($optkv[0]);
+            if (trim($optkv[0]) == '--') {
+                // the special argument "--" forces in all cases the end of 
+                // option scanning.
+                $stopflag = true;
+                return;
+            }
+            $opt = $this->findOption($optkv[0]);
             if (!$opt) {
                 throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
                     array('name' => $optkv[0]), $this);
@@ -833,9 +856,15 @@ class Console_CommandLine
                 $lastopt = $opt;
             }
             $opt->dispatchAction($value, $result, $this);
-        } else if (substr($token, 0, 1) == '-') {
+        } else if (!$stopflag && substr($token, 0, 1) == '-') {
             // a short option
             $optname = substr($token, 0, 2);
+            if ($optname == '-') {
+                // special case of "-" passed on the command line, it should be 
+                // treated as an argument
+                $args[] = $optname;
+                return;
+            }
             $opt     = $this->findOption($optname);
             if (!$opt) {
                 throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
@@ -871,7 +900,12 @@ class Console_CommandLine
             }
             $opt->dispatchAction($value, $result, $this);
         } else {
-            // an argument
+            // We have an argument.
+            // if we are in POSIX compliant mode, we must set the stop flag to 
+            // true in order to stop option parsing.
+            if (!$stopflag && $this->force_posix) {
+                $stopflag = true;
+            }
             $args[] = $token;
         }
     }
