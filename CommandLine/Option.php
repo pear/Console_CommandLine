@@ -144,20 +144,19 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     public function toString()
     {
         $ret     = '';
-        $val_chr = '';
-        if ($this->short_name != null && $this->long_name != null) {
-            $ret    .= $this->short_name . ', ' . $this->long_name;
-            $val_chr = '=';
-        } else if ($this->short_name != null) {
-            $ret    .= $this->short_name;
-            $val_chr = ' ';
-        } else if ($this->long_name != null) {
-            $ret    .= $this->long_name;
-            $val_chr = '=';
+        $padding = '';
+        if ($this->short_name != null) {
+            $ret .= $this->short_name;
+            if ($this->expectsArgument()) {
+                $ret .= ' ' . $this->help_name;
+            }
+            $padding = ', ';
         }
-        if ($this->expectsArgument()) {
-            // we expect an option value
-            $ret .= $val_chr . $this->help_name;
+        if ($this->long_name != null) {
+            $ret .= $padding . $this->long_name;
+            if ($this->expectsArgument()) {
+                $ret .= '=' . $this->help_name;
+            }
         }
         return $ret;
     }
