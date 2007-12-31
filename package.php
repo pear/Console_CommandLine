@@ -18,7 +18,7 @@
  * @license   http://opensource.org/licenses/mit-license.php MIT License 
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
- * @since     Class available since release @package_version@
+ * @since     Class available since release 0.1.0
  */
 
 // to skip E_STRICT errors from PackageFileManager package
@@ -32,24 +32,22 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * Current version
  */
-$version = '0.1.1';
+$version = '0.2.0';
 
 /**
  * Current state
  */
-$state = 'alpha';
+$state = 'beta';
 
 /**
  * Release notes
  */
 $notes = '
-* bugs
-  - fixed bug #12711,
-  - fixed wrong error triggered when argument name is invalid.
-
-* changes
-  - some cosmetic changes,
-  - added a lot of phpt test files.
+- fixed a bug in Option::toString() (values were not displayed for short options),
+- fixed a parsing bug: if "-" is passed on the command line it should be treated as an argument,
+- stop option parsing when a "--" is found as gnu getopt does,
+- added a "force_posix" boolean attribute that tells the parser to be POSIX compliant, POSIX demands the following behavior: the first non-option stops option processing,
+- added more regression tests.
 ';
 
 /**
