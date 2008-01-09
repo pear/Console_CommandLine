@@ -32,7 +32,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * Current version
  */
-$version = '0.2.0';
+$version = '0.2.1';
 
 /**
  * Current state
@@ -43,11 +43,7 @@ $state = 'beta';
  * Release notes
  */
 $notes = '
-- fixed a bug in Option::toString() (values were not displayed for short options),
-- fixed a parsing bug: if "-" is passed on the command line it should be treated as an argument,
-- stop option parsing when a "--" is found as gnu getopt does,
-- added a "force_posix" boolean attribute that tells the parser to be POSIX compliant, POSIX demands the following behavior: the first non-option stops option processing,
-- added more regression tests.
+fixed bug #12859: xmlschema.rng gets searched at the wrong folder
 ';
 
 /**
@@ -98,7 +94,9 @@ if (PEAR::isError($result)) {
     exit(1);
 }
 
-$package->addGlobalReplacement('package-info', '@package_version@', 'version');
+$package->addReplacement('CommandLine.php', 'package-info', '@package_version@', 'version');
+$package->addReplacement('CommandLine/*.php', 'package-info', '@package_version@', 'version');
+$package->addReplacement('examples/*.php', 'package-info', '@package_version@', 'version');
 $package->addReplacement('CommandLine/XmlParser.php', 'pear-config', '@pear_data_dir@', 'data_dir');
 $package->addMaintainer('izi', 'lead', 'David JEAN LOUIS', 'izimobil@gmail.com');
 $package->addDependency('php', '5.0.0', 'ge', 'php', false);
