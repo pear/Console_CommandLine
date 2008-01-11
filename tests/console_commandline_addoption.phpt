@@ -31,7 +31,7 @@ var_dump($parser->options);
 --EXPECT--
 array(3) {
   ["opt1"]=>
-  object(Console_CommandLine_Option)#5 (10) {
+  object(Console_CommandLine_Option)#5 (11) {
     ["short_name"]=>
     string(2) "-a"
     ["long_name"]=>
@@ -48,6 +48,8 @@ array(3) {
     ["action_params"]=>
     array(0) {
     }
+    ["argument_optional"]=>
+    bool(false)
     ["name"]=>
     string(4) "opt1"
     ["help_name"]=>
@@ -56,7 +58,7 @@ array(3) {
     NULL
   }
   ["opt2"]=>
-  object(Console_CommandLine_Option)#6 (10) {
+  object(Console_CommandLine_Option)#6 (11) {
     ["short_name"]=>
     string(2) "-b"
     ["long_name"]=>
@@ -79,6 +81,8 @@ array(3) {
     ["action_params"]=>
     array(0) {
     }
+    ["argument_optional"]=>
+    bool(false)
     ["name"]=>
     string(4) "opt2"
     ["help_name"]=>
@@ -87,7 +91,7 @@ array(3) {
     string(19) "description of opt2"
   }
   ["opt3"]=>
-  object(Console_CommandLine_Option)#7 (10) {
+  object(Console_CommandLine_Option)#7 (11) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
@@ -104,6 +108,8 @@ array(3) {
     ["action_params"]=>
     array(0) {
     }
+    ["argument_optional"]=>
+    bool(false)
     ["name"]=>
     string(4) "opt3"
     ["help_name"]=>
@@ -112,4 +118,3 @@ array(3) {
     string(19) "description of opt3"
   }
 }
-
