@@ -218,8 +218,17 @@ class Console_CommandLine
         'Callback'    => array('Console_CommandLine_Action_Callback', true),
         'Counter'     => array('Console_CommandLine_Action_Counter', true),
         'Help'        => array('Console_CommandLine_Action_Help', true),
-        'Version'     => array('Console_CommandLine_Action_Version', true)
+        'Version'     => array('Console_CommandLine_Action_Version', true),
+        'Password'    => array('Console_CommandLine_Action_Password', true)
     );
+
+    /**
+     * Array of options that must be dispatched at the end.
+     *
+     * @var    array $_dispatchLater
+     * @access private
+     */
+    private $_dispatchLater = array();
 
     // }}}
     // Console_CommandLine::__construct() {{{
@@ -601,11 +610,34 @@ class Console_CommandLine
     public function findOption($str)
     {
         $str = trim($str);
-        foreach ($this->options as $option) {
-            if ($option->long_name == $str || $option->short_name == $str ||
-                $option->name == $str) {
-                return $option;
+        if ($str === '') {
+            return false;
+        }
+        $matches = array();
+        foreach ($this->options as $opt) {
+            if ($opt->short_name == $str || $opt->long_name == $str ||
+                $opt->name == $str) {
+                // exact match
+                return $opt;
             }
+            if (substr($opt->long_name, 0, strlen($str)) === $str) {
+                // abbreviated long option
+                $matches[] = $opt;
+            }
+        }
+        if ($count = count($matches)) {
+            if ($count > 1) {
+                $matches_str = '';
+                $padding = '';
+                foreach ($matches as $opt) {
+                    $matches_str .= $padding . $opt->long_name;
+                    $padding = ', ';
+                }
+                throw Console_CommandLine_Exception::build('OPTION_AMBIGUOUS',
+                    array('name' => $str, 'matches' => $matches_str),
+                    $this);
+            }
+            return $matches[0];
         }
         return false;
     }
@@ -765,7 +797,7 @@ class Console_CommandLine
                     $result->command      = $res;
                     break;
                 } else {
-                    $this->parseToken($token, $result, $args);
+                    $this->parseToken($token, $result, $args, $argc===0);
                 }
             } catch (Exception $exc) {
                 throw $exc;
@@ -788,6 +820,10 @@ class Console_CommandLine
                 $result->args[$name] = array_shift($args);
             }
         }
+        // dispatch deferred options
+        foreach ($this->_dispatchLater as $optArray) {
+            $optArray[0]->dispatchAction($optArray[1], $optArray[2], $this);
+        }
         return $result;
     }
 
@@ -806,15 +842,19 @@ class Console_CommandLine
      * @access protected
      * @throws Exception on user errors
      */
-    protected function parseToken($token, $result, &$args)
+    protected function parseToken($token, $result, &$args, $last)
     {
         static $lastopt  = false;
         static $stopflag = false;
         $token = trim($token);
         if (!$stopflag && $lastopt) {
             if (substr($token, 0, 1) == '-') {
-                // we expect a value
-                if (isset($result->options[$lastopt->name])) {
+                if ($lastopt->argument_optional) {
+                    $this->_dispatchAction($lastopt, '', $result);
+                    if ($lastopt->action != 'StoreArray') {
+                        $lastopt = false;
+                    }
+                } else if (isset($result->options[$lastopt->name])) {
                     // case of an option that expect a list of args
                     $lastopt = false;
                 } else {
@@ -822,7 +862,7 @@ class Console_CommandLine
                         array('name' => $lastopt->name), $this);
                 }
             } else {
-                $lastopt->dispatchAction($token, $result, $this);
+                $this->_dispatchAction($lastopt, $token, $result);
                 if ($lastopt->action != 'StoreArray') {
                     $lastopt = false;
                 }
@@ -849,13 +889,20 @@ class Console_CommandLine
                     array('name' => $opt->name, 'value' => $value), $this);
             }
             if ($opt->expectsArgument() && $value === false) {
-                throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
-                    array('name' => $opt->name), $this);
+                // maybe the long option argument is separated by a space, if 
+                // this is the case it will be the next arg
+                if ($last && !$opt->argument_optional) {
+                    throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
+                        array('name' => $opt->name), $this);
+                }
+                // we will have a value next time
+                $lastopt = $opt;
+                return;
             }
             if ($opt->action == 'StoreArray') {
                 $lastopt = $opt;
             }
-            $opt->dispatchAction($value, $result, $this);
+            $this->_dispatchAction($opt, $value, $result);
         } else if (!$stopflag && substr($token, 0, 1) == '-') {
             // a short option
             $optname = substr($token, 0, 2);
@@ -876,6 +923,10 @@ class Console_CommandLine
             // check if we must wait for a value
             if ($next === false) {
                 if ($opt->expectsArgument()) {
+                    if ($last && !$opt->argument_optional) {
+                        throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
+                            array('name' => $opt->name), $this);
+                    }
                     // we will have a value next time
                     $lastopt = $opt;
                     return;
@@ -884,9 +935,9 @@ class Console_CommandLine
             } else {
                 if (!$opt->expectsArgument()) { 
                     if ($nextopt = $this->findOption('-' . $next)) {
-                        $opt->dispatchAction(false, $result, $this);
+                        $this->_dispatchAction($opt, false, $result);
                         $this->parseToken('-' . substr($token, 2), $result,
-                            $args);
+                            $args, $last);
                         return;
                     } else {
                         throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
@@ -898,7 +949,7 @@ class Console_CommandLine
                 }
                 $value = substr($token, 2);
             }
-            $opt->dispatchAction($value, $result, $this);
+            $this->_dispatchAction($opt, $value, $result);
         } else {
             // We have an argument.
             // if we are in POSIX compliant mode, we must set the stop flag to 
@@ -910,6 +961,28 @@ class Console_CommandLine
         }
     }
 
+    // }}}
+    // Console_CommandLine::_dispatchAction() {{{
+
+    /**
+     * Dispatch the given option or store the option to dispatch it later.
+     *
+     * @param string $token  the command line token to parse
+     * @param object $result the Console_CommandLine_Result instance
+     * @param array  &$args  the argv array
+     *
+     * @return void
+     * @access protected
+     * @throws Exception on user errors
+     */
+    private function _dispatchAction($option, $token, $result)
+    {
+        if ($option->action == 'Password') {
+            $this->_dispatchLater[] = array($option, $token, $result);
+        } else {
+            $option->dispatchAction($token, $result, $this);
+        }
+    }
     // }}}
 }
 
