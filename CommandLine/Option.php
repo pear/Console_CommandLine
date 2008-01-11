@@ -132,6 +132,36 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      */
     public $action_params = array();
 
+    /**
+     * For options that expect an argument, this property tells the parser if 
+     * the argument is optional and can be ommited
+     *
+     * @var boolean $argumentOptional
+     * @access public
+     */
+    public $argument_optional = false;
+
+    // }}}
+    // Console_CommandLine_Option::__construct() {{{
+
+    /**
+     * Constructor.
+     *
+     * @param string $name   the name of the element
+     * @param array  $params an optional array of parameters
+     *
+     * @access public
+     */
+    public function __construct($name = null, $params = array()) 
+    {
+        parent::__construct($name, $params);
+        if ($this->action == 'Password') {
+            // special case for Password action, password can be passed to the 
+            // commandline or prompted by the parser
+            $this->argument_optional = true;
+        }
+    }
+
     // }}}
     // Console_CommandLine_Option::toString() {{{
 
