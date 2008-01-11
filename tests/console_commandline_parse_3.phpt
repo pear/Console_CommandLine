@@ -3,7 +3,7 @@ Test for Console_CommandLine::parse() method (various options).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
 --ARGS--
--tfsfoo --int=3 --float=4.0 -cccc -a foo bar baz --callback=somestring foo bar
+-tfsfoo --int=3 --flo 4.0 -cccc -a foo bar baz --callback=somestring foo bar
 --FILE--
 <?php
 
