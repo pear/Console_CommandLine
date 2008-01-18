@@ -20,6 +20,19 @@
 require_once 'Console/CommandLine.php';
 
 /**
+ * XXX this is a dirty workaround for the PEAR run-test bug reported here:
+ * http://pear.php.net/bugs/bug.php?id=12793
+ */
+if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == '--') {
+    unset($_SERVER['argv'][1]);
+    $_SERVER['argc']--;
+    if (isset($argv)) {
+        $argv = $_SERVER['argv'];
+        $argc = $_SERVER['argc'];
+    }
+}
+
+/**
  * A dummy callback for tests purposes.
  *
  */
@@ -67,14 +80,14 @@ function buildParser1()
         'action'      => 'StoreInt',
         'description' => 'test the StoreInt action',
         'help_name'   => 'INT',
-        'default'     => '1'
+        'default'     => 1
     ));
     $parser->addOption('float', array(
         'long_name'   => '--float',
         'action'      => 'StoreFloat',
         'description' => 'test the StoreFloat action',
         'help_name'   => 'FLOAT',
-        'default'     => '1.0'
+        'default'     => 1.0
     ));
     $parser->addOption('string', array(
         'short_name'  => '-s',
@@ -104,12 +117,69 @@ function buildParser1()
         'help_name'   => 'ARRAY',
         'description' => 'test the StoreArray action'
     ));
+    $parser->addOption('password', array(
+        'short_name'  => '-p',
+        'long_name'   => '--password',
+        'action'      => 'Password',
+        'description' => 'test the Password action'
+    ));
     $parser->addArgument('simple', array(
         'description' => 'test a simple argument'
     ));
     $parser->addArgument('multiple', array(
         'description' => 'test a multiple argument',
         'multiple'    => true
+    ));
+    return $parser;
+}
+
+
+/**
+ * Build a parser instance and return it.
+ *
+ * @return object Console_CommandLine instance
+ */
+function buildParser2()
+{
+    $parser = new Console_CommandLine();
+    $parser->name = 'some_program';
+    $parser->version = '0.1.0';
+    $parser->description = 'Description of our parser goes here...';
+
+    // add general options
+    $parser->addOption('verbose', array(
+        'short_name'  => '-v',
+        'long_name'   => '--verbose',
+        'action'      => 'StoreTrue',
+        'description' => 'verbose mode'
+    ));
+    $parser->addOption('logfile', array(
+        'short_name'  => '-l',
+        'long_name'   => '--logfile',
+        'action'      => 'StoreString',
+        'description' => 'path to logfile'
+    ));
+ 
+    // install subcommand
+    $cmd1 = $parser->addCommand('install', array(
+        'description' => 'install given package'
+    ));
+    $cmd1->addOption('force', array(
+        'short_name'  => '-f',
+        'long_name'   => '--force',
+        'action'      => 'StoreTrue',
+        'description' => 'force installation'
+    ));
+    $cmd1->addArgument('package', array(
+        'description' => 'package to install'
+    ));
+
+    // uninstall subcommand
+    $cmd2 = $parser->addCommand('uninstall', array(
+        'description' => 'uninstall given package'
+    ));
+    $cmd2->addArgument('package', array(
+        'description' => 'package to uninstall'
     ));
     return $parser;
 }
