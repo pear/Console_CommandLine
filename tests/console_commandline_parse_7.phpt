@@ -20,17 +20,17 @@ try {
 
 ?>
 --EXPECT--
-object(Console_CommandLine_Result)#17 (4) {
+object(Console_CommandLine_Result)#18 (4) {
   ["options"]=>
-  array(10) {
+  array(11) {
     ["true"]=>
     bool(true)
     ["false"]=>
     NULL
     ["int"]=>
-    string(1) "1"
+    int(1)
     ["float"]=>
-    string(3) "1.0"
+    float(1)
     ["string"]=>
     NULL
     ["counter"]=>
@@ -38,6 +38,8 @@ object(Console_CommandLine_Result)#17 (4) {
     ["callback"]=>
     NULL
     ["array"]=>
+    NULL
+    ["password"]=>
     NULL
     ["help"]=>
     NULL

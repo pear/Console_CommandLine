@@ -1,9 +1,11 @@
 --TEST--
-Test for Console_CommandLine::parse() method (various options).
+Test for Console_CommandLine::parse() method (password option).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
 --ARGS--
--tfsfoo --int=3 --flo 4.0 -cccc -a foo bar baz --callback=somestring foo bar
+-p -- foo bar
+--STDIN--
+secretpass
 --FILE--
 <?php
 
@@ -18,32 +20,25 @@ var_dump($result->args);
 
 ?>
 --EXPECT--
-array(11) {
+Password: array(11) {
   ["true"]=>
-  bool(true)
-  ["false"]=>
-  bool(false)
-  ["int"]=>
-  int(3)
-  ["float"]=>
-  float(4)
-  ["string"]=>
-  string(3) "foo"
-  ["counter"]=>
-  int(4)
-  ["callback"]=>
-  string(20) "foo__fbzrfgevat__bar"
-  ["array"]=>
-  array(3) {
-    [0]=>
-    string(3) "foo"
-    [1]=>
-    string(3) "bar"
-    [2]=>
-    string(3) "baz"
-  }
-  ["password"]=>
   NULL
+  ["false"]=>
+  NULL
+  ["int"]=>
+  int(1)
+  ["float"]=>
+  float(1)
+  ["string"]=>
+  NULL
+  ["counter"]=>
+  NULL
+  ["callback"]=>
+  NULL
+  ["array"]=>
+  NULL
+  ["password"]=>
+  string(10) "secretpass"
   ["help"]=>
   NULL
   ["version"]=>
