@@ -25,43 +25,79 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-01-09</date>
- <time>09:58:21</time>
+ <date>2008-01-18</date>
+ <time>15:12:31</time>
  <version>
-  <release>0.2.1</release>
-  <api>0.2.1</api>
+  <release>1.0.0RC1</release>
+  <api>1.0.0RC1</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license>MIT License</license>
- <notes>fixed bug #12859: xmlschema.rng gets searched at the wrong folder
+ <notes>- fixed a missing check when a short option require an argument and is the last
+  in the argv array,
+- more GNU getopt compliance: long option/argument can also be separated by a
+  space now and long options abbreviations are supported,
+- added a &quot;Password&quot; action: with this action it is possible to specify a
+  password on the command line, and if it is missing it will be prompted to
+  user (and will not be echo on stdin on UNIX systems),
+- added more tests.
   
  </notes>
  <contents>
   <dir name="/">
    <dir name="CommandLine">
     <dir name="Action">
-     <file baseinstalldir="Console" name="Callback.php" role="php" />
-     <file baseinstalldir="Console" name="Counter.php" role="php" />
-     <file baseinstalldir="Console" name="Help.php" role="php" />
-     <file baseinstalldir="Console" name="StoreArray.php" role="php" />
-     <file baseinstalldir="Console" name="StoreFalse.php" role="php" />
-     <file baseinstalldir="Console" name="StoreFloat.php" role="php" />
-     <file baseinstalldir="Console" name="StoreInt.php" role="php" />
-     <file baseinstalldir="Console" name="StoreString.php" role="php" />
-     <file baseinstalldir="Console" name="StoreTrue.php" role="php" />
-     <file baseinstalldir="Console" name="Version.php" role="php" />
+     <file baseinstalldir="Console" name="Callback.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Counter.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Help.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Password.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreArray.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreFalse.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreFloat.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreInt.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreString.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="StoreTrue.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="Console" name="Version.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /CommandLine/Action -->
     <dir name="MessageProvider">
-     <file baseinstalldir="Console" name="Default.php" role="php" />
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /CommandLine/MessageProvider -->
     <dir name="Outputter">
-     <file baseinstalldir="Console" name="Default.php" role="php" />
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /CommandLine/Outputter -->
     <dir name="Renderer">
-     <file baseinstalldir="Console" name="Default.php" role="php" />
+     <file baseinstalldir="Console" name="Default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /CommandLine/Renderer -->
     <file baseinstalldir="Console" name="Action.php" role="php">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -206,6 +242,28 @@ Main features:
    <date>2008-01-09</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>fixed bug #12859: xmlschema.rng gets searched at the wrong folder
+    
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC1</release>
+    <api>1.0.0RC1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-01-18</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>- fixed a missing check when a short option require an argument and is the last
+  in the argv array,
+- more GNU getopt compliance: long option/argument can also be separated by a
+  space now and long options abbreviations are supported,
+- added a &quot;Password&quot; action: with this action it is possible to specify a
+  password on the command line, and if it is missing it will be prompted to
+  user (and will not be echo on stdin on UNIX systems),
+- added more tests.
     
    </notes>
   </release>

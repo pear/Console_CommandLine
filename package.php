@@ -32,7 +32,7 @@ require_once 'PEAR/PackageFileManager.php';
 /**
  * Current version
  */
-$version = '0.2.1';
+$version = '1.0.0RC1';
 
 /**
  * Current state
@@ -43,7 +43,15 @@ $state = 'beta';
  * Release notes
  */
 $notes = '
-fixed bug #12859: xmlschema.rng gets searched at the wrong folder
+- fixed a missing check when a short option require an argument and is the last
+  in the argv array,
+- more GNU getopt compliance: long option/argument can also be separated by a
+  space now and long options abbreviations are supported,
+- added a "Password" action: with this action it is possible to specify a
+  password on the command line, and if it is missing it will be prompted to
+  user (and will not be echo on stdin on UNIX systems),
+- allow "force_posix" option to be passed to the constructor,
+- added more tests.
 ';
 
 /**
@@ -77,7 +85,8 @@ $result = $package->setOptions(array(
     'version'           => $version,
     'state'             => $state,
     'license'           => 'MIT License',
-    'ignore'            => array('*CVS*', 'package.php', 'package.xml', 'package2.xml', '*.tgz'),
+    'ignore'            => array('package.php', 'package.xml', 'package2.xml', '*.tgz'),
+    'filelistgenerator' => 'cvs',
     'notes'             => $notes,
     'simpleoutput'      => true,
     'baseinstalldir'    => 'Console',
@@ -94,9 +103,11 @@ if (PEAR::isError($result)) {
     exit(1);
 }
 
-$package->addReplacement('CommandLine.php', 'package-info', '@package_version@', 'version');
-$package->addReplacement('CommandLine/*.php', 'package-info', '@package_version@', 'version');
-$package->addReplacement('examples/*.php', 'package-info', '@package_version@', 'version');
+//$package->addReplacement('CommandLine.php', 'package-info', '@package_version@', 'version');
+//$package->addReplacement('CommandLine/*.php', 'package-info', '@package_version@', 'version');
+//$package->addReplacement('CommandLine/*/*.php', 'package-info', '@package_version@', 'version');
+//$package->addReplacement('examples/*.php', 'package-info', '@package_version@', 'version');
+$package->addGlobalReplacement('package-info', '@package_version@', 'version');
 $package->addReplacement('CommandLine/XmlParser.php', 'pear-config', '@pear_data_dir@', 'data_dir');
 $package->addMaintainer('izi', 'lead', 'David JEAN LOUIS', 'izimobil@gmail.com');
 $package->addDependency('php', '5.0.0', 'ge', 'php', false);
