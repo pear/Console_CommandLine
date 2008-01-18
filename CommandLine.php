@@ -278,6 +278,11 @@ class Console_CommandLine
         if (isset($params['add_help_option'])) {
             $this->add_help_option = $params['add_help_option'];
         }
+        if (isset($params['force_posix'])) {
+            $this->force_posix = $params['force_posix'];
+        } else if (getenv('POSIXLY_CORRECT')) {
+            $this->force_posix = true;
+        }
         if (isset($params['renderer'])) {
             $this->renderer = $params['renderer'];
         } else {
