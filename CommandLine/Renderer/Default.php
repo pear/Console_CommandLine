@@ -120,11 +120,11 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
         $ret = 'Error: ' . $error . "\n";
         if ($this->parser->add_help_option) {
             $name = $this->name();
-            $ret .= wordwrap($this->parser->message_provider->get('PROG_HELP_LINE',
-                array('progname' => $name)), $this->line_width) . "\n";
+            $ret .= $this->wrap($this->parser->message_provider->get('PROG_HELP_LINE',
+                array('progname' => $name))) . "\n";
             if (count($this->parser->commands) > 0) {
-                $ret .= wordwrap($this->parser->message_provider->get('COMMAND_HELP_LINE',
-                    array('progname' => $name)), $this->line_width) . "\n";
+                $ret .= $this->wrap($this->parser->message_provider->get('COMMAND_HELP_LINE',
+                    array('progname' => $name))) . "\n";
             }
         }
         return $ret;
@@ -171,7 +171,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
             $parent = $parent->parent;
         }
         $name .= $this->parser->name;
-        return wordwrap($name, $this->line_width);
+        return $this->wrap($name);
     }
 
     // }}}
@@ -185,7 +185,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      */
     protected function description()
     {
-        return wordwrap($this->parser->description, $this->line_width);
+        return $this->wrap($this->parser->description);
     }
 
     // }}}
@@ -331,6 +331,33 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
+    // Console_CommandLine_Renderer_Default::wrap() {{{
+
+    /**
+     * Wraps the text passed to the method.
+     *
+     * @param string $text  The text to wrap
+     * @param int    $lw    The column width. Defaults to line_width property.
+     * @param string $break The line is broken using the optional break  
+     *                      parameter. Defaults to '\n'.
+     * @param bool   $cut   If the cut  is set to TRUE, the string is always 
+     *                      wrapped at the specified width.
+     *
+     * @return string
+     * @access protected
+     */
+    protected function wrap($text, $lw=null)
+    {
+        if ($this->line_width > 0) {
+            if ($lw === null) {
+                $lw = $this->line_width;
+            }
+            return wordwrap($text, $lw, "\n", false);
+        }
+        return $text;
+    }
+
+    // }}}
     // Console_CommandLine_Renderer_Default::columnWrap() {{{
 
     /**
@@ -344,10 +371,10 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      */
     protected function columnWrap($text, $cw)
     {
-        $tokens = explode("\n", wordwrap($text, $this->line_width, "\n", true));
+        $tokens = explode("\n", $this->wrap($text));
         $ret    = $tokens[0];
-        $chunks = wordwrap(trim(substr($text, strlen($ret))),
-            $this->line_width - $cw, "\n", true);
+        $chunks = $this->wrap(trim(substr($text, strlen($ret))), 
+            $this->line_width - $cw);
         $tokens = explode("\n", $chunks);
         foreach ($tokens as $token) {
             if (!empty($token)) {
