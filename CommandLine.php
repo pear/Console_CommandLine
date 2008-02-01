@@ -744,13 +744,15 @@ class Console_CommandLine
      * Parse the command line arguments and return a Console_CommandLine_Result 
      * object.
      *
-     * @param integer $beginAt beginning index of the argv array
+     * @param integer $userArgc number of arguments (optional)
+     * @param array   $userArgv array containing arguments (optional)
+     * @param integer $beginAt  beginning index of the argv array (optional)
      *
      * @return object Console_CommandLine_Result
      * @access public
      * @throws Exception on user errors
      */
-    public function parse($beginAt = 0)
+    public function parse($userArgc=null, $userArgv=null, $beginAt=0)
     {
         // add "auto" options help and version if needed
         if ($this->add_help_option) {
@@ -768,13 +770,10 @@ class Console_CommandLine
                 'action'      => 'Version'   
             ));
         }
-        // for compatibility issues
-        if (!isset($argv)) {
-            $argv = $_SERVER['argv'];
-        }
-        if (!isset($argc)) {
-            $argc = $_SERVER['argc'];
-        }
+        $argc = ($userArgc === null) ?
+            (isset($argc) ? $argc : $_SERVER['argc']) : $userArgc;
+        $argv = ($userArgv === null) ?
+            (isset($argv) ? $argv : $_SERVER['argv']) : $userArgv;
         // case of a subcommand, skip main program args
         for ($i=0; $i<$beginAt; $i++) {
             $argc--;
@@ -797,9 +796,9 @@ class Console_CommandLine
             $token = array_shift($argv);
             try {
                 if (isset($this->commands[$token])) {
-                    $res                  = $this->commands[$token]->parse($i);
+                    $res = $this->commands[$token]->parse(null, null, $i);
                     $result->command_name = $token;
-                    $result->command      = $res;
+                    $result->command = $res;
                     break;
                 } else {
                     $this->parseToken($token, $result, $args, $argc===0);
