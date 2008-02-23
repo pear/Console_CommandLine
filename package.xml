@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.6.2">
+<package version="1.0" packagerversion="1.7.1">
  <name>Console_CommandLine</name>
  <summary>A full featured command line options and arguments parser</summary>
  <description>Console_CommandLine is a full featured package for managing command-line 
@@ -24,22 +24,17 @@ Main features:
   </maintainer>
   </maintainers>
  <release>
-  <version>1.0.0RC1</version>
-  <date>2008-01-18</date>
+  <version>1.0.0RC2</version>
+  <date>2008-02-23</date>
   <license>MIT License</license>
   <state>beta</state>
-  <notes>- fixed a missing check when a short option require an argument and is the last
-  in the argv array,
-- more GNU getopt compliance: long option/argument can also be separated by a
-  space now and long options abbreviations are supported,
-- added a &quot;Password&quot; action: with this action it is possible to specify a
-  password on the command line, and if it is missing it will be prompted to
-  user (and will not be echo on stdin on UNIX systems),
-- allow &quot;force_posix&quot; option to be passed to the constructor,
-- added more tests.
+  <notes>- some clean up in the default renderer,
+- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
+- fixed bug #13038: changed the signature of the parse method to allow the
+  developer to pass argc and argv array (instead of using $_SERVER values).
   </notes>
   <deps>
-   <dep type="php" rel="ge" version="5.0.0" optional="no"/>
+   <dep type="php" rel="ge" version="5.1.0" optional="no"/>
   </deps>
   <filelist>
    <dir name="/" baseinstalldir="Console">
@@ -260,6 +255,17 @@ Main features:
   user (and will not be echo on stdin on UNIX systems),
 - allow &quot;force_posix&quot; option to be passed to the constructor,
 - added more tests.
+    </notes>
+   </release>
+   <release>
+    <version>1.0.0RC2</version>
+    <date>2008-02-23</date>
+    <license>MIT License</license>
+    <state>beta</state>
+    <notes>- some clean up in the default renderer,
+- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
+- fixed bug #13038: changed the signature of the parse method to allow the
+  developer to pass argc and argv array (instead of using $_SERVER values).
     </notes>
    </release>
  </changelog>
