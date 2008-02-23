@@ -142,13 +142,14 @@ class Console_CommandLine_XmlParser
         foreach ($node->childNodes as $cNode) {
             $cNodeName = $cNode->nodeName;
             switch ($cNodeName) {
+            case 'name':
             case 'description':
             case 'version':
-            case 'name':
                 $obj->$cNodeName = trim($cNode->nodeValue);
                 break;
             case 'add_help_option':
             case 'add_version_option':
+            case 'force_posix':
                 $obj->$cNodeName = self::_bool(trim($cNode->nodeValue));
                 break;
             case 'option':
@@ -185,8 +186,16 @@ class Console_CommandLine_XmlParser
         include_once 'Console/CommandLine/Option.php';
         $obj = new Console_CommandLine_Option($node->getAttribute('name'));
         foreach ($node->childNodes as $cNode) {
-            $cNodeName       = $cNode->nodeName;
-            $obj->$cNodeName = trim($cNode->nodeValue);
+            $cNodeName = $cNode->nodeName;
+            if ($cNodeName == 'choices') {
+                foreach ($cNode->childNodes as $subChildNode) {
+                    if ($subChildNode->nodeName == 'choice') {
+                        $obj->choices[] = trim($subChildNode->nodeValue);
+                    }
+                }
+            } elseif (property_exists($obj, $cNodeName)) {
+                $obj->$cNodeName = trim($cNode->nodeValue);
+            }
         }
         return $obj;
     }

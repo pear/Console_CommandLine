@@ -45,6 +45,11 @@
             <ref name="ref_bool_choices"/>
           </element>
         </optional>
+        <optional>
+          <element name="force_posix">
+            <ref name="ref_bool_choices"/>
+          </element>
+        </optional>
         <zeroOrMore>
           <ref name="ref_option"/>
         </zeroOrMore>
@@ -99,6 +104,15 @@
         <optional>
           <element name="action">
             <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="choices">
+            <zeroOrMore>
+              <element name="choice">
+                <text/>
+              </element>
+            </zeroOrMore>
           </element>
         </optional>
       </interleave>

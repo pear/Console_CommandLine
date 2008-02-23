@@ -2,6 +2,16 @@
 <command>
     <description>zip given files using the php zip module.</description>
     <version>1.0.0</version>
+    <option name="choice">
+        <short_name>-c</short_name>
+        <long_name>--choice</long_name>
+        <description>choice option</description>
+        <action>StoreString</action>
+        <choices>
+            <choice>ham</choice>
+            <choice>spam</choice>
+        </choices>
+    </option>
     <option name="verbose">
         <short_name>-v</short_name>
         <long_name>--verbose</long_name>
