@@ -28,10 +28,11 @@ Main features:
   <date>2008-02-23</date>
   <license>MIT License</license>
   <state>beta</state>
-  <notes>- some clean up in the default renderer,
-- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
-- fixed bug #13038: changed the signature of the parse method to allow the
-  developer to pass argc and argv array (instead of using $_SERVER values).
+  <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
+- fixed bug #13038 changed the signature of the parse method to allow the 
+  developer to pass argc and argv array (instead of using $_SERVER values);
+- fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
+  &quot;force_posix&quot; attribute support in xml).
   </notes>
   <deps>
    <dep type="php" rel="ge" version="5.1.0" optional="no"/>
@@ -262,10 +263,11 @@ Main features:
     <date>2008-02-23</date>
     <license>MIT License</license>
     <state>beta</state>
-    <notes>- some clean up in the default renderer,
-- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
-- fixed bug #13038: changed the signature of the parse method to allow the
-  developer to pass argc and argv array (instead of using $_SERVER values).
+    <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
+- fixed bug #13038 changed the signature of the parse method to allow the 
+  developer to pass argc and argv array (instead of using $_SERVER values);
+- fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
+  &quot;force_posix&quot; attribute support in xml).
     </notes>
    </release>
  </changelog>

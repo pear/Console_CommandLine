@@ -43,10 +43,11 @@ $state = 'beta';
  * Release notes
  */
 $notes = '
-- some clean up in the default renderer,
-- wrapping can be disabled by setting $renderer->line_width to -1,
-- fixed bug #13038: changed the signature of the parse method to allow the
-  developer to pass argc and argv array (instead of using $_SERVER values).
+- allow "force_posix" option to be passed to the constructor;
+- fixed bug #13038 changed the signature of the parse method to allow the 
+  developer to pass argc and argv array (instead of using $_SERVER values);
+- fixed bug #13132 : "choices" not supported in xml definition (also added 
+  "force_posix" attribute support in xml).
 ';
 
 /**

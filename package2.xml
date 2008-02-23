@@ -26,7 +26,7 @@ Main features:
   <active>yes</active>
  </lead>
  <date>2008-02-23</date>
- <time>11:59:48</time>
+ <time>12:06:06</time>
  <version>
   <release>1.0.0RC2</release>
   <api>1.0.0RC2</api>
@@ -36,10 +36,11 @@ Main features:
   <api>beta</api>
  </stability>
  <license>MIT License</license>
- <notes>- some clean up in the default renderer,
-- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
-- fixed bug #13038: changed the signature of the parse method to allow the
-  developer to pass argc and argv array (instead of using $_SERVER values).
+ <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
+- fixed bug #13038 changed the signature of the parse method to allow the 
+  developer to pass argc and argv array (instead of using $_SERVER values);
+- fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
+  &quot;force_posix&quot; attribute support in xml).
   
  </notes>
  <contents>
@@ -319,10 +320,11 @@ Main features:
    </stability>
    <date>2008-02-23</date>
    <license uri="http://www.example.com">MIT License</license>
-   <notes>- some clean up in the default renderer,
-- wrapping can be disabled by setting $renderer-&gt;line_width to -1,
-- fixed bug #13038: changed the signature of the parse method to allow the
-  developer to pass argc and argv array (instead of using $_SERVER values).
+   <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
+- fixed bug #13038 changed the signature of the parse method to allow the 
+  developer to pass argc and argv array (instead of using $_SERVER values);
+- fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
+  &quot;force_posix&quot; attribute support in xml).
     
    </notes>
   </release>
