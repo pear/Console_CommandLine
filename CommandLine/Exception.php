@@ -69,8 +69,9 @@ class Console_CommandLine_Exception extends PEAR_Exception
      *
      * @return object an instance of Console_CommandLine_Exception
      * @access public
+     * @static
      */
-    public function build($code, $params, $parser)
+    public static function build($code, $params, $parser)
     {
         $msg   = $parser->message_provider->get($code, $params);
         $const = 'Console_CommandLine_Exception::' . $code;
