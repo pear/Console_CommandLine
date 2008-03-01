@@ -17,6 +17,8 @@
  * @version   CVS: $Id$
  */
 
+error_reporting(E_ALL | E_STRICT);
+
 require_once 'Console/CommandLine.php';
 
 /**
