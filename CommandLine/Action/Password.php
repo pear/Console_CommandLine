@@ -67,20 +67,21 @@ class Console_CommandLine_Action_Password extends Console_CommandLine_Action
      * @return string
      * @access private
      */
-    public function _promptPassword()
+    private function _promptPassword()
     {
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            fwrite(STDOUT, $this->parser->message_provider->get('PASSWORD_PROMPT_ECHO'));
-		    @flock(STDIN, LOCK_EX);
+            fwrite(STDOUT,
+                $this->parser->message_provider->get('PASSWORD_PROMPT_ECHO'));
+            @flock(STDIN, LOCK_EX);
             $passwd = fgets(STDIN);
-		    @flock(STDIN, LOCK_UN);
+            @flock(STDIN, LOCK_UN);
         } else {
             fwrite(STDOUT, $this->parser->message_provider->get('PASSWORD_PROMPT'));
             // disable echoing
             system('stty -echo');
-		    @flock(STDIN, LOCK_EX);
+            @flock(STDIN, LOCK_EX);
             $passwd = fgets(STDIN);
-		    @flock(STDIN, LOCK_UN);
+            @flock(STDIN, LOCK_UN);
             system('stty echo');
         }
         return trim($passwd);

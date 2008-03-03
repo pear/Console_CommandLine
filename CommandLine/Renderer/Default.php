@@ -336,12 +336,8 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     /**
      * Wraps the text passed to the method.
      *
-     * @param string $text  The text to wrap
-     * @param int    $lw    The column width. Defaults to line_width property.
-     * @param string $break The line is broken using the optional break  
-     *                      parameter. Defaults to '\n'.
-     * @param bool   $cut   If the cut  is set to TRUE, the string is always 
-     *                      wrapped at the specified width.
+     * @param string $text The text to wrap
+     * @param int    $lw   The column width. Defaults to line_width property.
      *
      * @return string
      * @access protected

@@ -477,7 +477,7 @@ class Console_CommandLine
         } else {
             include_once 'Console/CommandLine/Command.php';
             $params['name'] = $name;
-            $command = new Console_CommandLine_Command($params);
+            $command        = new Console_CommandLine_Command($params);
         }
         $command->parent                = $this;
         $this->commands[$command->name] = $command;
@@ -633,10 +633,10 @@ class Console_CommandLine
         if ($count = count($matches)) {
             if ($count > 1) {
                 $matches_str = '';
-                $padding = '';
+                $padding     = '';
                 foreach ($matches as $opt) {
                     $matches_str .= $padding . $opt->long_name;
-                    $padding = ', ';
+                    $padding      = ', ';
                 }
                 throw Console_CommandLine_Exception::build('OPTION_AMBIGUOUS',
                     array('name' => $str, 'matches' => $matches_str),
@@ -796,9 +796,9 @@ class Console_CommandLine
             $token = array_shift($argv);
             try {
                 if (isset($this->commands[$token])) {
-                    $res = $this->commands[$token]->parse(null, null, $i);
                     $result->command_name = $token;
-                    $result->command = $res;
+                    $result->command      = $this->commands[$token]->parse(null,
+                        null, $i);
                     break;
                 } else {
                     $this->parseToken($token, $result, $args, $argc===0);
@@ -841,6 +841,7 @@ class Console_CommandLine
      * @param string $token  the command line token to parse
      * @param object $result the Console_CommandLine_Result instance
      * @param array  &$args  the argv array
+     * @param bool   $last   true if it's the last token being parsed
      *
      * @return void
      * @access protected
@@ -916,7 +917,7 @@ class Console_CommandLine
                 $args[] = $optname;
                 return;
             }
-            $opt     = $this->findOption($optname);
+            $opt = $this->findOption($optname);
             if (!$opt) {
                 throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
                     array('name' => $optname), $this);
@@ -971,9 +972,9 @@ class Console_CommandLine
     /**
      * Dispatch the given option or store the option to dispatch it later.
      *
+     * @param object $option an instance of Console_CommandLine_Option
      * @param string $token  the command line token to parse
      * @param object $result the Console_CommandLine_Result instance
-     * @param array  &$args  the argv array
      *
      * @return void
      * @access protected
