@@ -801,7 +801,7 @@ class Console_CommandLine
                         null, $i);
                     break;
                 } else {
-                    $this->parseToken($token, $result, $args, $argc===0);
+                    $this->parseToken($token, $result, $args, $argc);
                 }
             } catch (Exception $exc) {
                 throw $exc;
@@ -841,16 +841,17 @@ class Console_CommandLine
      * @param string $token  the command line token to parse
      * @param object $result the Console_CommandLine_Result instance
      * @param array  &$args  the argv array
-     * @param bool   $last   true if it's the last token being parsed
+     * @param int    $argc   number of lasting args
      *
      * @return void
      * @access protected
      * @throws Exception on user errors
      */
-    protected function parseToken($token, $result, &$args, $last)
+    protected function parseToken($token, $result, &$args, $argc)
     {
         static $lastopt  = false;
         static $stopflag = false;
+        $last  = $argc === 0;
         $token = trim($token);
         if (!$stopflag && $lastopt) {
             if (substr($token, 0, 1) == '-') {
@@ -867,6 +868,16 @@ class Console_CommandLine
                         array('name' => $lastopt->name), $this);
                 }
             } else {
+                // when a StoreArray option is positioned last, the behavior
+                // is to consider that if there's already an element in the
+                // array, and the commandline expects one or more args, we
+                // leave last tokens to arguments
+                if ($lastopt->action == 'StoreArray' && 
+                    !empty($result->options[$lastopt->name]) &&
+                    count($this->args) > ($argc + count($args))) {
+                    $args[] = $token;
+                    return;
+                }
                 $this->_dispatchAction($lastopt, $token, $result);
                 if ($lastopt->action != 'StoreArray') {
                     $lastopt = false;
