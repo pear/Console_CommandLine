@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.7.1">
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>Console_CommandLine</name>
+ <channel>pear.php.net</channel>
  <summary>A full featured command line options and arguments parser</summary>
  <description>Console_CommandLine is a full featured package for managing command-line 
 options and arguments highly inspired from python optparse module, it allows 
@@ -13,241 +13,256 @@ Main features:
   * generate --help and --version options automatically,
   * can be completely customized,
   * builtin support for i18n,
-  * and much more...
- </description>
- <maintainers>
-  <maintainer>
-   <user>izi</user>
-   <name>David JEAN LOUIS</name>
-   <email>izimobil@gmail.com</email>
-   <role>lead</role>
-  </maintainer>
-  </maintainers>
- <release>
-  <version>1.0.0RC2</version>
-  <date>2008-02-23</date>
-  <license>MIT License</license>
-  <state>beta</state>
-  <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
-- fixed bug #13038 changed the signature of the parse method to allow the 
-  developer to pass argc and argv array (instead of using $_SERVER values);
-- fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
-  &quot;force_posix&quot; attribute support in xml).
-  </notes>
-  <deps>
-   <dep type="php" rel="ge" version="5.1.0" optional="no"/>
-  </deps>
-  <filelist>
-   <dir name="/" baseinstalldir="Console">
-    <dir name="CommandLine">
-     <dir name="Action">
-      <file role="php" name="Callback.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="Counter.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="Help.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="Password.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreArray.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreFalse.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreFloat.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreInt.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreString.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="StoreTrue.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" name="Version.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-     </dir> <!-- /CommandLine/Action -->
-     <dir name="MessageProvider">
-      <file role="php" name="Default.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-     </dir> <!-- /CommandLine/MessageProvider -->
-     <dir name="Outputter">
-      <file role="php" name="Default.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-     </dir> <!-- /CommandLine/Outputter -->
-     <dir name="Renderer">
-      <file role="php" name="Default.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-     </dir> <!-- /CommandLine/Renderer -->
-     <file role="php" name="Action.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Argument.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Command.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Element.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Exception.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="MessageProvider.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Option.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Outputter.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Renderer.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="Result.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="php" name="XmlParser.php">
-      <replace type="pear-config" from="@pear_data_dir@" to="data_dir"/>
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-    </dir> <!-- /CommandLine -->
-    <dir name="data">
-     <file role="data" name="xmlschema.rng">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-    </dir> <!-- /data -->
-    <dir name="docs">
-     <dir name="examples">
-      <file role="doc" name="ex1.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="doc" name="ex2.php">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="doc" name="ex2.xml">
-       <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-     </dir> <!-- /docs/examples -->
-    </dir> <!-- /docs -->
-    <dir name="tests">
-     <file role="test" name="console_commandline_addargument.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_addcommand.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_addoption.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_1.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_2.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_3.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_4.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_5.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_6.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_7.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_8.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_9.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_10.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_11.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="console_commandline_parse_12.phpt">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-     <file role="test" name="tests.inc.php">
-      <replace type="package-info" from="@package_version@" to="version"/>
-     </file>
-    </dir> <!-- /tests -->
-    <file role="php" name="CommandLine.php">
-     <replace type="package-info" from="@package_version@" to="version"/>
-    </file>
-   </dir> <!-- / -->
-  </filelist>
- </release>
+  * and much more...</description>
+ <lead>
+  <name>David JEAN LOUIS</name>
+  <user>izi</user>
+  <email>izimobil@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-03-12</date>
+ <time>11:13:14</time>
+ <version>
+  <release>1.0.0RC3</release>
+  <api>1.0.0RC3</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+ <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
+- changed behaviour when a StoreArray option is positioned at the end;
+- now use pfm (so removed package.php and package2.xml).</notes>
+ <contents>
+  <dir baseinstalldir="Console" name="/">
+   <file baseinstalldir="Console" md5sum="1a7d1a2b07fb2bcc12aad7f4ea1154dc" name="CommandLine/Action.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="1933f52409a1f30abd2f0ee16aeb66f9" name="CommandLine/Argument.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="e998ed7ffc927a20d7a7b6984abef978" name="CommandLine/Command.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="5aa1aaad09f5163fde3201dfc941635b" name="CommandLine/Element.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="8d77aba7c11a16cc2e3216710cc1fced" name="CommandLine/Exception.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="93ad707ef092140958f8c5d33bddf6bb" name="CommandLine/MessageProvider.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="ce28d1380b08218bc431845b518a313b" name="CommandLine/Option.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="23c7028bfac2fbcfaab29045881e8363" name="CommandLine/Outputter.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="c081dd9f6c864168a8dea2c882fc93e5" name="CommandLine/Renderer.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="84e1bda8ae175e61430a0317eac48b95" name="CommandLine/Result.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="c19f5b2a2a7906d843178e4ba8662623" name="CommandLine/XmlParser.php" role="php">
+    <tasks:replace from="@pear_data_dir@" to="data_dir" type="pear-config" />
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="a6bd6fb81fb4865621b596b46b631d16" name="CommandLine/Action/Callback.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="e9c7a7429616101cfbaee3c43f352764" name="CommandLine/Action/Counter.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="60defbe7654dca381edd5c44895f60c9" name="CommandLine/Action/Help.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="8e54dc5a3bf05e6007217cf31925b8df" name="CommandLine/Action/Password.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="5b83e8f30b944b8ca1fe8a94c2845678" name="CommandLine/Action/StoreArray.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="f47e0fb690feac64534872007a1aefec" name="CommandLine/Action/StoreFalse.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="40b7e10c9a57b2063e86c02cf799236e" name="CommandLine/Action/StoreFloat.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="6f8ad95d4d4f59dc72b6a2259c48e647" name="CommandLine/Action/StoreInt.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="2233ed580ebc68b2253a9eef1c3022ae" name="CommandLine/Action/StoreString.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="7898779c116c8a1960defa071888d94b" name="CommandLine/Action/StoreTrue.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="954cedc60d32c6e24c20b5f7096bbefe" name="CommandLine/Action/Version.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="270ecd447ff91ccf7b351f4dee92e8fa" name="CommandLine/MessageProvider/Default.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="bb161c2d430c362e618c5f0f0d719dcb" name="CommandLine/Outputter/Default.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="b66a1462ba0286c066fa05efb24e322b" name="CommandLine/Renderer/Default.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="1227bc5ee39b9487345ca40355982c69" name="data/xmlschema.rng" role="data">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="aeeacdd60cf072291053603ac6c233f7" name="docs/examples/ex1.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="c3fdd172f6c3e24d2c7217449aca39ac" name="docs/examples/ex2.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="3b3524b6fc8490c113e941cfee1792cd" name="docs/examples/ex2.xml" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="c9141ed5e4bc90ff92c9539c2e509a5d" name="tests/console_commandline_addargument.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="dedd33581d44fc63e5ad07f8cee329f4" name="tests/console_commandline_addcommand.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="3d669dc750b4be9a93bf689ad56f7ea8" name="tests/console_commandline_addoption.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="cb8392d24fed5863e4a7d538d4fbeb42" name="tests/console_commandline_parse_1.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="a70071e44e848630e594ef2e13f26e83" name="tests/console_commandline_parse_2.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="a33e3996b71e714492e333888c42d1e2" name="tests/console_commandline_parse_3.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="9629812980c1e56a103f0c2a6555d3bd" name="tests/console_commandline_parse_4.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="4592afeb86cb2b01a84cce6c9c8095f1" name="tests/console_commandline_parse_5.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="45ebd547a9e3cc8efb2cfb73648f0840" name="tests/console_commandline_parse_6.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="6ab6a2ec531629d2606d466f3c95dc92" name="tests/console_commandline_parse_7.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="ec9b2b116e4b2da3eb53e419e8fd4073" name="tests/console_commandline_parse_8.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="883a87b1f0840c5e2d89b3dfd2747dfc" name="tests/console_commandline_parse_9.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="75829d66ba5a4caf43bb4db17f464656" name="tests/console_commandline_parse_10.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="27f409204f3c125a750eebf6c02ac6b0" name="tests/console_commandline_parse_11.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="06758a2f3756c3ff505a3976cde25483" name="tests/console_commandline_parse_12.phpt" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="5831dec37c37ed4396f1c90a82c155d8" name="tests/tests.inc.php" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" md5sum="52d65fa224d18c7cb33122c3bca659fe" name="CommandLine.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
  <changelog>
-   <release>
-    <version>0.1.0</version>
-    <date>2007-12-19</date>
-    <license>MIT License</license>
-    <state>alpha</state>
-    <notes>Initial release.
-    </notes>
-   </release>
-   <release>
-    <version>0.1.1</version>
-    <date>2007-12-21</date>
-    <license>MIT License</license>
-    <state>alpha</state>
-    <notes>* bugs
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-12-19</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>Initial release.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.1</release>
+    <api>0.1.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-12-21</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>* bugs
   - fixed bug #12711,
   - fixed wrong error triggered when argument name is invalid.
 
 * changes
   - some cosmetic changes,
-  - added a lot of phpt test files.
-    </notes>
-   </release>
-   <release>
-    <version>0.2.0</version>
-    <date>2008-01-09</date>
-    <license>MIT License</license>
-    <state>beta</state>
-    <notes>- fixed a bug in Option::toString() (values were not displayed for short options),
+  - added a lot of phpt test files.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.0</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-01-09</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>- fixed a bug in Option::toString() (values were not displayed for short options),
 - fixed a parsing bug: if &quot;-&quot; is passed on the command line it should be treated as an argument,
 - stop option parsing when a &quot;--&quot; is found as gnu getopt does,
 - added a &quot;force_posix&quot; boolean attribute that tells the parser to be POSIX compliant, POSIX demands the following behavior: the first non-option stops option processing,
-- added more regression tests.
-    </notes>
-   </release>
-   <release>
-    <version>0.2.1</version>
-    <date>2008-01-09</date>
-    <license>MIT License</license>
-    <state>beta</state>
-    <notes>fixed bug #12859: xmlschema.rng gets searched at the wrong folder
-    </notes>
-   </release>
-   <release>
-    <version>1.0.0RC1</version>
-    <date>2008-01-18</date>
-    <license>MIT License</license>
-    <state>beta</state>
-    <notes>- fixed a missing check when a short option require an argument and is the last
+- added more regression tests.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.1</release>
+    <api>0.2.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-01-09</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>fixed bug #12859: xmlschema.rng gets searched at the wrong folder</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC1</release>
+    <api>1.0.0RC1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-01-18</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>- fixed a missing check when a short option require an argument and is the last
   in the argv array,
 - more GNU getopt compliance: long option/argument can also be separated by a
   space now and long options abbreviations are supported,
@@ -255,20 +270,39 @@ Main features:
   password on the command line, and if it is missing it will be prompted to
   user (and will not be echo on stdin on UNIX systems),
 - allow &quot;force_posix&quot; option to be passed to the constructor,
-- added more tests.
-    </notes>
-   </release>
-   <release>
-    <version>1.0.0RC2</version>
-    <date>2008-02-23</date>
-    <license>MIT License</license>
-    <state>beta</state>
-    <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
+- added more tests.</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC2</release>
+    <api>1.0.0RC2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-03-10</date>
+   <license uri="http://www.example.com">MIT License</license>
+   <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
 - fixed bug #13038 changed the signature of the parse method to allow the 
   developer to pass argc and argv array (instead of using $_SERVER values);
 - fixed bug #13132 : &quot;choices&quot; not supported in xml definition (also added 
-  &quot;force_posix&quot; attribute support in xml).
-    </notes>
-   </release>
+  &quot;force_posix&quot; attribute support in xml).</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC3</release>
+    <api>1.0.0RC3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-03-12</date>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
+- changed behaviour when a StoreArray option is positioned at the end;
+- now use pfm (so removed package.php and package2.xml).</notes>
+  </release>
  </changelog>
 </package>
