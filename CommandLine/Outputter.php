@@ -35,7 +35,7 @@
  */
 interface Console_CommandLine_Outputter
 {
-    // Console_CommandLine_Outputter::stdout() {{{
+    // stdout() {{{
 
     /**
      * Process the output for a message that should be displayed on STDOUT
@@ -48,7 +48,7 @@ interface Console_CommandLine_Outputter
     public function stdout($msg);
 
     // }}}
-    // Console_CommandLine_Outputter::stderr() {{{
+    // stderr() {{{
 
     /**
      * Process the output for a message that should be displayed on STDERR

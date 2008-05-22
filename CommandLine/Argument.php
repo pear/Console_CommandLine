@@ -48,7 +48,7 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
     public $multiple = false;
 
     // }}}
-    // Console_CommandLine_Element::validate() {{{
+    // validate() {{{
 
     /**
      * Validate the option instance.

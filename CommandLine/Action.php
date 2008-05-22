@@ -22,6 +22,7 @@
  */
 
 /**
+ * F
  * Class that represent an option action.
  *
  * @category  Console
@@ -63,7 +64,7 @@ abstract class Console_CommandLine_Action
     protected $parser;
 
     // }}}
-    // Console_CommandLine_Action::__construct() {{{
+    // __construct() {{{
 
     /**
      * Constructor
@@ -82,7 +83,7 @@ abstract class Console_CommandLine_Action
     }
 
     // }}}
-    // Console_CommandLine_Action::getResult() {{{
+    // getResult() {{{
 
     /**
      * Convenience method to retrieve the value of result->options[name].
@@ -99,7 +100,7 @@ abstract class Console_CommandLine_Action
     }
 
     // }}}
-    // Console_CommandLine_Action::setResult() {{{
+    // setResult() {{{
 
     /**
      * Convenience method to assign the result->options[name] value.
@@ -115,7 +116,7 @@ abstract class Console_CommandLine_Action
     }
 
     // }}}
-    // Console_CommandLine_Action::execute() {{{
+    // execute() {{{
 
     /**
      * Execute the action with the value entered by the user.

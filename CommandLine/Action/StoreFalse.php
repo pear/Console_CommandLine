@@ -44,7 +44,7 @@ require_once 'Console/CommandLine/Action.php';
  */
 class Console_CommandLine_Action_StoreFalse extends Console_CommandLine_Action
 {
-    // Console_CommandLine_Action_StoreFalse::execute() {{{
+    // execute() {{{
 
     /**
      * Execute the action with the value entered by the user.

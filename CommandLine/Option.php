@@ -142,7 +142,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     public $argument_optional = false;
 
     // }}}
-    // Console_CommandLine_Option::__construct() {{{
+    // __construct() {{{
 
     /**
      * Constructor.
@@ -163,7 +163,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     }
 
     // }}}
-    // Console_CommandLine_Option::toString() {{{
+    // toString() {{{
 
     /**
      * Return the string representation of the option.
@@ -192,7 +192,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     }
 
     // }}}
-    // Console_CommandLine_Option::expectsArgument() {{{
+    // expectsArgument() {{{
 
     /**
      * Return true if the option requires one or more argument and false 
@@ -212,7 +212,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     }
 
     // }}}
-    // Console_CommandLine_Option::dispatchAction() {{{
+    // dispatchAction() {{{
 
     /**
      * Format the value $value according to the action of the option and 
@@ -248,7 +248,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     }
 
     // }}}
-    // Console_CommandLine_Option::validate() {{{
+    // validate() {{{
 
     /**
      * Validate the option instance.

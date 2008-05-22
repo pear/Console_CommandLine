@@ -35,19 +35,7 @@
  */
 interface Console_CommandLine_Renderer
 {
-    // Console_CommandLine_Renderer::__construct() {{{
-
-    /**
-     * Constructor.
-     *
-     * @param object $parser a Console_CommandLine instance
-     *
-     * @access public
-     */
-    public function __construct($parser);
-
-    // }}}
-    // Console_CommandLine_Renderer::usage() {{{
+    // usage() {{{
 
     /**
      * Return the full usage message.
@@ -58,7 +46,7 @@ interface Console_CommandLine_Renderer
     public function usage();
 
     // }}}
-    // Console_CommandLine_Renderer::error() {{{
+    // error() {{{
 
     /**
      * Return a formatted error message
@@ -71,7 +59,7 @@ interface Console_CommandLine_Renderer
     public function error($error);
 
     // }}}
-    // Console_CommandLine_Renderer::version() {{{
+    // version() {{{
 
     /**
      * Return the program version string.

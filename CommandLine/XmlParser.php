@@ -40,7 +40,7 @@ require_once 'Console/CommandLine.php';
  */
 class Console_CommandLine_XmlParser
 {
-    // Console_CommandLine_XmlParser::parse() {{{
+    // parse() {{{
 
     /**
      * Parse the given xml definition file and return a
@@ -66,7 +66,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::parseString() {{{
+    // parseString() {{{
 
     /**
      * Parse the given xml definition string and return a
@@ -88,7 +88,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::validate() {{{
+    // validate() {{{
 
     /**
      * Validate the xml definition using Relax NG
@@ -118,7 +118,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::_parseCommandNode() {{{
+    // _parseCommandNode() {{{
 
     /**
      * Parse the root command node or a command node and return the
@@ -169,7 +169,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::_parseOptionNode() {{{
+    // _parseOptionNode() {{{
 
     /**
      * Parse an option node and return the constructed
@@ -201,7 +201,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::_parseArgumentNode() {{{
+    // _parseArgumentNode() {{{
 
     /**
      * Parse an argument node and return the constructed 
@@ -236,7 +236,7 @@ class Console_CommandLine_XmlParser
     }
 
     // }}}
-    // Console_CommandLine_XmlParser::_bool() {{{
+    // _bool() {{{
 
     /**
      * Return a boolean according to true/false possible strings

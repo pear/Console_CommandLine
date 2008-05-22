@@ -42,7 +42,7 @@ require_once 'Console/CommandLine/MessageProvider.php';
  */
 class Console_CommandLine_MessageProvider_Default implements Console_CommandLine_MessageProvider
 {
-    // Console_CommandLine_MessageProvider_Default properties {{{
+    // Properties {{{
 
     /**
      * Associative array of messages
@@ -67,11 +67,12 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
         'ARGUMENT_WORD'           => 'Arguments',
         'COMMAND_WORD'            => 'Commands',
         'PASSWORD_PROMPT'         => 'Password: ',
-        'PASSWORD_PROMPT_ECHO'    => 'Password (warning: will echo): '
+        'PASSWORD_PROMPT_ECHO'    => 'Password (warning: will echo): ',
+        'INVALID_CUSTOM_INSTANCE' => 'Instance does not implement the required interface'
     );
 
     // }}}
-    // Console_CommandLine_MessageProvider_Default::get() {{{
+    // get() {{{
 
     /**
      * Retrieve the given string identifier corresponding message.

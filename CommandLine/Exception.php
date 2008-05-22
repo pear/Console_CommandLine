@@ -44,7 +44,7 @@ require_once 'PEAR/Exception.php';
  */
 class Console_CommandLine_Exception extends PEAR_Exception
 {
-    // Console_CommandLine_Exception codes constants {{{
+    // Codes constants {{{
 
     /**#@+
      * Exception code constants.
@@ -57,7 +57,7 @@ class Console_CommandLine_Exception extends PEAR_Exception
     /**#@-*/
 
     // }}}
-    // Console_CommandLine_Exception::build() {{{
+    // build() {{{
 
     /**
      * Convenience method that builds the exception with the array of params by 

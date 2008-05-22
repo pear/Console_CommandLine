@@ -40,7 +40,7 @@ require_once 'Console/CommandLine/Outputter.php';
  */
 class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outputter
 {
-    // Console_CommandLine_Outputter_Default::stdout() {{{
+    // stdout() {{{
 
     /**
      * Writes the message $msg to STDOUT
@@ -56,7 +56,7 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
     }
 
     // }}}
-    // Console_CommandLine_Outputter_Default::stderr() {{{
+    // stderr() {{{
 
     /**
      * Writes the message $msg to STDERR

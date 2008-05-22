@@ -41,7 +41,7 @@ require_once 'Console/CommandLine/Action.php';
  */
 class Console_CommandLine_Action_Help extends Console_CommandLine_Action
 {
-    // Console_CommandLine_Action_Help::execute() {{{
+    // execute() {{{
 
     /**
      * Execute the action with the value entered by the user.

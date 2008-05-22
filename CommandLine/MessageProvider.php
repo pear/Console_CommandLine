@@ -36,7 +36,7 @@
  */
 interface Console_CommandLine_MessageProvider
 {
-    // Console_CommandLine_MessageProvider_Default::get() {{{
+    // get() {{{
 
     /**
      * Retrieve the given string identifier corresponding message.

@@ -63,7 +63,7 @@ abstract class Console_CommandLine_Element
     public $description;
 
     // }}}
-    // Console_CommandLine_Element::__construct() {{{
+    // __construct() {{{
 
     /**
      * Constructor.
@@ -84,7 +84,7 @@ abstract class Console_CommandLine_Element
     }
 
     // }}}
-    // Console_CommandLine_Element::toString() {{{
+    // toString() {{{
 
     /**
      * Return the string representation of the argument.
@@ -97,7 +97,7 @@ abstract class Console_CommandLine_Element
         return $this->help_name;
     }
     // }}}
-    // Console_CommandLine_Element::validate() {{{
+    // validate() {{{
 
     /**
      * Validate the option instance.

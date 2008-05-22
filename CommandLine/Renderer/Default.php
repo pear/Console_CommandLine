@@ -54,12 +54,12 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      * An instance of Console_CommandLine
      *
      * @var    object Console_CommandLine $parser
-     * @access protected
+     * @access public
      */
-    protected $parser = false;
+    public $parser = false;
 
     // }}}
-    // Console_CommandLine_Renderer_Default::__construct() {{{
+    // __construct() {{{
 
     /**
      * Constructor.
@@ -68,13 +68,13 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      *
      * @access public
      */
-    public function __construct($parser) 
+    public function __construct($parser = false) 
     {
         $this->parser = $parser;
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::usage() {{{
+    // usage() {{{
 
     /**
      * Return the full usage message
@@ -105,7 +105,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
         return $ret;
     }
     // }}}
-    // Console_CommandLine_Renderer_Default::error() {{{
+    // error() {{{
 
     /**
      * Return a formatted error message
@@ -131,7 +131,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::version() {{{
+    // version() {{{
 
     /**
      * Return the program version string
@@ -148,7 +148,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::name() {{{
+    // name() {{{
 
     /**
      * return the full name of the program or the sub command
@@ -175,7 +175,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::description() {{{
+    // description() {{{
 
     /**
      * Return the command line description message
@@ -189,7 +189,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::usageLine() {{{
+    // usageLine() {{{
 
     /**
      * Return the command line usage message
@@ -215,7 +215,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::commandUsageLine() {{{
+    // commandUsageLine() {{{
 
     /**
      * Return the command line usage message for subcommands
@@ -240,7 +240,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::argumentList() {{{
+    // argumentList() {{{
 
     /**
      * Render the arguments list that will be displayed to the user, you can 
@@ -270,7 +270,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::optionList() {{{
+    // optionList() {{{
 
     /**
      * Render the options list that will be displayed to the user, you can 
@@ -300,7 +300,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::commandList() {{{
+    // commandList() {{{
 
     /**
      * Render the command list that will be displayed to the user, you can 
@@ -331,7 +331,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::wrap() {{{
+    // wrap() {{{
 
     /**
      * Wraps the text passed to the method.
@@ -354,7 +354,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     }
 
     // }}}
-    // Console_CommandLine_Renderer_Default::columnWrap() {{{
+    // columnWrap() {{{
 
     /**
      * Wraps the text passed to the method at the specified width.

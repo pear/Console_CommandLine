@@ -42,7 +42,7 @@ require_once 'Console/CommandLine/Action.php';
  */
 class Console_CommandLine_Action_Password extends Console_CommandLine_Action
 {
-    // Console_CommandLine_Action_Password::execute() {{{
+    // execute() {{{
 
     /**
      * Execute the action with the value entered by the user.
@@ -58,7 +58,7 @@ class Console_CommandLine_Action_Password extends Console_CommandLine_Action
         $this->setResult(empty($value) ? $this->_promptPassword() : $value);
     }
     // }}}
-    // Console_CommandLine_Action_Password::_promptPassword() {{{
+    // _promptPassword() {{{
 
     /**
      * Prompt the password to the user without echoing it.
