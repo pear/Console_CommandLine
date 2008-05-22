@@ -26,9 +26,12 @@
  */
 
 /**
- * Exception thrown by this class
+ * Required unconditionally
  */
 require_once 'Console/CommandLine/Exception.php';
+require_once 'Console/CommandLine/Outputter/Default.php';
+require_once 'Console/CommandLine/Renderer/Default.php';
+require_once 'Console/CommandLine/MessageProvider/Default.php';
 
 /**
  * Main class for parsing command line options and arguments.
@@ -231,7 +234,7 @@ class Console_CommandLine
     private $_dispatchLater = array();
 
     // }}}
-    // Console_CommandLine::__construct() {{{
+    // __construct() {{{
 
     /**
      * Constructor.
@@ -239,19 +242,12 @@ class Console_CommandLine
      *
      * <code>
      * $parser = new Console_CommandLine(array(
-     *     'name' => 'yourprogram', // if not given it defaults to argv[0]
-     *     'description' => 'Some meaningful description of your program',
-     *     'version' => '0.0.1', // your program version
-     *     'add_help_option' => true, // or false to disable --version option
+     *     'name'               => 'yourprogram', // defaults to argv[0]
+     *     'description'        => 'Description of your program',
+     *     'version'            => '0.0.1', // your program version
+     *     'add_help_option'    => true, // or false to disable --version option
      *     'add_version_option' => true, // or false to disable --help option
-     *     'renderer' => $rdr,  // an instance that implements the
-     *                          // Console_CommandLine_Renderer interface
-     *     'outputter' => $out, // an instance that implements the
-     *                          // Console_CommandLine_Outputter interface
-     *     'message_provider' => $mp, // an instance that implements the
-     *                                // Console_CommandLine_MessageProvider
-     *                                // interface
-     *     'force_posix' => false // or true to force posix compliance
+     *     'force_posix'        => false // or true to force posix compliance
      * ));
      * </code>
      *
@@ -283,32 +279,46 @@ class Console_CommandLine
         } else if (getenv('POSIXLY_CORRECT')) {
             $this->force_posix = true;
         }
-        if (isset($params['renderer'])) {
-            $this->renderer = $params['renderer'];
+        // set default instances
+        $this->renderer         = new Console_CommandLine_Renderer_Default($this);
+        $this->outputter        = new Console_CommandLine_Outputter_Default();
+        $this->message_provider = new Console_CommandLine_MessageProvider_Default();
+    }
+
+    // }}}
+    // accept() {{{
+
+    /**
+     * Method to allow Console_CommandLine to accept either:
+     *  + a custom renderer, 
+     *  + a custom outputter,
+     *  + or a custom message provider
+     *
+     * @param mixed $instance the custom instance
+     *
+     * @access public
+     * @return void
+     * @throws Console_CommandLine_Exception if wrong argument passed
+     */
+    public function accept($instance) 
+    {
+        if ($instance instanceof Console_CommandLine_Renderer) {
+            if (property_exists($instance, 'parser') && !$instance->parser) {
+                $instance->parser = $this;
+            }
+            $this->renderer = $instance;
+        } else if ($instance instanceof Console_CommandLine_Outputter) {
+            $this->outputter = $instance;
+        } else if ($instance instanceof Console_CommandLine_MessageProvider) {
+            $this->message_provider = $instance;
         } else {
-            // set the default renderer if not provided
-            include_once 'Console/CommandLine/Renderer/Default.php';
-            $this->renderer = new Console_CommandLine_Renderer_Default($this);
-        }
-        if (isset($params['outputter'])) {
-            $this->outputter = $params['outputter'];
-        } else {
-            // set the default outputter if not provided
-            include_once 'Console/CommandLine/Outputter/Default.php';
-            $this->outputter = new Console_CommandLine_Outputter_Default();
-        }
-        if (isset($params['message_provider'])) {
-            $this->message_provider = $params['message_provider'];
-        } else {
-            // set the default message provider if not provided
-            include_once 'Console/CommandLine/MessageProvider/Default.php';
-            $this->message_provider = 
-                new Console_CommandLine_MessageProvider_Default();
+            throw Console_CommandLine_Exception::build('INVALID_CUSTOM_INSTANCE',
+                array(), $this);
         }
     }
 
     // }}}
-    // Console_CommandLine::fromXmlFile() {{{
+    // fromXmlFile() {{{
 
     /**
      * Return a command line parser instance built from an xml file.
@@ -333,7 +343,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::fromXmlString() {{{
+    // fromXmlString() {{{
 
     /**
      * Return a command line parser instance built from an xml string.
@@ -372,7 +382,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::addArgument() {{{
+    // addArgument() {{{
 
     /**
      * Add an argument with the given $name to the command line parser.
@@ -422,7 +432,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::addCommand() {{{
+    // addCommand() {{{
 
     /**
      * Add a sub-command to the command line parser.
@@ -485,7 +495,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::addOption() {{{
+    // addOption() {{{
 
     /**
      * Add an option to the command line parser.
@@ -551,7 +561,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::displayError() {{{
+    // displayError() {{{
 
     /**
      * Display an error to the user and exit with $exitCode.
@@ -569,7 +579,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::displayUsage() {{{
+    // displayUsage() {{{
 
     /**
      * Display the usage help message to the user and exit with $exitCode
@@ -586,7 +596,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::displayVersion() {{{
+    // displayVersion() {{{
 
     /**
      * Display the program version to the user
@@ -601,7 +611,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::findOption() {{{
+    // findOption() {{{
 
     /**
      * Find the option that matches the given short_name (ex: -v), long_name
@@ -647,7 +657,7 @@ class Console_CommandLine
         return false;
     }
     // }}}
-    // Console_CommandLine::registerAction() {{{
+    // registerAction() {{{
 
     /**
      * Register a custom action for the parser, an example:
@@ -713,7 +723,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::triggerError() {{{
+    // triggerError() {{{
 
     /**
      * A wrapper for programming errors triggering.
@@ -738,7 +748,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::parse() {{{
+    // parse() {{{
 
     /**
      * Parse the command line arguments and return a Console_CommandLine_Result 
@@ -832,7 +842,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::parseToken() {{{
+    // parseToken() {{{
 
     /**
      * Parse the command line token and modify *by reference* the $options and 
@@ -978,7 +988,7 @@ class Console_CommandLine
     }
 
     // }}}
-    // Console_CommandLine::_dispatchAction() {{{
+    // _dispatchAction() {{{
 
     /**
      * Dispatch the given option or store the option to dispatch it later.
