@@ -20,6 +20,9 @@
 error_reporting(E_ALL | E_STRICT);
 
 require_once 'Console/CommandLine.php';
+require_once 'Console/CommandLine/Renderer.php';
+require_once 'Console/CommandLine/Outputter.php';
+require_once 'Console/CommandLine/MessageProvider.php';
 
 /**
  * XXX this is a dirty workaround for the PEAR run-test bug reported here:
@@ -184,6 +187,42 @@ function buildParser2()
         'description' => 'package to uninstall'
     ));
     return $parser;
+}
+
+class CustomRenderer implements Console_CommandLine_Renderer 
+{
+    public function usage()
+    {
+        return __METHOD__ . '()';
+    }
+    public function error($error)
+    {
+        return __METHOD__ . "($error)";
+    }
+    public function version()
+    {
+        return __METHOD__ . '()';
+    }
+}
+
+class CustomOutputter implements Console_CommandLine_Outputter
+{
+    public function stdout($msg)
+    {
+        echo "STDOUT >> $msg\n";
+    }
+    public function stderr($msg)
+    {
+        echo "STDERR >> $msg\n";
+    }
+}
+
+class CustomMessageProvider implements Console_CommandLine_MessageProvider
+{
+    public function get($code, $vars = array())
+    {
+        return $code;
+    }
 }
 
 ?>
