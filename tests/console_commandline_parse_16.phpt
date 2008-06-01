@@ -1,5 +1,5 @@
 --TEST--
-Test for Console_CommandLine::parse() method (user errors 1).
+Test for Console_CommandLine::parse() method (user errors 3).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
 --ARGS--

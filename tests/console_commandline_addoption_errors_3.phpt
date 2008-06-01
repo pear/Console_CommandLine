@@ -1,5 +1,5 @@
 --TEST--
-Test for Console_CommandLine::addOption() method (errors 2).
+Test for Console_CommandLine::addOption() method (errors 3).
 --FILE--
 <?php
 
