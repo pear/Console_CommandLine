@@ -15,18 +15,18 @@ $parser->parse();
 
 ?>
 --EXPECT--
-zip given files using the php zip module.
+zip/unzip files
 
 Usage:
-  test [options] <files...> <zipfile>
+  test [options]
+  test [options] <command> [options] [args]
 
 Options:
   -c choice, --choice=choice  choice option
   -v, --verbose               turn on verbose output
-  -d, --delete                delete original files after zip operation
   -h, --help                  show this help message and exit
   --version                   show the program version and exit
 
-Arguments:
-  files    a list of files to zip together
-  zipfile  path to the zip file to generate
+Commands:
+  zip    zip given files in the destination file
+  unzip  unzip given file in the destination dir

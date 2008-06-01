@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <command>
     <name>test</name>
-    <description>zip given files using the php zip module.</description>
+    <description>zip/unzip files</description>
     <version>1.0.0</version>
+    <force_posix>true</force_posix>
     <option name="choice">
         <short_name>-c</short_name>
         <long_name>--choice</long_name>
@@ -19,17 +20,25 @@
         <description>turn on verbose output</description>
         <action>StoreTrue</action>
     </option>
-    <option name="delete">
-        <short_name>-d</short_name>
-        <long_name>--delete</long_name>
-        <description>delete original files after zip operation</description>
-        <action>StoreTrue</action>
-    </option>
-    <argument name="files">
-        <description>a list of files to zip together</description>
-        <multiple>true</multiple>
-    </argument>
-    <argument name="zipfile">
-        <description>path to the zip file to generate</description>
-    </argument>
+    <command>
+        <name>zip</name>
+        <description>zip given files in the destination file</description>
+        <argument name="files">
+            <description>a list of files to zip together</description>
+            <multiple>true</multiple>
+        </argument>
+        <argument name="zipfile">
+            <description>path to the zip file to generate</description>
+        </argument>
+    </command>
+    <command>
+        <name>unzip</name>
+        <description>unzip given file in the destination dir</description>
+        <argument name="zipfile">
+            <description>path to the zip file to unzip</description>
+        </argument>
+        <argument name="outputdir">
+            <description>destination directory</description>
+        </argument>
+    </command>
 </command>
