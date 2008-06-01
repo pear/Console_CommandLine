@@ -20,22 +20,20 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-05-22</date>
- <time>11:10:14</time>
+ <date>2008-06-01</date>
+ <time>15:03:14</time>
  <version>
-  <release>1.0.0</release>
-  <api>1.0.0</api>
+  <release>1.0.1</release>
+  <api>1.0.1</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
- <notes>- doc is now in peardoc format (thanks to cweiske for his precious help);
-- better handling of custom instances (added an accept() method);
-- added an AllTests.php file to make phpunit happy;
-- added tests for xml usage;
-- some cosmetic changes.</notes>
+ <notes>- Better code coverage of tests (nearly 100%);
+- fixed two bad include_once;
+</notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
    <file baseinstalldir="Console" name="CommandLine/Action.php" role="php">
@@ -133,6 +131,13 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_addargument.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_addcommand.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_addoption.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_1.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_2.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_3.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_4.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_5.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_6.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_7.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlfile.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlstring.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_1.phpt" role="test"/>
@@ -147,6 +152,10 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_parse_10.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_11.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_12.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_13.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_14.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_15.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_16.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/test.xml" role="test"/>
    <file baseinstalldir="Console" name="tests/tests.inc.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
@@ -296,6 +305,22 @@ Main features:
    <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
 - changed behaviour when a StoreArray option is positioned at the end;
 - now use pfm (so removed package.php and package2.xml).</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>- doc is now in peardoc format (thanks to cweiske for his precious help);
+- better handling of custom instances (added an accept() method);
+- added an AllTests.php file to make phpunit happy;
+- added tests for xml usage;
+- some cosmetic changes.</notes>
   </release>
  </changelog>
 </package>
