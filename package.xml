@@ -139,6 +139,7 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_6.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_addoption_errors_7.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlfile.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_fromxmlfile_error.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlstring.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_1.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_2.phpt" role="test"/>
