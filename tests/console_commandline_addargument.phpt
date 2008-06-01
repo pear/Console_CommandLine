@@ -20,8 +20,11 @@ $parser->addArgument($arg3);
 
 var_dump($parser->args);
 
+// a bad argument
+$parser->addArgument('Some invalid name');
+
 ?>
---EXPECT--
+--EXPECTF--
 array(3) {
   ["arg1"]=>
   object(Console_CommandLine_Argument)#5 (4) {
@@ -57,3 +60,5 @@ array(3) {
     string(19) "description of arg3"
   }
 }
+
+Fatal error: argument name must be a valid php variable name (got: Some invalid name) in %sCommandLine.php on line %d
