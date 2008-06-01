@@ -58,7 +58,7 @@ class Console_CommandLine_Action_StoreFloat extends Console_CommandLine_Action
     public function execute($value=false, $params=array())
     {
         if (!is_numeric($value)) {
-            include_once 'Console/CommandLine/Exception';
+            include_once 'Console/CommandLine/Exception.php';
             throw Console_CommandLine_Exception::build('OPTION_VALUE_TYPE_ERROR',
                 array(
                     'name'  => $this->option->name,
