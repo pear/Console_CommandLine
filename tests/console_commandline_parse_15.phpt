@@ -20,6 +20,6 @@ try {
 
 ?>
 --EXPECT--
-Error: you must provide at least 1 argument.
+Error: You must provide at least 1 argument.
 Type "some_program -h" to get help.
 Type "some_program <command> -h" to get help on specific command.

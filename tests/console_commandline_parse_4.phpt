@@ -19,5 +19,5 @@ try {
 
 ?>
 --EXPECT--
-Error: unknown option "-d".
+Error: Unknown option "-d".
 Type "some_program -h" to get help.

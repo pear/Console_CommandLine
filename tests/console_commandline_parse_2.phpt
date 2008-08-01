@@ -32,7 +32,7 @@ Options:
   -a ARRAY, --array=ARRAY           test the StoreArray action
   -p password, --password=password  test the Password action
   -h, --help                        show this help message and exit
-  --version                         show the program version and exit
+  -v, --version                     show the program version and exit
 
 Arguments:
   simple    test a simple argument

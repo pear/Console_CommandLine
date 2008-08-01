@@ -19,5 +19,5 @@ try {
 
 ?>
 --EXPECT--
-Error: option "float" require a value.
+Error: Option "float" requires a value.
 Type "some_program -h" to get help.

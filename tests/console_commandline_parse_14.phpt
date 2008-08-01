@@ -18,4 +18,4 @@ try {
 
 ?>
 --EXPECT--
-option "int" require a value of type int (got "foo").
+Option "int" requires a value of type int (got "foo").

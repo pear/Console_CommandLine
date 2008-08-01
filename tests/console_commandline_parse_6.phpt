@@ -19,5 +19,5 @@ try {
 
 ?>
 --EXPECT--
-Error: you must provide at least 2 arguments.
+Error: You must provide at least 2 arguments.
 Type "some_program -h" to get help.

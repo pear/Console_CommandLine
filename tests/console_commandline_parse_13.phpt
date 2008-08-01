@@ -18,4 +18,4 @@ try {
 
 ?>
 --EXPECT--
-option "float" require a value of type float (got "foo").
+Option "float" requires a value of type float (got "foo").

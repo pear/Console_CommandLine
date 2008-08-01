@@ -766,19 +766,28 @@ class Console_CommandLine
     {
         // add "auto" options help and version if needed
         if ($this->add_help_option) {
-            $this->addOption('help', array(
-                'short_name'  => '-h',    
+            $helpOptionParams = array(
                 'long_name'   => '--help',
                 'description' => 'show this help message and exit',
                 'action'      => 'Help'   
-            ));
+            );
+            if (!$this->findOption('-h')) {
+                // short name is available, take it
+                $helpOptionParams['short_name'] = '-h';
+            }
+            $this->addOption('help', $helpOptionParams);
         }
         if ($this->add_version_option && !empty($this->version)) {
-            $this->addOption('version', array(
+            $versionOptionParams = array(
                 'long_name'   => '--version',
                 'description' => 'show the program version and exit',
                 'action'      => 'Version'   
-            ));
+            );
+            if (!$this->findOption('-v')) {
+                // short name is available, take it
+                $versionOptionParams['short_name'] = '-v';
+            }
+            $this->addOption('version', $versionOptionParams);
         }
         $argc = ($userArgc === null) ?
             (isset($argc) ? $argc : $_SERVER['argc']) : $userArgc;

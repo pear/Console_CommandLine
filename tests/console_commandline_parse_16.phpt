@@ -18,4 +18,4 @@ try {
 
 ?>
 --EXPECT--
-option "string" must be one of the following: "foo", "bar", "baz" (got "fooz").
+Option "string" must be one of the following: "foo", "bar", "baz" (got "fooz").
