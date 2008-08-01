@@ -52,13 +52,13 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
      * @access protected
      */
     protected $messages = array(
-        'OPTION_VALUE_REQUIRED'   => 'option "{$name}" require a value.',
-        'OPTION_VALUE_UNEXPECTED' => 'option "{$name}" does not expects a value (got "{$value}").',
-        'OPTION_VALUE_NOT_VALID'  => 'option "{$name}" must be one of the following: "{$choices}" (got "{$value}").',
-        'OPTION_VALUE_TYPE_ERROR' => 'option "{$name}" require a value of type {$type} (got "{$value}").',
-        'OPTION_AMBIGUOUS'        => 'ambiguous option "{$name}", can be one of the following: {$matches}.',
-        'OPTION_UNKNOWN'          => 'unknown option "{$name}".',
-        'ARGUMENT_REQUIRED'       => 'you must provide at least {$argnum} argument{$plural}.',
+        'OPTION_VALUE_REQUIRED'   => 'Option "{$name}" requires a value.',
+        'OPTION_VALUE_UNEXPECTED' => 'Option "{$name}" does not expect a value (got "{$value}").',
+        'OPTION_VALUE_NOT_VALID'  => 'Option "{$name}" must be one of the following: "{$choices}" (got "{$value}").',
+        'OPTION_VALUE_TYPE_ERROR' => 'Option "{$name}" requires a value of type {$type} (got "{$value}").',
+        'OPTION_AMBIGUOUS'        => 'Ambiguous option "{$name}", can be one of the following: {$matches}.',
+        'OPTION_UNKNOWN'          => 'Unknown option "{$name}".',
+        'ARGUMENT_REQUIRED'       => 'You must provide at least {$argnum} argument{$plural}.',
         'PROG_HELP_LINE'          => 'Type "{$progname} -h" to get help.',
         'PROG_VERSION_LINE'       => '{$progname} version {$version}.',
         'COMMAND_HELP_LINE'       => 'Type "{$progname} <command> -h" to get help on specific command.',
