@@ -20,8 +20,8 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-06-01</date>
- <time>15:03:14</time>
+ <date>2008-08-01</date>
+ <time>18:37:14</time>
  <version>
   <release>1.0.1</release>
   <api>1.0.1</api>
@@ -33,6 +33,8 @@ Main features:
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>- Better code coverage of tests (nearly 100%);
 - fixed two bad include_once;
+- fixed bug #14435 (own -h short option doesn't remove help short option) and did the same for "version" option;
+- fixed bug #14436 (Typo in error message) and some fixed other typos.
 </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
