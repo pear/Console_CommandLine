@@ -259,8 +259,12 @@ class Console_CommandLine
     {
         if (isset($params['name'])) {
             $this->name = $params['name'];
-        } else {
+        } else if (isset($argv) && count($argv) > 0) {
+            $this->name = $argv[0];
+        } else if (isset($_SERVER['argv']) && count($_SERVER['argv']) > 0) {
             $this->name = $_SERVER['argv'][0];
+        } else if (isset($_SERVER['SCRIPT_NAME'])){
+            $this->name = basename($_SERVER['SCRIPT_NAME']);
         }
         if (isset($params['description'])) {
             $this->description = $params['description'];
