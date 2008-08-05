@@ -23,18 +23,16 @@ Main features:
  <date>2008-08-01</date>
  <time>18:37:14</time>
  <version>
-  <release>1.0.1</release>
-  <api>1.0.1</api>
+  <release>1.0.2</release>
+  <api>1.0.2</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
- <notes>- Better code coverage of tests (nearly 100%);
-- fixed two bad include_once;
-- fixed bug #14435 (own -h short option doesn't remove help short option) and did the same for "version" option;
-- fixed bug #14436 (Typo in error message) and some fixed other typos.
+ <notes>
+- fixed bug #14454 (Console_Commandline hangs when called via browser);
 </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
@@ -324,6 +322,22 @@ Main features:
 - added an AllTests.php file to make phpunit happy;
 - added tests for xml usage;
 - some cosmetic changes.</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>- Better code coverage of tests (nearly 100%);
+- fixed two bad include_once;
+- fixed bug #14435 (own -h short option doesn't remove help short option) and did the same for "version" option;
+- fixed bug #14436 (Typo in error message) and some fixed other typos.
+   </notes>
   </release>
  </changelog>
 </package>
