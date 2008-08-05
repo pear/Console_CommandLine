@@ -41,7 +41,7 @@ if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == '--') {
  * A dummy callback for tests purposes.
  *
  */
-function rot13Callback($value, &$option, &$result, &$parser, $params=array())
+function rot13Callback($value, $option, $result, $parser, $params=array())
 {
     $ret = '';
     if (isset($params['prefix'])) {
