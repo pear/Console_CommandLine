@@ -789,10 +789,18 @@ class Console_CommandLine
             }
             $this->addOption('version', $versionOptionParams);
         }
-        $argc = ($userArgc === null) ?
-            (isset($argc) ? $argc : $_SERVER['argc']) : $userArgc;
-        $argv = ($userArgv === null) ?
-            (isset($argv) ? $argv : $_SERVER['argv']) : $userArgv;
+        if ($userArgc !== null && $userArgv !== null) {
+            $argc = $userArgc;
+            $argv = $userArgv;
+        } else {
+            list($argc, $argv) = $this->getArgcArgv();
+        }
+        // build an empty result
+        include_once 'Console/CommandLine/Result.php';
+        $result = new Console_CommandLine_Result();
+        if (!$argc || empty($argv)) {
+            return $result;
+        }
         // case of a subcommand, skip main program args
         for ($i=0; $i<$beginAt; $i++) {
             $argc--;
@@ -803,9 +811,6 @@ class Console_CommandLine
         $argc--;
         // will contain aruments
         $args = array();
-        // build an empty result
-        include_once 'Console/CommandLine/Result.php';
-        $result = new Console_CommandLine_Result();
         foreach ($this->options as $name=>$option) {
             $result->options[$name] = $option->default;
         }
@@ -994,6 +999,29 @@ class Console_CommandLine
             }
             $args[] = $token;
         }
+    }
+
+    // }}}
+    // getArgcArgv() {{{
+
+    /**
+     * Try to return an array containing argc and argv, or trigger an error
+     * if it fails to get them.
+     *
+     * @return array
+     * @access protected
+     * @throws Exception 
+     */
+    protected function getArgcArgv()
+    {
+        if (isset($argc) && isset($argv)) {
+            // case of register_argv_argc = 1
+            return array($argc, $argv);
+        }
+        if (isset($_SERVER['argc']) && isset($_SERVER['argv'])) {
+            return array($_SERVER['argc'], $_SERVER['argv']);
+        }
+        return array(0, array());
     }
 
     // }}}
