@@ -758,15 +758,14 @@ class Console_CommandLine
      * Parse the command line arguments and return a Console_CommandLine_Result 
      * object.
      *
-     * @param integer $userArgc number of arguments (optional)
-     * @param array   $userArgv array containing arguments (optional)
-     * @param integer $beginAt  beginning index of the argv array (optional)
+     * @param integer $userArgc     number of arguments (optional)
+     * @param array   $userArgv     array containing arguments (optional)
      *
      * @return object Console_CommandLine_Result
      * @access public
      * @throws Exception on user errors
      */
-    public function parse($userArgc=null, $userArgv=null, $beginAt=0)
+    public function parse($userArgc=null, $userArgv=null)
     {
         // add "auto" options help and version if needed
         if ($this->add_help_option) {
@@ -805,28 +804,24 @@ class Console_CommandLine
         if (!$argc || empty($argv)) {
             return $result;
         }
-        // case of a subcommand, skip main program args
-        for ($i=0; $i<$beginAt; $i++) {
-            $argc--;
+        if (!($this instanceof Console_CommandLine_Command)) {
+            // remove script name if we're not in a subcommand
             array_shift($argv);
+            $argc--;
         }
-        // remove script name
-        array_shift($argv);
-        $argc--;
         // will contain aruments
         $args = array();
         foreach ($this->options as $name=>$option) {
             $result->options[$name] = $option->default;
         }
         // parse command line tokens
-        $i = 0;
-        while (++$i && $argc--) {
+        while ($argc--) {
             $token = array_shift($argv);
             try {
                 if (isset($this->commands[$token])) {
                     $result->command_name = $token;
-                    $result->command      = $this->commands[$token]->parse(null,
-                        null, $i);
+                    $result->command      = $this->commands[$token]->parse($argc,
+                        $argv);
                     break;
                 } else {
                     $this->parseToken($token, $result, $args, $argc);
