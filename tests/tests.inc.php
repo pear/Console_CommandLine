@@ -11,35 +11,38 @@
  * through the world-wide-web at the following URI:
  * http://opensource.org/licenses/mit-license.php
  *
+ * @category  Console 
+ * @package   Console_CommandLine
  * @author    David JEAN LOUIS <izimobil@gmail.com>
  * @copyright 2007 David JEAN LOUIS
  * @license   http://opensource.org/licenses/mit-license.php MIT License 
  * @version   CVS: $Id$
+ * @link      http://pear.php.net/package/Console_CommandLine
+ * @since     File available since release 0.1.0
  */
 
 error_reporting(E_ALL | E_STRICT);
 
+/**
+ * Required classes
+ */
 require_once 'Console/CommandLine.php';
 require_once 'Console/CommandLine/Renderer.php';
 require_once 'Console/CommandLine/Outputter.php';
 require_once 'Console/CommandLine/MessageProvider.php';
 
-/**
- * XXX this is a dirty workaround for the PEAR run-test bug reported here:
- * http://pear.php.net/bugs/bug.php?id=12793
- */
-if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == '--') {
-    unset($_SERVER['argv'][1]);
-    $_SERVER['argc']--;
-    if (isset($argv)) {
-        $argv = $_SERVER['argv'];
-        $argc = $_SERVER['argc'];
-    }
-}
+// rot13Callback() {{{
 
 /**
  * A dummy callback for tests purposes.
- *
+ * 
+ * @param mixed  $value  value provided by the user
+ * @param object $option the option instance
+ * @param object $result the result instance
+ * @param object $parser the parser instance
+ * @param array  $params optional params array
+ * 
+ * @return string
  */
 function rot13Callback($value, $option, $result, $parser, $params=array())
 {
@@ -54,6 +57,8 @@ function rot13Callback($value, $option, $result, $parser, $params=array())
     return $ret;
 }
 
+// }}}
+// buildParser1() {{{
 
 /**
  * Build a parser instance and return it.
@@ -62,9 +67,9 @@ function rot13Callback($value, $option, $result, $parser, $params=array())
  */
 function buildParser1()
 {
-    $parser = new Console_CommandLine();
-    $parser->name = 'some_program';
-    $parser->version = '0.1.0';
+    $parser              = new Console_CommandLine();
+    $parser->name        = 'some_program';
+    $parser->version     = '0.1.0';
     $parser->description = 'Description of our parser goes here...';
 
     // add options
@@ -138,6 +143,8 @@ function buildParser1()
     return $parser;
 }
 
+// }}}
+// buildParser2() {{{
 
 /**
  * Build a parser instance and return it.
@@ -146,9 +153,9 @@ function buildParser1()
  */
 function buildParser2()
 {
-    $parser = new Console_CommandLine();
-    $parser->name = 'some_program';
-    $parser->version = '0.1.0';
+    $parser              = new Console_CommandLine();
+    $parser->name        = 'some_program';
+    $parser->version     = '0.1.0';
     $parser->description = 'Description of our parser goes here...';
 
     // add general options
@@ -189,40 +196,155 @@ function buildParser2()
     return $parser;
 }
 
-class CustomRenderer implements Console_CommandLine_Renderer 
+// }}}
+// CustomRenderer() {{{
+
+/**
+ * Some custom renderer for tests purposes.
+ *
+ * @category  Console
+ * @package   Console_CommandLine
+ * @author    David JEAN LOUIS <izimobil@gmail.com>
+ * @copyright 2007 David JEAN LOUIS
+ * @license   http://opensource.org/licenses/mit-license.php MIT License 
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/Console_CommandLine
+ * @since     File available since release 0.1.0
+ */
+class CustomRenderer implements Console_CommandLine_Renderer
 {
+    // usage() {{{
+
+    /**
+     * Return the full usage message
+     *
+     * @return string the usage message
+     * @access public
+     */
     public function usage()
     {
         return __METHOD__ . '()';
     }
+    // }}}
+    // error() {{{
+
+    /**
+     * Return a formatted error message
+     *
+     * @param string $error the error message to format
+     *
+     * @return string the error string
+     * @access public
+     */
     public function error($error)
     {
         return __METHOD__ . "($error)";
     }
+
+    // }}}
+    // version() {{{
+
+    /**
+     * Return the program version string
+     *
+     * @return string the version string
+     * @access public
+     */
     public function version()
     {
         return __METHOD__ . '()';
     }
+
+    // }}}
 }
 
+// }}}
+// CustomOutputter() {{{
+
+/**
+ * Some custom outputter for tests purposes.
+ *
+ * @category  Console
+ * @package   Console_CommandLine
+ * @author    David JEAN LOUIS <izimobil@gmail.com>
+ * @copyright 2007 David JEAN LOUIS
+ * @license   http://opensource.org/licenses/mit-license.php MIT License 
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/Console_CommandLine
+ * @since     File available since release 0.1.0
+ */
 class CustomOutputter implements Console_CommandLine_Outputter
 {
+    // stdout() {{{
+
+    /**
+     * Called for stdout messages.
+     *
+     * @param string $msg the message to output
+     *
+     * @return void
+     * @access public
+     */
     public function stdout($msg)
     {
         echo "STDOUT >> $msg\n";
     }
+
+    // }}}
+    // stderr() {{{
+
+    /**
+     * Called for stderr messages.
+     *
+     * @param string $msg the message to output
+     *
+     * @return void
+     * @access public
+     */
     public function stderr($msg)
     {
         echo "STDERR >> $msg\n";
     }
+
+    // }}}
 }
 
+// }}}
+// CustomMessageProvider() {{{
+
+/**
+ * Some custom message provider for tests purposes.
+ *
+ * @category  Console
+ * @package   Console_CommandLine
+ * @author    David JEAN LOUIS <izimobil@gmail.com>
+ * @copyright 2007 David JEAN LOUIS
+ * @license   http://opensource.org/licenses/mit-license.php MIT License 
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/Console_CommandLine
+ * @since     File available since release 0.1.0
+ */
 class CustomMessageProvider implements Console_CommandLine_MessageProvider
 {
+    // get() {{{
+
+    /**
+     * Retrieve the given string identifier corresponding message.
+     *
+     * @param string $code the string identifier of the message
+     * @param array  $vars an array of template variables
+     *
+     * @return string
+     * @access public
+     */
     public function get($code, $vars = array())
     {
         return $code;
     }
+
+    // }}}
 }
+
+// }}}
 
 ?>
