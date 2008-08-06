@@ -263,7 +263,7 @@ class Console_CommandLine
             $this->name = $argv[0];
         } else if (isset($_SERVER['argv']) && count($_SERVER['argv']) > 0) {
             $this->name = $_SERVER['argv'][0];
-        } else if (isset($_SERVER['SCRIPT_NAME'])){
+        } else if (isset($_SERVER['SCRIPT_NAME'])) {
             $this->name = basename($_SERVER['SCRIPT_NAME']);
         }
         if (isset($params['description'])) {
@@ -758,8 +758,8 @@ class Console_CommandLine
      * Parse the command line arguments and return a Console_CommandLine_Result 
      * object.
      *
-     * @param integer $userArgc     number of arguments (optional)
-     * @param array   $userArgv     array containing arguments (optional)
+     * @param integer $userArgc number of arguments (optional)
+     * @param array   $userArgv array containing arguments (optional)
      *
      * @return object Console_CommandLine_Result
      * @access public
@@ -767,31 +767,7 @@ class Console_CommandLine
      */
     public function parse($userArgc=null, $userArgv=null)
     {
-        // add "auto" options help and version if needed
-        if ($this->add_help_option) {
-            $helpOptionParams = array(
-                'long_name'   => '--help',
-                'description' => 'show this help message and exit',
-                'action'      => 'Help'   
-            );
-            if (!$this->findOption('-h')) {
-                // short name is available, take it
-                $helpOptionParams['short_name'] = '-h';
-            }
-            $this->addOption('help', $helpOptionParams);
-        }
-        if ($this->add_version_option && !empty($this->version)) {
-            $versionOptionParams = array(
-                'long_name'   => '--version',
-                'description' => 'show the program version and exit',
-                'action'      => 'Version'   
-            );
-            if (!$this->findOption('-v')) {
-                // short name is available, take it
-                $versionOptionParams['short_name'] = '-v';
-            }
-            $this->addOption('version', $versionOptionParams);
-        }
+        $this->addBuiltinOptions();
         if ($userArgc !== null && $userArgv !== null) {
             $argc = $userArgc;
             $argv = $userArgv;
@@ -999,6 +975,43 @@ class Console_CommandLine
             $args[] = $token;
         }
     }
+
+    // }}}
+    // addBuiltinOptions() {{{
+
+    /**
+     * Add the builtin "Help" and "Version" options if needed.
+     *
+     * @return void
+     * @access protected 
+     */
+    public function addBuiltinOptions()
+    {
+        if ($this->add_help_option) {
+            $helpOptionParams = array(
+                'long_name'   => '--help',
+                'description' => 'show this help message and exit',
+                'action'      => 'Help'   
+            );
+            if (!$this->findOption('-h')) {
+                // short name is available, take it
+                $helpOptionParams['short_name'] = '-h';
+            }
+            $this->addOption('help', $helpOptionParams);
+        }
+        if ($this->add_version_option && !empty($this->version)) {
+            $versionOptionParams = array(
+                'long_name'   => '--version',
+                'description' => 'show the program version and exit',
+                'action'      => 'Version'   
+            );
+            if (!$this->findOption('-v')) {
+                // short name is available, take it
+                $versionOptionParams['short_name'] = '-v';
+            }
+            $this->addOption('version', $versionOptionParams);
+        }
+    } 
 
     // }}}
     // getArgcArgv() {{{
