@@ -1026,6 +1026,34 @@ class Console_CommandLine
      */
     protected function getArgcArgv()
     {
+        if (php_sapi_name() != 'cli') {
+            // we have a web request
+            $argv = array($this->name);
+            if (isset($_REQUEST)) {
+                foreach ($_REQUEST as $key => $value) {
+                    if (!is_array($value)) {
+                        $value = array($value);
+                    }
+                    $opt = $this->findOption($key);
+                    if ($opt instanceof Console_CommandLine_Option) {
+                        // match a configured option
+                        $argv[] = $opt->short_name ? 
+                            $opt->short_name : $opt->long_name;
+                        foreach($value as $v) {
+                            if ($opt->expectsArgument()) {
+                                $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
+                            }
+                        }
+                    } else if (isset($this->args[$key])) {
+                        // match a configured argument
+                        foreach($value as $v) {
+                            $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
+                        }
+                    }
+                }
+            }
+            return array(count($argv), $argv);
+        }
         if (isset($argc) && isset($argv)) {
             // case of register_argv_argc = 1
             return array($argc, $argv);
