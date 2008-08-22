@@ -1042,6 +1042,8 @@ class Console_CommandLine
                         foreach($value as $v) {
                             if ($opt->expectsArgument()) {
                                 $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
+                            } else if ($v == '0' || $v == 'false') {
+                                array_pop($argv);
                             }
                         }
                     } else if (isset($this->args[$key])) {
