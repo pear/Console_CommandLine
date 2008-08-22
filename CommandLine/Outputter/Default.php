@@ -52,7 +52,11 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
      */
     public function stdout($msg)
     {
-        fwrite(STDOUT, $msg);
+        if (defined('STDOUT')) {
+            fwrite(STDOUT, $msg);
+        } else {
+            echo $msg;
+        }
     }
 
     // }}}
@@ -68,7 +72,11 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
      */
     public function stderr($msg)
     {
-        fwrite(STDERR, $msg);
+        if (defined('STDERR')) {
+            fwrite(STDERR, $msg);
+        } else {
+            echo $msg;
+        }
     }
 
     // }}}
