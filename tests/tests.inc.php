@@ -22,6 +22,11 @@
  */
 
 error_reporting(E_ALL | E_STRICT);
+if (php_sapi_name() != 'cli') {
+    // tests with php-cgi need this
+    ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR 
+        . dirname(__FILE__) . '/../../');
+}
 
 /**
  * Required classes
