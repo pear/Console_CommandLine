@@ -69,7 +69,7 @@ Main features:
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="Console" name="CommandLine/XmlParser.php" role="php">
-    <tasks:replace from="@pear_data_dir@" to="data_dir" type="pear-config" />
+    <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="Console" name="CommandLine/Action/Callback.php" role="php">
