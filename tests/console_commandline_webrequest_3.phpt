@@ -5,8 +5,6 @@ true=1&false=1&string=foo&int=3&float=4.0&callback=somestring&-a[]=foo&-a[]=bar&
 --FILE--
 <?php
 
-require_once 'Console/CommandLine.php' ;
-require_once 'Console/CommandLine/Argument.php' ;
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
 
 $parser = buildParser1();

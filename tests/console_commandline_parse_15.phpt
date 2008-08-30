@@ -7,8 +7,6 @@ install -f 2>&1
 --FILE--
 <?php
 
-require_once 'Console/CommandLine.php' ;
-require_once 'Console/CommandLine/Argument.php' ;
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
 
 $parser = buildParser2();

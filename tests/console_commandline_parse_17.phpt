@@ -5,7 +5,6 @@ Test for Console_CommandLine::parse() method (user argc/argv 1).
 --FILE--
 <?php
 
-require_once 'Console/CommandLine.php' ;
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
 
 $argv = array('somename', '-t', '-f', '--float=1.2', 'foo', 'bar');

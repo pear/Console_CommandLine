@@ -3,8 +3,7 @@ Test for Console_CommandLine::addArgument() method.
 --FILE--
 <?php
 
-require_once('Console/CommandLine.php');
-require_once('Console/CommandLine/Argument.php');
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
 
 $parser = new Console_CommandLine();
 $parser->addArgument('arg1');

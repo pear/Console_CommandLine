@@ -4,6 +4,7 @@ Test for Console_CommandLine::accept() method.
 <?php
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tests.inc.php';
+
 $parser = buildParser1();
 try {
     // custom renderer
