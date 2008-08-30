@@ -922,9 +922,8 @@ class Console_CommandLine
             // a short option
             $optname = substr($token, 0, 2);
             if ($optname == '-') {
-                // special case of "-" passed on the command line, it should be 
-                // treated as an argument
-                $args[] = $optname;
+                // special case of "-": try to read stdin
+                $args[] = file_get_contents('php://stdin');
                 return;
             }
             $opt = $this->findOption($optname);
@@ -1039,7 +1038,7 @@ class Console_CommandLine
                         // match a configured option
                         $argv[] = $opt->short_name ? 
                             $opt->short_name : $opt->long_name;
-                        foreach($value as $v) {
+                        foreach ($value as $v) {
                             if ($opt->expectsArgument()) {
                                 $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
                             } else if ($v == '0' || $v == 'false') {
@@ -1048,7 +1047,7 @@ class Console_CommandLine
                         }
                     } else if (isset($this->args[$key])) {
                         // match a configured argument
-                        foreach($value as $v) {
+                        foreach ($value as $v) {
                             $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
                         }
                     }
