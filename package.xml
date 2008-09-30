@@ -20,11 +20,11 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-08-22</date>
- <time>15:14:00</time>
+ <date>2008-09-30</date>
+ <time>15:25:00</time>
  <version>
-  <release>1.0.2</release>
-  <api>1.0.2</api>
+  <release>1.0.3</release>
+  <api>1.0.3</api>
  </version>
  <stability>
   <release>stable</release>
@@ -32,9 +32,10 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-- fixed bug #14454 (Console_Commandline hangs when called via browser);
-- fixed outputter bug (STDOUT/STDERR not defined with php-cgi);
-- Console_CommandLine can now handle web requests (it convert automatically a request to options/arguments).
+- now handles stdin with the "-" special switch;
+- fixed bug #14717 (Password not optional when parser built from an xml file);
+- added relevant unit tests;
+- removed useless require_once's in some tests.
 </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
@@ -344,6 +345,22 @@ Main features:
 - fixed two bad include_once;
 - fixed bug #14435 (own -h short option doesn't remove help short option) and did the same for "version" option;
 - fixed bug #14436 (Typo in error message) and some fixed other typos.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+- fixed bug #14454 (Console_Commandline hangs when called via browser);
+- fixed outputter bug (STDOUT/STDERR not defined with php-cgi);
+- Console_CommandLine can now handle web requests (it convert automatically a request to options/arguments).
    </notes>
   </release>
  </changelog>
