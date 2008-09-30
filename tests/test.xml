@@ -14,6 +14,12 @@
             <choice>spam</choice>
         </choices>
     </option>
+    <option name="password">
+        <short_name>-p</short_name>
+        <long_name>--password</long_name>
+        <description>zip file password</description>
+        <action>Password</action>
+    </option>
     <option name="verbose">
         <short_name>-v</short_name>
         <long_name>--verbose</long_name>

@@ -197,6 +197,9 @@ class Console_CommandLine_XmlParser
                 $obj->$cNodeName = trim($cNode->nodeValue);
             }
         }
+        if ($obj->action == 'Password') {
+            $obj->argument_optional = true;
+        }
         return $obj;
     }
 
