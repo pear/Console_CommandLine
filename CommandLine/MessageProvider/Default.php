@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -47,9 +48,7 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
     /**
      * Associative array of messages
      *
-     * @var $messages
-     * @static
-     * @access protected
+     * @var array $messages
      */
     protected $messages = array(
         'OPTION_VALUE_REQUIRED'   => 'Option "{$name}" requires a value.',
@@ -59,16 +58,18 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
         'OPTION_AMBIGUOUS'        => 'Ambiguous option "{$name}", can be one of the following: {$matches}.',
         'OPTION_UNKNOWN'          => 'Unknown option "{$name}".',
         'ARGUMENT_REQUIRED'       => 'You must provide at least {$argnum} argument{$plural}.',
-        'PROG_HELP_LINE'          => 'Type "{$progname} -h" to get help.',
+        'PROG_HELP_LINE'          => 'Type "{$progname} --help" to get help.',
         'PROG_VERSION_LINE'       => '{$progname} version {$version}.',
-        'COMMAND_HELP_LINE'       => 'Type "{$progname} <command> -h" to get help on specific command.',
+        'COMMAND_HELP_LINE'       => 'Type "{$progname} <command> --help" to get help on specific command.',
         'USAGE_WORD'              => 'Usage',
         'OPTION_WORD'             => 'Options',
         'ARGUMENT_WORD'           => 'Arguments',
         'COMMAND_WORD'            => 'Commands',
         'PASSWORD_PROMPT'         => 'Password: ',
         'PASSWORD_PROMPT_ECHO'    => 'Password (warning: will echo): ',
-        'INVALID_CUSTOM_INSTANCE' => 'Instance does not implement the required interface'
+        'INVALID_CUSTOM_INSTANCE' => 'Instance does not implement the required interface',
+        'LIST_OPTION_MESSAGE'     => 'lists valid choices for option {$name}',
+        'LIST_DISPLAYED_MESSAGE'  => 'Valid choices are: ',
     );
 
     // }}}
@@ -77,13 +78,12 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
     /**
      * Retrieve the given string identifier corresponding message.
      *
-     * @param string $code the string identifier of the message
-     * @param array  $vars an array of template variables
+     * @param string $code The string identifier of the message
+     * @param array  $vars An array of template variables
      *
      * @return string
-     * @access public
      */
-    public function get($code, $vars=array())
+    public function get($code, $vars = array())
     {
         if (!isset($this->messages[$code])) {
             return 'UNKNOWN';
@@ -98,5 +98,3 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
 
     // }}}
 }
-
-?>

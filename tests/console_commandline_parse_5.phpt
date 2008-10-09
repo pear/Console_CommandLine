@@ -19,4 +19,4 @@ try {
 ?>
 --EXPECT--
 Error: Option "float" requires a value.
-Type "some_program -h" to get help.
+Type "some_program --help" to get help.

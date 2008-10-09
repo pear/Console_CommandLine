@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -38,10 +39,9 @@ interface Console_CommandLine_Renderer
     // usage() {{{
 
     /**
-     * Return the full usage message.
+     * Returns the full usage message.
      *
-     * @access public
-     * @return string the usage message
+     * @return string The usage message
      */
     public function usage();
 
@@ -49,12 +49,11 @@ interface Console_CommandLine_Renderer
     // error() {{{
 
     /**
-     * Return a formatted error message
+     * Returns a formatted error message.
      *
-     * @param string $error the error message to format
+     * @param string $error The error message to format
      *
-     * @access public
-     * @return string the error string
+     * @return string The error string
      */
     public function error($error);
 
@@ -62,14 +61,11 @@ interface Console_CommandLine_Renderer
     // version() {{{
 
     /**
-     * Return the program version string.
+     * Returns the program version string.
      *
-     * @access public
-     * @return string the version string
+     * @return string The version string
      */
     public function version();
 
     // }}}
 }
-
-?>

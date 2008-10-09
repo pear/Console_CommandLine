@@ -20,11 +20,11 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-09-30</date>
- <time>15:25:00</time>
+ <date>2008-10-09</date>
+ <time>13:00:00</time>
  <version>
-  <release>1.0.3</release>
-  <api>1.0.3</api>
+  <release>1.0.4</release>
+  <api>1.0.4</api>
  </version>
  <stability>
   <release>stable</release>
@@ -32,10 +32,10 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-- now handles stdin with the "-" special switch;
-- fixed bug #14717 (Password not optional when parser built from an xml file);
+- implemented feature request #14753 (add_list_option parameter for --list-XXX option);
+- fixed bug #14762 (error message always tells me to use "-h" for help);
 - added relevant unit tests;
-- removed useless require_once's in some tests.
+- cleaned up phpdoc tags and some cosmetic changes.
 </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
@@ -80,6 +80,9 @@ Main features:
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="Console" name="CommandLine/Action/Help.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="Console" name="CommandLine/Action/List.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="Console" name="CommandLine/Action/Password.php" role="php">
@@ -162,6 +165,8 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_parse_16.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_17.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_18.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_19.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_20.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_1.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_2.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_3.phpt" role="test"/>
@@ -361,6 +366,23 @@ Main features:
 - fixed bug #14454 (Console_Commandline hangs when called via browser);
 - fixed outputter bug (STDOUT/STDERR not defined with php-cgi);
 - Console_CommandLine can now handle web requests (it convert automatically a request to options/arguments).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.3</release>
+    <api>1.0.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+- now handles stdin with the "-" special switch;
+- fixed bug #14717 (Password not optional when parser built from an xml file);
+- added relevant unit tests;
+- removed useless require_once's in some tests.
    </notes>
   </release>
  </changelog>

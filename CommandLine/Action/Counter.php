@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -66,15 +67,14 @@ class Console_CommandLine_Action_Counter extends Console_CommandLine_Action
     // execute() {{{
 
     /**
-     * Execute the action with the value entered by the user.
+     * Executes the action with the value entered by the user.
      *
-     * @param mixed $value  the option value
-     * @param array $params an optional array of parameters
+     * @param mixed $value  The option value
+     * @param array $params An optional array of parameters
      *
      * @return string
-     * @access public
      */
-    public function execute($value=false, $params=array())
+    public function execute($value = false, $params = array())
     {
         $result = $this->getResult();
         if ($result === null) {
@@ -84,5 +84,3 @@ class Console_CommandLine_Action_Counter extends Console_CommandLine_Action
     }
     // }}}
 }
-
-?>

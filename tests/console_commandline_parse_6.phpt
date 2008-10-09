@@ -19,4 +19,4 @@ try {
 ?>
 --EXPECT--
 Error: You must provide at least 2 arguments.
-Type "some_program -h" to get help.
+Type "some_program --help" to get help.

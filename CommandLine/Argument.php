@@ -19,8 +19,12 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
+/**
+ * Include base element class.
+ */
 require_once 'Console/CommandLine/Element.php';
 
 /**
@@ -40,10 +44,10 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
     // Public properties {{{
 
     /**
-     * If set to true argument values will be stored in an array.
+     * Setting this to true will tell the parser that the argument expects more 
+     * than one argument and that argument values should be stored in an array.
      *
-     * @var    boolean $multiple
-     * @access public
+     * @var boolean $multiple Whether the argument expects multiple values
      */
     public $multiple = false;
 
@@ -51,23 +55,25 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
     // validate() {{{
 
     /**
-     * Validate the option instance.
+     * Validates the argument instance.
      *
-     * @access public
      * @return void
+     * @throws Console_CommandLine_Exception
+     * @todo use exceptions
      */
     public function validate()
     {
-        // check if the option name is valid
+        // check if the argument name is valid
         if (!preg_match('/^[a-zA-Z_\x7f-\xff]+[a-zA-Z0-9_\x7f-\xff]*$/',
             $this->name)) {
-            Console_CommandLine::triggerError('argument_bad_name',
-                E_USER_ERROR, array('{$name}' => $this->name));
+            Console_CommandLine::triggerError(
+                'argument_bad_name',
+                E_USER_ERROR,
+                array('{$name}' => $this->name)
+            );
         }
         parent::validate();
     }
 
     // }}}
 }
-
-?>

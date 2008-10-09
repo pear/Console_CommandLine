@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -46,32 +47,28 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     /**
      * The option short name (ex: -v).
      *
-     * @var string $short_name
-     * @access public
+     * @var string $short_name Short name of the option
      */
     public $short_name;
 
     /**
      * The option long name (ex: --verbose).
      *
-     * @var string $long_name
-     * @access public
+     * @var string $long_name Long name of the option
      */
     public $long_name;
 
     /**
-     * The option action, defaults to StoreString.
+     * The option action, defaults to "StoreString".
      *
-     * @var int $action
-     * @access public
+     * @var string $action Option action
      */
     public $action = 'StoreString';
 
     /**
      * The default value of the option if not provided on the command line.
      *
-     * @var mixed $default
-     * @access public
+     * @var mixed $default Default value of the option.
      */
     public $default;
 
@@ -80,8 +77,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      * and the value passed is not in the array an exception is raised.
      * This only make sense for actions that accept values of course.
      *
-     * @var array $choices
-     * @access public
+     * @var array $choices Valid choices for the option
      */
     public $choices = array();
 
@@ -101,8 +97,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      * ));
      * </code>
      *
-     * @var    mixed $callback
-     * @access public
+     * @var callable $callback The option callback
      */
     public $callback;
 
@@ -127,19 +122,26 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      * // array('foo'=>true, 'bar'=>false) as second parameter
      * </code>
      *
-     * @var    array $action_params
-     * @access public
+     * @var array $action_params Additional parameters to pass to the action
      */
     public $action_params = array();
 
     /**
      * For options that expect an argument, this property tells the parser if 
-     * the argument is optional and can be ommited
+     * the option argument is optional and can be ommited.
      *
-     * @var boolean $argumentOptional
-     * @access public
+     * @var bool $argumentOptional Whether the option arg is optional or not
      */
     public $argument_optional = false;
+
+    /**
+     * For options that uses the "choice" property only.
+     * Adds a --list-<choice> option to the parser that displays the list of 
+     * choices for the option.
+     *
+     * @var bool $add_list_option Whether to add a list option or not
+     */
+    public $add_list_option = false;
 
     // }}}
     // __construct() {{{
@@ -147,10 +149,10 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     /**
      * Constructor.
      *
-     * @param string $name   the name of the element
-     * @param array  $params an optional array of parameters
+     * @param string $name   The name of the option
+     * @param array  $params An optional array of parameters
      *
-     * @access public
+     * @return void
      */
     public function __construct($name = null, $params = array()) 
     {
@@ -166,10 +168,10 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     // toString() {{{
 
     /**
-     * Return the string representation of the option.
+     * Returns the string representation of the option.
      *
-     * @access public
-     * @return string
+     * @return string The string representation of the option
+     * @todo use __toString() instead
      */
     public function toString()
     {
@@ -195,17 +197,16 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     // expectsArgument() {{{
 
     /**
-     * Return true if the option requires one or more argument and false 
+     * Returns true if the option requires one or more argument and false 
      * otherwise.
      *
-     * @access public
-     * @return boolean
+     * @return bool Whether the option expects an argument or not
      */
     public function expectsArgument()
     {
         if ($this->action == 'StoreTrue' || $this->action == 'StoreFalse' ||
             $this->action == 'Help' || $this->action == 'Version' ||
-            $this->action == 'Counter') {
+            $this->action == 'Counter' || $this->action == 'List') {
             return false;
         }
         return true;
@@ -215,26 +216,28 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     // dispatchAction() {{{
 
     /**
-     * Format the value $value according to the action of the option and 
-     * update the passed Console_CommandLine_Result object.
+     * Formats the value $value according to the action of the option and 
+     * updates the passed Console_CommandLine_Result object.
      *
-     * @param mixed  $value  the value to format
-     * @param object $result a Console_CommandLine_Result instance
-     * @param object $parser a Console_CommandLine instance
+     * @param mixed                      $value  The value to format
+     * @param Console_CommandLine_Result $result The result instance
+     * @param Console_CommandLine        $parser The parser instance
      *
      * @return void
-     * @access public
+     * @throws Console_CommandLine_Exception
      */
     public function dispatchAction($value, $result, $parser)
     {
         // check value is in option choices
         if (!empty($this->choices) && !in_array($value, $this->choices)) {
-            throw Console_CommandLine_Exception::build('OPTION_VALUE_NOT_VALID',
+            throw Console_CommandLine_Exception::factory(
+                'OPTION_VALUE_NOT_VALID',
                 array(
                     'name'    => $this->name,
                     'choices' => implode('", "', $this->choices),
                     'value'   => $value,
-                ), $parser);
+                ), $parser
+            );
         }
         $actionInfo = Console_CommandLine::$actions[$this->action];
         if (true === $actionInfo[1]) {
@@ -251,10 +254,11 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     // validate() {{{
 
     /**
-     * Validate the option instance.
+     * Validates the option instance.
      *
-     * @access public
      * @return void
+     * @throws Console_CommandLine_Exception
+     * @todo use exceptions instead
      */
     public function validate()
     {
@@ -310,5 +314,3 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
 
     // }}}
 }
-
-?>

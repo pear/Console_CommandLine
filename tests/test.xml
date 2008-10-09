@@ -13,6 +13,7 @@
             <choice>ham</choice>
             <choice>spam</choice>
         </choices>
+        <add_list_option>true</add_list_option>
     </option>
     <option name="password">
         <short_name>-p</short_name>

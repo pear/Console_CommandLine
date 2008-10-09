@@ -19,4 +19,4 @@ try {
 ?>
 --EXPECT--
 Error: Unknown option "-d".
-Type "some_program -h" to get help.
+Type "some_program --help" to get help.

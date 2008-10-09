@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -38,11 +39,10 @@ interface Console_CommandLine_Outputter
     // stdout() {{{
 
     /**
-     * Process the output for a message that should be displayed on STDOUT
+     * Processes the output for a message that should be displayed on STDOUT.
      *
-     * @param string $msg the message to output
+     * @param string $msg The message to output
      *
-     * @access public
      * @return void
      */
     public function stdout($msg);
@@ -51,16 +51,13 @@ interface Console_CommandLine_Outputter
     // stderr() {{{
 
     /**
-     * Process the output for a message that should be displayed on STDERR
+     * Processes the output for a message that should be displayed on STDERR.
      *
-     * @param string $msg the message to output
+     * @param string $msg The message to output
      *
-     * @access public
      * @return void
      */
     public function stderr($msg);
 
     // }}}
 }
-
-?>

@@ -115,6 +115,11 @@
             </zeroOrMore>
           </element>
         </optional>
+        <optional>
+          <element name="add_list_option">
+            <ref name="ref_bool_choices"/>
+          </element>
+        </optional>
       </interleave>
     </element>
   </define>

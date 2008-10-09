@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -39,17 +40,17 @@ interface Console_CommandLine_MessageProvider
     // get() {{{
 
     /**
-     * Retrieve the given string identifier corresponding message.
+     * Retrieves the given string identifier corresponding message.
+     * For a list of identifiers please see the provided default message 
+     * provider.
      *
-     * @param string $code the string identifier of the message
-     * @param array  $vars an array of template variables
+     * @param string $code The string identifier of the message
+     * @param array  $vars An array of template variables
      *
      * @return string
-     * @access public
+     * @see Console_CommandLine_MessageProvider_Default
      */
     public function get($code, $vars=array());
 
     // }}}
 }
-
-?>

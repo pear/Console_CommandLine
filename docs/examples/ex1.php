@@ -48,7 +48,8 @@ $parser->addOption('delete', array(
     'long_name'   => '--delete',
     'action'      => 'StoreString',
     'description' => 'delete original files after zip operation',
-    'choices'     => array('foo', 'bar')
+    'choices'     => array('foo', 'bar'),
+    'add_list_option' => true
 ));
 
 // add the files argument, the user can specify one or several files

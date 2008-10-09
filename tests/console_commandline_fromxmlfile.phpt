@@ -22,6 +22,7 @@ Usage:
 
 Options:
   -c choice, --choice=choice        choice option
+  --list-choice                     lists valid choices for option choice
   -p password, --password=password  zip file password
   -v, --verbose                     turn on verbose output
   -h, --help                        show this help message and exit

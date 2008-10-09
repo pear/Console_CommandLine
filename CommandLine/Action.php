@@ -19,10 +19,10 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
- * F
  * Class that represent an option action.
  *
  * @category  Console
@@ -33,7 +33,6 @@
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     Class available since release 0.1.0
- * @abstract
  */
 abstract class Console_CommandLine_Action
 {
@@ -42,24 +41,21 @@ abstract class Console_CommandLine_Action
     /**
      * A reference to the result instance.
      *
-     * @var    object Console_CommandLine_Result $result
-     * @access protected
+     * @var Console_CommandLine_Result $result The result instance
      */
     protected $result;
 
     /**
      * A reference to the option instance.
      *
-     * @var    object Console_CommandLine_Option $option
-     * @access protected
+     * @var Console_CommandLine_Option $option The action option
      */
     protected $option;
 
     /**
      * A reference to the parser instance.
      *
-     * @var    object Console_CommandLine $parser
-     * @access protected
+     * @var Console_CommandLine $parser The parser
      */
     protected $parser;
 
@@ -69,11 +65,11 @@ abstract class Console_CommandLine_Action
     /**
      * Constructor
      *
-     * @param object $result a Console_CommandLine_Result instance
-     * @param object $option a Console_CommandLine_Option instance
-     * @param object $parser a Console_CommandLine instance
+     * @param Console_CommandLine_Result $result The result instance
+     * @param Console_CommandLine_Option $option The action option
+     * @param Console_CommandLine        $parser The current parser
      *
-     * @access public
+     * @return void
      */
     public function __construct($result, $option, $parser)
     {
@@ -88,8 +84,7 @@ abstract class Console_CommandLine_Action
     /**
      * Convenience method to retrieve the value of result->options[name].
      *
-     * @return mixed $value the assigned value or null
-     * @access public
+     * @return mixed The result value or null
      */
     public function getResult()
     {
@@ -105,10 +100,9 @@ abstract class Console_CommandLine_Action
     /**
      * Convenience method to assign the result->options[name] value.
      *
-     * @param mixed $result the option value
+     * @param mixed $result The result value
      *
      * @return void
-     * @access public
      */
     public function setResult($result)
     {
@@ -119,17 +113,14 @@ abstract class Console_CommandLine_Action
     // execute() {{{
 
     /**
-     * Execute the action with the value entered by the user.
+     * Executes the action with the value entered by the user.
+     * All children actions must implement this method.
      *
-     * @param mixed $value  the option value
-     * @param array $params an optional array of parameters
+     * @param mixed $value  The option value
+     * @param array $params An optional array of parameters
      *
      * @return string
-     * @access public
-     * @abstract
      */
-    abstract public function execute($value=false, $params=array());
+    abstract public function execute($value = false, $params = array());
     // }}}
 }
-
-?>

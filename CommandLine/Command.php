@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -45,5 +46,3 @@ require_once 'Console/CommandLine.php';
 class Console_CommandLine_Command extends Console_CommandLine
 {
 }
-
-?>

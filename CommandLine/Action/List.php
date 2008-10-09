@@ -28,10 +28,8 @@
 require_once 'Console/CommandLine/Action.php';
 
 /**
- * Class that represent the StoreString action.
- *
- * The execute method store the value of the option entered by the user as a 
- * string in the result option array entry.
+ * Class that represent the List action, a special action that simply output an 
+ * array as a list.
  *
  * @category  Console
  * @package   Console_CommandLine
@@ -42,7 +40,7 @@ require_once 'Console/CommandLine/Action.php';
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     Class available since release 0.1.0
  */
-class Console_CommandLine_Action_StoreString extends Console_CommandLine_Action
+class Console_CommandLine_Action_List extends Console_CommandLine_Action
 {
     // execute() {{{
 
@@ -50,13 +48,16 @@ class Console_CommandLine_Action_StoreString extends Console_CommandLine_Action
      * Executes the action with the value entered by the user.
      *
      * @param mixed $value  The option value
-     * @param array $params An array of optional parameters
+     * @param array $params An optional array of parameters
      *
      * @return string
      */
     public function execute($value = false, $params = array())
     {
-        $this->setResult((string)$value);
+        $list = isset($params['list']) ? $params['list'] : array();
+        $msg  = $this->parser->message_provider->get('LIST_DISPLAYED_MESSAGE');
+        $this->parser->outputter->stdout($msg . implode(', ', $list) . "\n");
+        exit(0);
     }
     // }}}
 }

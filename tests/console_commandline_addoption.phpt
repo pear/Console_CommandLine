@@ -16,6 +16,7 @@ $parser->addOption('opt2', array(
     'action' => 'StoreInt',
     'help_name' => 'bar',
     'choices' => array(1, 2, 3),
+    'add_list_option' => true,
     'default' => 2
 ));
 $opt3 = new Console_CommandLine_Option('opt3', array(
@@ -28,9 +29,9 @@ var_dump($parser->options);
 
 ?>
 --EXPECT--
-array(3) {
+array(4) {
   ["opt1"]=>
-  object(Console_CommandLine_Option)#5 (11) {
+  object(Console_CommandLine_Option)#5 (12) {
     ["short_name"]=>
     string(2) "-a"
     ["long_name"]=>
@@ -49,6 +50,8 @@ array(3) {
     }
     ["argument_optional"]=>
     bool(false)
+    ["add_list_option"]=>
+    bool(false)
     ["name"]=>
     string(4) "opt1"
     ["help_name"]=>
@@ -57,7 +60,7 @@ array(3) {
     NULL
   }
   ["opt2"]=>
-  object(Console_CommandLine_Option)#6 (11) {
+  object(Console_CommandLine_Option)#6 (12) {
     ["short_name"]=>
     string(2) "-b"
     ["long_name"]=>
@@ -82,6 +85,8 @@ array(3) {
     }
     ["argument_optional"]=>
     bool(false)
+    ["add_list_option"]=>
+    bool(true)
     ["name"]=>
     string(4) "opt2"
     ["help_name"]=>
@@ -89,8 +94,46 @@ array(3) {
     ["description"]=>
     string(19) "description of opt2"
   }
+  ["list_bar"]=>
+  object(Console_CommandLine_Option)#7 (12) {
+    ["short_name"]=>
+    NULL
+    ["long_name"]=>
+    string(10) "--list-bar"
+    ["action"]=>
+    string(4) "List"
+    ["default"]=>
+    NULL
+    ["choices"]=>
+    array(0) {
+    }
+    ["callback"]=>
+    NULL
+    ["action_params"]=>
+    array(1) {
+      ["list"]=>
+      array(3) {
+        [0]=>
+        int(1)
+        [1]=>
+        int(2)
+        [2]=>
+        int(3)
+      }
+    }
+    ["argument_optional"]=>
+    bool(false)
+    ["add_list_option"]=>
+    bool(false)
+    ["name"]=>
+    string(8) "list_bar"
+    ["help_name"]=>
+    string(8) "list_bar"
+    ["description"]=>
+    string(35) "lists valid choices for option opt2"
+  }
   ["opt3"]=>
-  object(Console_CommandLine_Option)#7 (11) {
+  object(Console_CommandLine_Option)#8 (12) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
@@ -108,6 +151,8 @@ array(3) {
     array(0) {
     }
     ["argument_optional"]=>
+    bool(false)
+    ["add_list_option"]=>
     bool(false)
     ["name"]=>
     string(4) "opt3"

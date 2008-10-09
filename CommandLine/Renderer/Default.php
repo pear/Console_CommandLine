@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -43,18 +44,16 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // Properties {{{
 
     /**
-     * integer that define the max width of the help text
+     * Integer that define the max width of the help text.
      *
-     * @var    integer $line_width
-     * @access public
+     * @var integer $line_width Line width
      */
     public $line_width = 75;
 
     /**
-     * An instance of Console_CommandLine
+     * An instance of Console_CommandLine.
      *
-     * @var    object Console_CommandLine $parser
-     * @access public
+     * @var Console_CommandLine $parser The parser
      */
     public $parser = false;
 
@@ -64,9 +63,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     /**
      * Constructor.
      *
-     * @param object $parser a Console_CommandLine instance
+     * @param object $parser A Console_CommandLine instance
      *
-     * @access public
+     * @return void
      */
     public function __construct($parser = false) 
     {
@@ -77,10 +76,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // usage() {{{
 
     /**
-     * Return the full usage message
+     * Returns the full usage message.
      *
-     * @return string the usage message
-     * @access public
+     * @return string The usage message
      */
     public function usage()
     {
@@ -108,12 +106,11 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // error() {{{
 
     /**
-     * Return a formatted error message
+     * Returns a formatted error message.
      *
-     * @param string $error the error message to format
+     * @param string $error The error message to format
      *
-     * @return string the error string
-     * @access public
+     * @return string The error string
      */
     public function error($error)
     {
@@ -134,10 +131,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // version() {{{
 
     /**
-     * Return the program version string
+     * Returns the program version string.
      *
-     * @return string the version string
-     * @access public
+     * @return string The version string
      */
     public function version()
     {
@@ -151,10 +147,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // name() {{{
 
     /**
-     * return the full name of the program or the sub command
+     * Returns the full name of the program or the sub command
      *
-     * @return string
-     * @access protected
+     * @return string The name of the program
      */
     protected function name()
     {
@@ -178,10 +173,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // description() {{{
 
     /**
-     * Return the command line description message
+     * Returns the command line description message.
      *
-     * @access protected
-     * @return string the usage message
+     * @return string The description message
      */
     protected function description()
     {
@@ -192,10 +186,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // usageLine() {{{
 
     /**
-     * Return the command line usage message
+     * Returns the command line usage message
      *
      * @return string the usage message
-     * @access protected
      */
     protected function usageLine()
     {
@@ -218,10 +211,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     // commandUsageLine() {{{
 
     /**
-     * Return the command line usage message for subcommands
+     * Returns the command line usage message for subcommands.
      *
-     * @return string
-     * @access protected
+     * @return string The usage line
      */
     protected function commandUsageLine()
     {
@@ -246,8 +238,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      * Render the arguments list that will be displayed to the user, you can 
      * override this method if you want to change the look of the list.
      *
-     * @return string the formatted argument list
-     * @access protected
+     * @return string The formatted argument list
      */
     protected function argumentList()
     {
@@ -276,8 +267,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      * Render the options list that will be displayed to the user, you can 
      * override this method if you want to change the look of the list.
      *
-     * @return string the formatted option list
-     * @access protected
+     * @return string The formatted option list
      */
     protected function optionList()
     {
@@ -306,8 +296,7 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      * Render the command list that will be displayed to the user, you can 
      * override this method if you want to change the look of the list.
      *
-     * @return string the formatted subcommand list
-     * @access protected
+     * @return string The formatted subcommand list
      */
     protected function commandList()
     {
@@ -337,10 +326,9 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
      * Wraps the text passed to the method.
      *
      * @param string $text The text to wrap
-     * @param int    $lw   The column width. Defaults to line_width property.
+     * @param int    $lw   The column width (defaults to line_width property)
      *
-     * @return string
-     * @access protected
+     * @return string The wrapped text
      */
     protected function wrap($text, $lw=null)
     {
@@ -359,11 +347,10 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     /**
      * Wraps the text passed to the method at the specified width.
      *
-     * @param string $text the text to wrap
-     * @param int    $cw   the wrap width
+     * @param string $text The text to wrap
+     * @param int    $cw   The wrap width
      *
-     * @return string
-     * @access protected
+     * @return string The wrapped text
      */
     protected function columnWrap($text, $cw)
     {
@@ -382,5 +369,3 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
 
     // }}}
 }
-
-?>

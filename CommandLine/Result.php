@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -41,36 +42,30 @@ class Console_CommandLine_Result
      * The result options associative array.
      * Key is the name of the option and value its value.
      *
-     * @var array $options
-     * @access public
+     * @var array $options Result options array
      */
     public $options = array();
 
     /**
      * The result arguments array.
      *
-     * @var array $args
-     * @access public
+     * @var array $args Result arguments array
      */
     public $args = array();
 
     /**
      * Name of the command invoked by the user, false if no command invoked.
      *
-     * @var string $command_name
-     * @access public
+     * @var string $command_name Result command name
      */
     public $command_name = false;
 
     /**
-     * A result instance for the command.
+     * A result instance for the subcommand.
      *
-     * @var object CommandLine_Result
-     * @access public
+     * @var Console_CommandLine_Result Result instance for the subcommand
      */
     public $command = false;
 
     // }}}
 }
-
-?>

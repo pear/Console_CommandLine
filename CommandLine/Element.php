@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -40,8 +41,7 @@ abstract class Console_CommandLine_Element
     /**
      * The element name.
      *
-     * @var    string $name
-     * @access public
+     * @var string $name Element name
      */
     public $name;
 
@@ -49,16 +49,14 @@ abstract class Console_CommandLine_Element
      * The name of variable displayed in the usage message, if no set it 
      * defaults to the "name" property.
      *
-     * @var    string $help_name
-     * @access public
+     * @var string $help_name Element "help" variable name
      */
     public $help_name;
 
     /**
      * The element description.
      *
-     * @var    string $description
-     * @access public
+     * @var string $description Element description
      */
     public $description;
 
@@ -68,15 +66,15 @@ abstract class Console_CommandLine_Element
     /**
      * Constructor.
      *
-     * @param string $name   the name of the element
-     * @param array  $params an optional array of parameters
+     * @param string $name   The name of the element
+     * @param array  $params An optional array of parameters
      *
-     * @access public
+     * @return void
      */
     public function __construct($name = null, $params = array()) 
     {
         $this->name = $name;
-        foreach ($params as $attr=>$value) {
+        foreach ($params as $attr => $value) {
             if (property_exists($this, $attr)) {
                 $this->$attr = $value;
             }
@@ -87,10 +85,10 @@ abstract class Console_CommandLine_Element
     // toString() {{{
 
     /**
-     * Return the string representation of the argument.
+     * Returns the string representation of the element.
      *
-     * @access public
-     * @return string
+     * @return string The string representation of the element
+     * @todo use __toString() instead
      */
     public function toString()
     {
@@ -100,10 +98,10 @@ abstract class Console_CommandLine_Element
     // validate() {{{
 
     /**
-     * Validate the option instance.
+     * Validates the element instance and set it's default values.
      *
-     * @access public
      * @return void
+     * @throws Console_CommandLine_Exception
      */
     public function validate()
     {
@@ -115,5 +113,3 @@ abstract class Console_CommandLine_Element
 
     // }}}
 }
-
-?>

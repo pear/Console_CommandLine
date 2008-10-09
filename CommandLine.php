@@ -23,6 +23,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     Class available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -67,8 +68,8 @@ class Console_CommandLine
     /**
      * Error messages.
      *
-     * @var    array $errors
-     * @access public
+     * @var array $errors Error messages
+     * @todo move this to Console_CommandLine_MessageProvider
      */
     public static $errors = array(
         'option_bad_name'                    => 'option name must be a valid php variable name (got: {$name})',
@@ -87,16 +88,14 @@ class Console_CommandLine
     /**
      * The name of the program, if not given it defaults to argv[0].
      *
-     * @var    string $name
-     * @access public
+     * @var string $name Name of your program
      */
     public $name;
 
     /**
      * A description text that will be displayed in the help message.
      *
-     * @var    string $description
-     * @access public
+     * @var string $description Description of your program
      */
     public $description = '';
 
@@ -115,8 +114,7 @@ class Console_CommandLine
      * Boolean that determine if the command line parser should add the help
      * (-h, --help) option automatically.
      *
-     * @var    bool $add_help_option
-     * @access public
+     * @var bool $add_help_option Whether to add a help option or not
      */
     public $add_help_option = true;
 
@@ -127,8 +125,7 @@ class Console_CommandLine
      * property is not empty, it's up to you to provide a version string of 
      * course.
      *
-     * @var    bool $add_version_option
-     * @access public
+     * @var bool $add_version_option Whether to add a version option or not
      */
     public $add_version_option = true;
 
@@ -143,16 +140,14 @@ class Console_CommandLine
     /**
      * The command line parser outputter instance.
      *
-     * @var    object that implements Console_CommandLine_Outputter interface
-     * @access protected
+     * @var Console_CommandLine_Outputter An outputter
      */
     public $outputter = false;
 
     /**
      * The command line message provider instance.
      *
-     * @var    object an instance of Console_CommandLine_Message
-     * @access protected
+     * @var Console_CommandLine_MessageProvider A message provider instance
      */
     public $message_provider = false;
 
@@ -160,32 +155,28 @@ class Console_CommandLine
      * Boolean that tells the parser to be POSIX compliant, POSIX demands the 
      * following behavior: the first non-option stops option processing.
      *
-     * @var    bool $force_posix
-     * @access public
+     * @var bool $force_posix Whether to force posix compliance or not
      */
     public $force_posix = false;
 
     /**
      * An array of Console_CommandLine_Option objects.
      *
-     * @var    array $options
-     * @access public
+     * @var array $options The options array
      */
     public $options = array();
 
     /**
      * An array of Console_CommandLine_Argument objects.
      *
-     * @var    array $args
-     * @access public
+     * @var array $args The arguments array
      */
     public $args = array();
 
     /**
      * An array of Console_CommandLine_Command objects (sub commands).
      *
-     * @var    array $commands
-     * @access public
+     * @var array $commands The commands array
      */
     public $commands = array();
 
@@ -193,23 +184,23 @@ class Console_CommandLine
      * Parent, only relevant in Command objects but left here for interface 
      * convenience.
      *
-     * @var    object Console_CommandLine
-     * @access public
+     * @var Console_CommandLine The parent instance
+     * @todo move Console_CommandLine::parent to Console_CommandLine_Command
      */
     public $parent = false;
 
     /**
      * Array of valid actions for an option, this array will also store user 
      * registered actions.
+     *
      * The array format is:
      * <pre>
      * array(
      *     <ActionName:string> => array(<ActionClass:string>, <builtin:bool>)
      * )
+     * </pre>
      *
-     * @var    array $actions
-     * @static
-     * @access public
+     * @var array $actions List of valid actions
      */
     public static $actions = array(
         'StoreTrue'   => array('Console_CommandLine_Action_StoreTrue', true),
@@ -222,14 +213,14 @@ class Console_CommandLine
         'Counter'     => array('Console_CommandLine_Action_Counter', true),
         'Help'        => array('Console_CommandLine_Action_Help', true),
         'Version'     => array('Console_CommandLine_Action_Version', true),
-        'Password'    => array('Console_CommandLine_Action_Password', true)
+        'Password'    => array('Console_CommandLine_Action_Password', true),
+        'List'        => array('Console_CommandLine_Action_List', true),
     );
 
     /**
      * Array of options that must be dispatched at the end.
      *
-     * @var    array $_dispatchLater
-     * @access private
+     * @var array $_dispatchLater Options to be dispatched
      */
     private $_dispatchLater = array();
 
@@ -251,11 +242,11 @@ class Console_CommandLine
      * ));
      * </code>
      *
-     * @param array $params an optional array of parameters
+     * @param array $params An optional array of parameters
      *
-     * @access public
+     * @return void
      */
-    public function __construct(array $params=array()) 
+    public function __construct(array $params = array()) 
     {
         if (isset($params['name'])) {
             $this->name = $params['name'];
@@ -298,9 +289,8 @@ class Console_CommandLine
      *  + a custom outputter,
      *  + or a custom message provider
      *
-     * @param mixed $instance the custom instance
+     * @param mixed $instance The custom instance
      *
-     * @access public
      * @return void
      * @throws Console_CommandLine_Exception if wrong argument passed
      */
@@ -316,8 +306,10 @@ class Console_CommandLine
         } else if ($instance instanceof Console_CommandLine_MessageProvider) {
             $this->message_provider = $instance;
         } else {
-            throw Console_CommandLine_Exception::build('INVALID_CUSTOM_INSTANCE',
-                array(), $this);
+            throw Console_CommandLine_Exception::factory(
+                'INVALID_CUSTOM_INSTANCE',
+                array(), $this
+            );
         }
     }
 
@@ -325,7 +317,7 @@ class Console_CommandLine
     // fromXmlFile() {{{
 
     /**
-     * Return a command line parser instance built from an xml file.
+     * Returns a command line parser instance built from an xml file.
      *
      * Example:
      * <code>
@@ -334,11 +326,9 @@ class Console_CommandLine
      * $result = $parser->parse();
      * </code>
      *
-     * @param string $file path to the xml file
+     * @param string $file Path to the xml file
      *
-     * @return object a Console_CommandLine instance
-     * @access public
-     * @static
+     * @return Console_CommandLine The parser instance
      */
     public static function fromXmlFile($file) 
     {
@@ -350,7 +340,7 @@ class Console_CommandLine
     // fromXmlString() {{{
 
     /**
-     * Return a command line parser instance built from an xml string.
+     * Returns a command line parser instance built from an xml string.
      *
      * Example:
      * <code>
@@ -373,11 +363,9 @@ class Console_CommandLine
      * $result = $parser->parse();
      * </code>
      *
-     * @param string $string the xml data
+     * @param string $string The xml data
      *
-     * @return object a Console_CommandLine instance
-     * @access public
-     * @static
+     * @return Console_CommandLine The parser instance
      */
     public static function fromXmlString($string) 
     {
@@ -389,7 +377,15 @@ class Console_CommandLine
     // addArgument() {{{
 
     /**
-     * Add an argument with the given $name to the command line parser.
+     * Adds an argument to the command line parser and returns it.
+     *
+     * Adds an argument with the name $name and set its attributes with the
+     * array $params, then return the Console_CommandLine_Argument instance
+     * created.
+     * The method accepts another form: you can directly pass a 
+     * Console_CommandLine_Argument object as the sole argument, this allows
+     * you to contruct the argument separately, in order to reuse it in
+     * different command line parsers or commands for example.
      *
      * Example:
      * <code>
@@ -414,15 +410,14 @@ class Console_CommandLine
      * Usage: myscript.php <input_files...> <output_file>
      * </code>
      *
-     * @param mixed $name   a string containing the argument name or an
+     * @param mixed $name   A string containing the argument name or an
      *                      instance of Console_CommandLine_Argument
-     * @param array $params an array containing the argument attributes
+     * @param array $params An array containing the argument attributes
      *
-     * @return object Console_CommandLine_Argument
-     * @access public
-     * @see    Console_CommandLine_Command
+     * @return Console_CommandLine_Argument the added argument
+     * @see Console_CommandLine_Argument
      */
-    public function addArgument($name, $params=array())
+    public function addArgument($name, $params = array())
     {
         if ($name instanceof Console_CommandLine_Argument) {
             $argument = $name;
@@ -439,9 +434,9 @@ class Console_CommandLine
     // addCommand() {{{
 
     /**
-     * Add a sub-command to the command line parser.
+     * Adds a sub-command to the command line parser.
      *
-     * Add a command with the given $name to the parser and return the 
+     * Adds a command with the given $name to the parser and returns the 
      * Console_CommandLine_Command instance, you can then populate the command
      * with options, configure it, etc... like you would do for the main parser
      * because the class Console_CommandLine_Command inherits from
@@ -476,15 +471,14 @@ class Console_CommandLine
      * $
      * </code>
      *
-     * @param mixed $name   a string containing the command name or an
+     * @param mixed $name   A string containing the command name or an
      *                      instance of Console_CommandLine_Command
-     * @param array $params an array containing the command attributes
+     * @param array $params An array containing the command attributes
      *
-     * @return object Console_CommandLine_Command
-     * @access public
+     * @return Console_CommandLine_Command the added subcommand
      * @see    Console_CommandLine_Command
      */
-    public function addCommand($name, $params=array())
+    public function addCommand($name, $params = array())
     {
         if ($name instanceof Console_CommandLine_Command) {
             $command = $name;
@@ -502,15 +496,15 @@ class Console_CommandLine
     // addOption() {{{
 
     /**
-     * Add an option to the command line parser.
+     * Adds an option to the command line parser and returns it.
      *
-     * Add an option with the name (variable name) $optname and set its 
-     * attributes with the array $params, then return the
-     * Console_CommandLine_Option instance created.
+     * Adds an option with the name $name and set its attributes with the
+     * array $params, then return the Console_CommandLine_Option instance
+     * created.
      * The method accepts another form: you can directly pass a 
-     * Console_CommandLine_Option object as the sole argument, this allows to
-     * contruct  the option separately, in order to reuse an option in
-     * different command line parsers or commands for example.
+     * Console_CommandLine_Option object as the sole argument, this allows
+     * you to contruct the option separately, in order to reuse it in different
+     * command line parsers or commands for example.
      *
      * Example:
      * <code>
@@ -543,15 +537,14 @@ class Console_CommandLine
      * $ myscript.php -psome/path
      * </code>
      *
-     * @param mixed $name   a string containing the option name or an
+     * @param mixed $name   A string containing the option name or an
      *                      instance of Console_CommandLine_Option
-     * @param array $params an array containing the option attributes
+     * @param array $params An array containing the option attributes
      *
-     * @return object Console_CommandLine_Option
-     * @access public
+     * @return Console_CommandLine_Option The added option
      * @see    Console_CommandLine_Option
      */
-    public function addOption($name, $params=array())
+    public function addOption($name, $params = array())
     {
         include_once 'Console/CommandLine/Option.php';
         if ($name instanceof Console_CommandLine_Option) {
@@ -561,6 +554,17 @@ class Console_CommandLine
         }
         $opt->validate();
         $this->options[$opt->name] = $opt;
+        if (!empty($opt->choices) && $opt->add_list_option) {
+            $this->addOption('list_' . $opt->help_name, array(
+                'long_name'     => '--list-' . $opt->help_name,
+                'description'   => $this->message_provider->get(
+                    'LIST_OPTION_MESSAGE',
+                    array('name' => $opt->name)
+                ),
+                'action'        => 'List',
+                'action_params' => array('list' => $opt->choices),
+            ));
+        }
         return $opt;
     }
 
@@ -568,13 +572,12 @@ class Console_CommandLine
     // displayError() {{{
 
     /**
-     * Display an error to the user and exit with $exitCode.
+     * Displays an error to the user and exit with $exitCode.
      *
-     * @param string $error    the error message
-     * @param int    $exitCode the exit code number
+     * @param string $error    The error message
+     * @param int    $exitCode The exit code number
      *
      * @return void
-     * @access public
      */
     public function displayError($error, $exitCode = 1)
     {
@@ -586,12 +589,11 @@ class Console_CommandLine
     // displayUsage() {{{
 
     /**
-     * Display the usage help message to the user and exit with $exitCode
+     * Displays the usage help message to the user and exit with $exitCode
      *
-     * @param int $exitCode the exit code number
+     * @param int $exitCode The exit code number
      *
      * @return void
-     * @access public
      */
     public function displayUsage($exitCode = 1)
     {
@@ -603,10 +605,9 @@ class Console_CommandLine
     // displayVersion() {{{
 
     /**
-     * Display the program version to the user
+     * Displays the program version to the user
      *
      * @return void
-     * @access public
      */
     public function displayVersion()
     {
@@ -618,13 +619,12 @@ class Console_CommandLine
     // findOption() {{{
 
     /**
-     * Find the option that matches the given short_name (ex: -v), long_name
+     * Finds the option that matches the given short_name (ex: -v), long_name
      * (ex: --verbose) or name (ex: verbose).
      *
-     * @param string $str the option identifier
+     * @param string $str The option identifier
      *
-     * @return mixed a Console_CommandLine_Option instance or false
-     * @access public
+     * @return mixed A Console_CommandLine_Option instance or false
      */
     public function findOption($str)
     {
@@ -652,9 +652,11 @@ class Console_CommandLine
                     $matches_str .= $padding . $opt->long_name;
                     $padding      = ', ';
                 }
-                throw Console_CommandLine_Exception::build('OPTION_AMBIGUOUS',
+                throw Console_CommandLine_Exception::factory(
+                    'OPTION_AMBIGUOUS',
                     array('name' => $str, 'matches' => $matches_str),
-                    $this);
+                    $this
+                );
             }
             return $matches[0];
         }
@@ -664,10 +666,9 @@ class Console_CommandLine
     // registerAction() {{{
 
     /**
-     * Register a custom action for the parser, an example:
+     * Registers a custom action for the parser, an example:
      *
      * <code>
-     * <?php
      *
      * // in this example we create a "range" action:
      * // the user will be able to enter something like:
@@ -704,15 +705,12 @@ class Console_CommandLine
      * ));
      * // etc...
      *
-     * ?>
      * </code>
      *
-     * @param string $name  the name of the custom action
-     * @param string $class the class name of the custom action
+     * @param string $name  The name of the custom action
+     * @param string $class The class name of the custom action
      *
      * @return void
-     * @access public
-     * @static
      */
     public static function registerAction($name, $class) 
     {
@@ -732,13 +730,12 @@ class Console_CommandLine
     /**
      * A wrapper for programming errors triggering.
      *
-     * @param string $msgId  identifier of the message
-     * @param int    $level  the php error level
-     * @param array  $params an array of search=>replaces entries
+     * @param string $msgId  Identifier of the message
+     * @param int    $level  The php error level
+     * @param array  $params An array of search=>replaces entries
      *
      * @return void
-     * @access public
-     * @static
+     * @todo remove Console::triggerError() and use exceptions only
      */
     public static function triggerError($msgId, $level, $params=array()) 
     {
@@ -755,14 +752,13 @@ class Console_CommandLine
     // parse() {{{
 
     /**
-     * Parse the command line arguments and return a Console_CommandLine_Result 
-     * object.
+     * Parses the command line arguments and returns a
+     * Console_CommandLine_Result instance.
      *
-     * @param integer $userArgc number of arguments (optional)
-     * @param array   $userArgv array containing arguments (optional)
+     * @param integer $userArgc Number of arguments (optional)
+     * @param array   $userArgv Array containing arguments (optional)
      *
-     * @return object Console_CommandLine_Result
-     * @access public
+     * @return Console_CommandLine_Result The result instance
      * @throws Exception on user errors
      */
     public function parse($userArgc=null, $userArgv=null)
@@ -809,9 +805,11 @@ class Console_CommandLine
         // minimum argument number check
         $argnum = count($this->args);
         if (count($args) < $argnum) {
-            throw Console_CommandLine_Exception::build('ARGUMENT_REQUIRED',
+            throw Console_CommandLine_Exception::factory(
+                'ARGUMENT_REQUIRED',
                 array('argnum' => $argnum, 'plural' => $argnum>1 ? 's': ''),
-                $this);
+                $this
+            );
         }
         // handle arguments
         $c = count($this->args);
@@ -834,13 +832,13 @@ class Console_CommandLine
     // parseToken() {{{
 
     /**
-     * Parse the command line token and modify *by reference* the $options and 
-     * $args arrays.
+     * Parses the command line token and modifies *by reference* the $options
+     * and $args arrays.
      *
-     * @param string $token  the command line token to parse
-     * @param object $result the Console_CommandLine_Result instance
-     * @param array  &$args  the argv array
-     * @param int    $argc   number of lasting args
+     * @param string $token  The command line token to parse
+     * @param object $result The Console_CommandLine_Result instance
+     * @param array  &$args  The argv array
+     * @param int    $argc   Number of lasting args
      *
      * @return void
      * @access protected
@@ -863,8 +861,11 @@ class Console_CommandLine
                     // case of an option that expect a list of args
                     $lastopt = false;
                 } else {
-                    throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
-                        array('name' => $lastopt->name), $this);
+                    throw Console_CommandLine_Exception::factory(
+                        'OPTION_VALUE_REQUIRED',
+                        array('name' => $lastopt->name),
+                        $this
+                    );
                 }
             } else {
                 // when a StoreArray option is positioned last, the behavior
@@ -895,20 +896,29 @@ class Console_CommandLine
             }
             $opt = $this->findOption($optkv[0]);
             if (!$opt) {
-                throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
-                    array('name' => $optkv[0]), $this);
+                throw Console_CommandLine_Exception::factory(
+                    'OPTION_UNKNOWN',
+                    array('name' => $optkv[0]),
+                    $this
+                );
             }
             $value = isset($optkv[1]) ? $optkv[1] : false;
             if (!$opt->expectsArgument() && $value !== false) {
-                throw Console_CommandLine_Exception::build('OPTION_VALUE_UNEXPECTED',
-                    array('name' => $opt->name, 'value' => $value), $this);
+                throw Console_CommandLine_Exception::factory(
+                    'OPTION_VALUE_UNEXPECTED',
+                    array('name' => $opt->name, 'value' => $value),
+                    $this
+                );
             }
             if ($opt->expectsArgument() && $value === false) {
                 // maybe the long option argument is separated by a space, if 
                 // this is the case it will be the next arg
                 if ($last && !$opt->argument_optional) {
-                    throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
-                        array('name' => $opt->name), $this);
+                    throw Console_CommandLine_Exception::factory(
+                        'OPTION_VALUE_REQUIRED',
+                        array('name' => $opt->name),
+                        $this
+                    );
                 }
                 // we will have a value next time
                 $lastopt = $opt;
@@ -928,8 +938,11 @@ class Console_CommandLine
             }
             $opt = $this->findOption($optname);
             if (!$opt) {
-                throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
-                    array('name' => $optname), $this);
+                throw Console_CommandLine_Exception::factory(
+                    'OPTION_UNKNOWN',
+                    array('name' => $optname),
+                    $this
+                );
             }
             // parse other options or set the value
             // in short: handle -f<value> and -f <value>
@@ -938,8 +951,11 @@ class Console_CommandLine
             if ($next === false) {
                 if ($opt->expectsArgument()) {
                     if ($last && !$opt->argument_optional) {
-                        throw Console_CommandLine_Exception::build('OPTION_VALUE_REQUIRED',
-                            array('name' => $opt->name), $this);
+                        throw Console_CommandLine_Exception::factory(
+                            'OPTION_VALUE_REQUIRED',
+                            array('name' => $opt->name),
+                            $this
+                        );
                     }
                     // we will have a value next time
                     $lastopt = $opt;
@@ -954,8 +970,11 @@ class Console_CommandLine
                             $args, $last);
                         return;
                     } else {
-                        throw Console_CommandLine_Exception::build('OPTION_UNKNOWN',
-                            array('name' => $next), $this);
+                        throw Console_CommandLine_Exception::factory(
+                            'OPTION_UNKNOWN',
+                            array('name' => $next),
+                            $this
+                        );
                     }
                 }
                 if ($opt->action == 'StoreArray') {
@@ -979,10 +998,9 @@ class Console_CommandLine
     // addBuiltinOptions() {{{
 
     /**
-     * Add the builtin "Help" and "Version" options if needed.
+     * Adds the builtin "Help" and "Version" options if needed.
      *
      * @return void
-     * @access protected 
      */
     public function addBuiltinOptions()
     {
@@ -1016,12 +1034,11 @@ class Console_CommandLine
     // getArgcArgv() {{{
 
     /**
-     * Try to return an array containing argc and argv, or trigger an error
+     * Tries to return an array containing argc and argv, or trigger an error
      * if it fails to get them.
      *
-     * @return array
-     * @access protected
-     * @throws Exception 
+     * @return array The argc/argv array
+     * @throws Console_CommandLine_Exception 
      */
     protected function getArgcArgv()
     {
@@ -1069,15 +1086,13 @@ class Console_CommandLine
     // _dispatchAction() {{{
 
     /**
-     * Dispatch the given option or store the option to dispatch it later.
+     * Dispatches the given option or store the option to dispatch it later.
      *
-     * @param object $option an instance of Console_CommandLine_Option
-     * @param string $token  the command line token to parse
-     * @param object $result the Console_CommandLine_Result instance
+     * @param Console_CommandLine_Option $option The option instance
+     * @param string                     $token  Command line token to parse
+     * @param Console_CommandLine_Result $result The result instance
      *
      * @return void
-     * @access protected
-     * @throws Exception on user errors
      */
     private function _dispatchAction($option, $token, $result)
     {
@@ -1089,5 +1104,3 @@ class Console_CommandLine
     }
     // }}}
 }
-
-?>

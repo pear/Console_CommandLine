@@ -19,16 +19,13 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
  * Include the PEAR_Exception class
  */
 require_once 'PEAR/Exception.php';
-
-/**
- * Include the Console_CommandLine_Message class
- */
 
 /**
  * Class for exceptions raised by the Console_CommandLine package.
@@ -57,21 +54,19 @@ class Console_CommandLine_Exception extends PEAR_Exception
     /**#@-*/
 
     // }}}
-    // build() {{{
+    // factory() {{{
 
     /**
      * Convenience method that builds the exception with the array of params by 
      * calling the message provider class.
      *
-     * @param string $code   the string identifier of the exception
-     * @param array  $params an array containing the vars of the message tpl
-     * @param object $parser an instance of Console_CommandLine
+     * @param string              $code   The string identifier of the exception
+     * @param array               $params Array of template vars/values
+     * @param Console_CommandLine $parser An instance of the parser
      *
      * @return object an instance of Console_CommandLine_Exception
-     * @access public
-     * @static
      */
-    public static function build($code, $params, $parser)
+    public static function factory($code, $params, $parser)
     {
         $msg   = $parser->message_provider->get($code, $params);
         $const = 'Console_CommandLine_Exception::' . $code;
@@ -81,5 +76,3 @@ class Console_CommandLine_Exception extends PEAR_Exception
 
     // }}}
 }
-
-?>

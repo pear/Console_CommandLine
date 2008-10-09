@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -43,14 +44,12 @@ class Console_CommandLine_XmlParser
     // parse() {{{
 
     /**
-     * Parse the given xml definition file and return a
+     * Parses the given xml definition file and returns a
      * Console_CommandLine instance constructed with the xml data.
      *
-     * @param string $xmlfile the xml file to parse
+     * @param string $xmlfile The xml file to parse
      *
-     * @return object a Console_CommandLine instance
-     * @access public
-     * @static
+     * @return Console_CommandLine A parser instance
      */
     public static function parse($xmlfile) 
     {
@@ -69,14 +68,12 @@ class Console_CommandLine_XmlParser
     // parseString() {{{
 
     /**
-     * Parse the given xml definition string and return a
+     * Parses the given xml definition string and returns a
      * Console_CommandLine instance constructed with the xml data.
      *
-     * @param string $xmlstr the xml string to parse
+     * @param string $xmlstr The xml string to parse
      *
-     * @return object a Console_CommandLine instance
-     * @access public
-     * @static
+     * @return Console_CommandLine A parser instance
      */
     public static function parseString($xmlstr) 
     {
@@ -91,13 +88,13 @@ class Console_CommandLine_XmlParser
     // validate() {{{
 
     /**
-     * Validate the xml definition using Relax NG
+     * Validates the xml definition using Relax NG.
      *
-     * @param object $doc a DomDocument instance (the document to validate)
+     * @param DomDocument $doc The document to validate
      *
-     * @return boolean
-     * @access public
-     * @static
+     * @return boolean Whether the xml data is valid or not.
+     * @throws Console_CommandLine_Exception
+     * @todo use exceptions
      */
     public static function validate($doc) 
     {
@@ -121,17 +118,15 @@ class Console_CommandLine_XmlParser
     // _parseCommandNode() {{{
 
     /**
-     * Parse the root command node or a command node and return the
+     * Parses the root command node or a command node and returns the
      * constructed Console_CommandLine or Console_CommandLine_Command instance.
      *
-     * @param object $node       a DomDocumentNode instance
-     * @param bool   $isRootNode boolean that tells if the node is a root node
+     * @param DomDocumentNode $node       The node to parse
+     * @param bool            $isRootNode Whether it is a root node or not
      *
-     * @return object Console_CommandLine or Console_CommandLine_Command
-     * @access private
-     * @static
+     * @return mixed Console_CommandLine or Console_CommandLine_Command
      */
-    private static function _parseCommandNode($node, $isRootNode=false) 
+    private static function _parseCommandNode($node, $isRootNode = false) 
     {
         if ($isRootNode) { 
             $obj = new Console_CommandLine();
@@ -172,14 +167,12 @@ class Console_CommandLine_XmlParser
     // _parseOptionNode() {{{
 
     /**
-     * Parse an option node and return the constructed
+     * Parses an option node and returns the constructed
      * Console_CommandLine_Option instance.
      *
-     * @param object $node a DomDocumentNode instance
+     * @param DomDocumentNode $node The node to parse
      *
-     * @return object a Console_CommandLine_Option instance
-     * @access private
-     * @static
+     * @return Console_CommandLine_Option The built option
      */
     private static function _parseOptionNode($node) 
     {
@@ -207,14 +200,12 @@ class Console_CommandLine_XmlParser
     // _parseArgumentNode() {{{
 
     /**
-     * Parse an argument node and return the constructed 
+     * Parses an argument node and returns the constructed 
      * Console_CommandLine_Argument instance.
      *
-     * @param object $node a DomDocumentNode instance
+     * @param DomDocumentNode $node The node to parse
      *
-     * @return object a Console_CommandLine_Argument instance
-     * @access private
-     * @static
+     * @return Console_CommandLine_Argument The built argument
      */
     private static function _parseArgumentNode($node) 
     {
@@ -242,13 +233,11 @@ class Console_CommandLine_XmlParser
     // _bool() {{{
 
     /**
-     * Return a boolean according to true/false possible strings
+     * Returns a boolean according to true/false possible strings.
      * 
-     * @param string $str the string to process
+     * @param string $str The string to process
      *
      * @return boolean
-     * @access private
-     * @static
      */
     private static function _bool($str)
     {
@@ -257,5 +246,3 @@ class Console_CommandLine_XmlParser
 
     // }}}
 }
-
-?>

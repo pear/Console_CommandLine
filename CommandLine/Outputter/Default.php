@@ -19,6 +19,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
+ * @filesource
  */
 
 /**
@@ -43,12 +44,11 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
     // stdout() {{{
 
     /**
-     * Writes the message $msg to STDOUT
+     * Writes the message $msg to STDOUT.
      *
-     * @param string $msg the message to output
+     * @param string $msg The message to output
      *
      * @return void
-     * @access public
      */
     public function stdout($msg)
     {
@@ -63,12 +63,11 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
     // stderr() {{{
 
     /**
-     * Writes the message $msg to STDERR
+     * Writes the message $msg to STDERR.
      *
-     * @param string $msg the message to output
+     * @param string $msg The message to output
      *
      * @return void
-     * @access public
      */
     public function stderr($msg)
     {
@@ -81,5 +80,3 @@ class Console_CommandLine_Outputter_Default implements Console_CommandLine_Outpu
 
     // }}}
 }
-
-?>
