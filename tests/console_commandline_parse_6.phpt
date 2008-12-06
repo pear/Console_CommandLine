@@ -3,7 +3,7 @@ Test for Console_CommandLine::parse() method (errors 3).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
 --ARGS--
---float=1.2 foo 2>&1
+--float=1.2 2>&1
 --FILE--
 <?php
 
@@ -18,5 +18,5 @@ try {
 
 ?>
 --EXPECT--
-Error: You must provide at least 2 arguments.
+Error: You must provide at least 1 argument.
 Type "some_program --help" to get help.

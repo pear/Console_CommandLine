@@ -94,12 +94,12 @@ array(4) {
     ["description"]=>
     string(19) "description of opt2"
   }
-  ["list_bar"]=>
+  ["list_opt2"]=>
   object(Console_CommandLine_Option)#7 (12) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
-    string(10) "--list-bar"
+    string(11) "--list-opt2"
     ["action"]=>
     string(4) "List"
     ["default"]=>
@@ -126,9 +126,9 @@ array(4) {
     ["add_list_option"]=>
     bool(false)
     ["name"]=>
-    string(8) "list_bar"
+    string(9) "list_opt2"
     ["help_name"]=>
-    string(8) "list_bar"
+    string(9) "list_opt2"
     ["description"]=>
     string(35) "lists valid choices for option opt2"
   }

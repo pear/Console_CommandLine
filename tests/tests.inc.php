@@ -143,7 +143,8 @@ function buildParser1()
     ));
     $parser->addArgument('multiple', array(
         'description' => 'test a multiple argument',
-        'multiple'    => true
+        'multiple'    => true,
+        'optional'    => true
     ));
     return $parser;
 }

@@ -51,6 +51,16 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
      */
     public $multiple = false;
 
+    /**
+     * Setting this to true will tell the parser that the argument is optional 
+     * and can be ommited.
+     * Note that it is not a good practice to make arguments optional, it is 
+     * the role of the options to be optional, by essence.
+     *
+     * @var boolean $optional Whether the argument is optional or not.
+     */
+    public $optional = false;
+
     // }}}
     // validate() {{{
 

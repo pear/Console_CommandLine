@@ -555,8 +555,8 @@ class Console_CommandLine
         $opt->validate();
         $this->options[$opt->name] = $opt;
         if (!empty($opt->choices) && $opt->add_list_option) {
-            $this->addOption('list_' . $opt->help_name, array(
-                'long_name'     => '--list-' . $opt->help_name,
+            $this->addOption('list_' . $opt->name, array(
+                'long_name'     => '--list-' . $opt->name,
                 'description'   => $this->message_provider->get(
                     'LIST_OPTION_MESSAGE',
                     array('name' => $opt->name)
@@ -773,9 +773,6 @@ class Console_CommandLine
         // build an empty result
         include_once 'Console/CommandLine/Result.php';
         $result = new Console_CommandLine_Result();
-        if (!$argc || empty($argv)) {
-            return $result;
-        }
         if (!($this instanceof Console_CommandLine_Command)) {
             // remove script name if we're not in a subcommand
             array_shift($argv);
@@ -803,7 +800,12 @@ class Console_CommandLine
             }
         }
         // minimum argument number check
-        $argnum = count($this->args);
+        $argnum = 0;
+        foreach ($this->args as $name=>$arg) {
+            if (!$arg->optional) {
+                $argnum++;
+            }
+        }
         if (count($args) < $argnum) {
             throw Console_CommandLine_Exception::factory(
                 'ARGUMENT_REQUIRED',

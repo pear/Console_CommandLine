@@ -16,6 +16,7 @@ $arg3 = new Console_CommandLine_Argument('arg3', array(
     'description' => 'description of arg3'    
 ));
 $parser->addArgument($arg3);
+$parser->addArgument('arg4', array('optional' => true));
 
 var_dump($parser->args);
 
@@ -24,10 +25,12 @@ $parser->addArgument('Some invalid name');
 
 ?>
 --EXPECTF--
-array(3) {
+array(4) {
   ["arg1"]=>
-  object(Console_CommandLine_Argument)#5 (4) {
+  object(Console_CommandLine_Argument)#5 (5) {
     ["multiple"]=>
+    bool(false)
+    ["optional"]=>
     bool(false)
     ["name"]=>
     string(4) "arg1"
@@ -37,9 +40,11 @@ array(3) {
     NULL
   }
   ["arg2"]=>
-  object(Console_CommandLine_Argument)#6 (4) {
+  object(Console_CommandLine_Argument)#6 (5) {
     ["multiple"]=>
     bool(true)
+    ["optional"]=>
+    bool(false)
     ["name"]=>
     string(4) "arg2"
     ["help_name"]=>
@@ -48,15 +53,30 @@ array(3) {
     string(19) "description of arg2"
   }
   ["arg3"]=>
-  object(Console_CommandLine_Argument)#7 (4) {
+  object(Console_CommandLine_Argument)#7 (5) {
     ["multiple"]=>
     bool(true)
+    ["optional"]=>
+    bool(false)
     ["name"]=>
     string(4) "arg3"
     ["help_name"]=>
     string(4) "arg3"
     ["description"]=>
     string(19) "description of arg3"
+  }
+  ["arg4"]=>
+  object(Console_CommandLine_Argument)#8 (5) {
+    ["multiple"]=>
+    bool(false)
+    ["optional"]=>
+    bool(true)
+    ["name"]=>
+    string(4) "arg4"
+    ["help_name"]=>
+    string(4) "arg4"
+    ["description"]=>
+    NULL
   }
 }
 
