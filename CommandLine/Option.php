@@ -170,10 +170,12 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     /**
      * Returns the string representation of the option.
      *
+     * @param string $delim Delimiter to use between short and long option
+     *
      * @return string The string representation of the option
      * @todo use __toString() instead
      */
-    public function toString()
+    public function toString($delim = ", ")
     {
         $ret     = '';
         $padding = '';
@@ -182,7 +184,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
             if ($this->expectsArgument()) {
                 $ret .= ' ' . $this->help_name;
             }
-            $padding = ', ';
+            $padding = $delim;
         }
         if ($this->long_name != null) {
             $ret .= $padding . $this->long_name;
@@ -309,6 +311,46 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
         if ($this->action == 'Callback' && !is_callable($this->callback)) {
             Console_CommandLine::triggerError('option_invalid_callback',
                 E_USER_ERROR, array('{$name}' => $this->name));
+        }
+    }
+
+    // }}}
+    // setDefaults() {{{
+
+    /**
+     * Set the default value according to the configured action.
+     *
+     * Note that for backward compatibility issues this method is only called 
+     * when the 'force_options_defaults' is set to true, it will become the
+     * default behaviour in the next major release of Console_CommandLine.
+     *
+     * @return void
+     */
+    public function setDefaults()
+    {
+        if ($this->default !== null) {
+            // already set
+            return;
+        }
+        switch ($this->action) {
+        case 'Counter':
+        case 'StoreInt':
+            $this->default = 0;
+            break;
+        case 'StoreFloat':
+            $this->default = 0.0;
+            break;
+        case 'StoreArray':
+            $this->default = array();
+            break;
+        case 'StoreTrue':
+            $this->default = false;
+            break;
+        case 'StoreFalse':
+            $this->default = true;
+            break;
+        default:
+            return;
         }
     }
 

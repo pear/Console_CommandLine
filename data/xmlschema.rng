@@ -66,21 +66,23 @@
   <!-- options and arguments common elements -->
 
   <define name="ref_option_argument_common">
-    <optional>
-      <element name="description">
-        <text/>
-      </element>
-    </optional>
-    <optional>
-      <element name="help_name">
-        <text/>
-      </element>
-    </optional>
-    <optional>
-      <element name="default">
-        <text/>
-      </element>
-    </optional>
+    <interleave>
+      <optional>
+        <element name="description">
+          <text/>
+        </element>
+      </optional>
+      <optional>
+        <element name="help_name">
+          <text/>
+        </element>
+      </optional>
+      <optional>
+        <element name="default">
+          <text/>
+        </element>
+      </optional>
+    </interleave>
   </define>
 
   <!-- Option node -->

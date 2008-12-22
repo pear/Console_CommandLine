@@ -203,6 +203,85 @@ function buildParser2()
 }
 
 // }}}
+// buildParser3() {{{
+
+/**
+ * Build a parser instance and return it.
+ *
+ * @return object Console_CommandLine instance
+ */
+function buildParser3()
+{
+    $parser              = new Console_CommandLine();
+    $parser->name        = 'some_program';
+    $parser->version     = '0.1.0';
+    $parser->description = 'Description of our parser goes here...';
+    // we force options default values
+    $parser->force_options_defaults = true;
+
+    // add options
+    $parser->addOption('true', array(
+        'short_name'  => '-t',
+        'long_name'   => '--true',
+        'action'      => 'StoreTrue',
+        'description' => 'test the StoreTrue action',
+    ));
+    $parser->addOption('false', array(
+        'short_name'  => '-f',
+        'long_name'   => '--false',
+        'action'      => 'StoreFalse',
+        'description' => 'test the StoreFalse action',
+    ));
+    $parser->addOption('int', array(
+        'long_name'   => '--int',
+        'action'      => 'StoreInt',
+        'description' => 'test the StoreInt action',
+        'help_name'   => 'INT',
+    ));
+    $parser->addOption('float', array(
+        'long_name'   => '--float',
+        'action'      => 'StoreFloat',
+        'description' => 'test the StoreFloat action',
+        'help_name'   => 'FLOAT',
+    ));
+    $parser->addOption('string', array(
+        'short_name'  => '-s',
+        'long_name'   => '--string',
+        'action'      => 'StoreString',
+        'description' => 'test the StoreString action',
+        'help_name'   => 'STRING',
+        'choices'     => array('foo', 'bar', 'baz')
+    ));
+    $parser->addOption('counter', array(
+        'short_name'  => '-c',
+        'long_name'   => '--counter',
+        'action'      => 'Counter',
+        'description' => 'test the Counter action'
+    ));
+    $parser->addOption('callback', array(
+        'long_name'     => '--callback',
+        'action'        => 'Callback',
+        'description'   => 'test the Callback action',
+        'callback'      => 'rot13Callback',
+        'action_params' => array('prefix' => 'foo', 'suffix' => 'bar')
+    ));
+    $parser->addOption('array', array(
+        'short_name'  => '-a',
+        'long_name'   => '--array',
+        'action'      => 'StoreArray',
+        'help_name'   => 'ARRAY',
+        'description' => 'test the StoreArray action'
+    ));
+    $parser->addOption('password', array(
+        'short_name'  => '-p',
+        'long_name'   => '--password',
+        'action'      => 'Password',
+        'description' => 'test the Password action'
+    ));
+    return $parser;
+}
+
+// }}}
 // CustomRenderer() {{{
 
 /**

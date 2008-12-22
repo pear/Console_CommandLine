@@ -60,7 +60,8 @@ class Console_CommandLine_XmlParser
         $doc = new DomDocument();
         $doc->load($xmlfile);
         self::validate($doc);
-        $root = $doc->childNodes->item(0);
+        $nodes = $doc->getElementsByTagName('command');
+        $root  = $nodes->item(0);
         return self::_parseCommandNode($root, true);
     }
 
@@ -80,7 +81,8 @@ class Console_CommandLine_XmlParser
         $doc = new DomDocument();
         $doc->loadXml($xmlstr);
         self::validate($doc);
-        $root = $doc->childNodes->item(0);
+        $nodes = $doc->getElementsByTagName('command');
+        $root  = $nodes->item(0);
         return self::_parseCommandNode($root, true);
     }
 

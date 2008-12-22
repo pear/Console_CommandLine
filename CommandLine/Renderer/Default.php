@@ -51,6 +51,13 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
     public $line_width = 75;
 
     /**
+     * Integer that define the max width of the help text.
+     *
+     * @var integer $line_width Line width
+     */
+    public $options_on_different_lines = false;
+
+    /**
      * An instance of Console_CommandLine.
      *
      * @var Console_CommandLine $parser The parser
@@ -274,17 +281,31 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
         $col     = 0;
         $options = array();
         foreach ($this->parser->options as $option) {
-            $optstr    = '  ' . $option->toString();
-            $options[] = array($optstr, $option->description);
-            $ln        = strlen($optstr);
+            $delim    = $this->options_on_different_lines ? "\n" : ', ';
+            $optstr   = $option->toString($delim);
+            $lines    = explode("\n", $optstr);
+            $lines[0] = '  ' . $lines[0];
+            if (count($lines) > 1) {
+                $lines[1] = '  ' . $lines[1];
+                $ln       = strlen($lines[1]);
+            } else {
+                $ln = strlen($lines[0]);
+            }
+            $options[] = array($lines, $option->description);
             if ($col < $ln) {
                 $col = $ln;
             }
         }
         $ret = $this->parser->message_provider->get('OPTION_WORD') . ":";
         foreach ($options as $option) {
-            $text = str_pad($option[0], $col) . '  ' . $option[1];
-            $ret .= "\n" . $this->columnWrap($text, $col+2);
+            if (count($option[0]) > 1) {
+                $text = str_pad($option[0][1], $col) . '  ' . $option[1];
+                $pre  = $option[0][0] . "\n";
+            } else {
+                $text = str_pad($option[0][0], $col) . '  ' . $option[1];
+                $pre  = '';
+            }
+            $ret .= "\n" . $pre . $this->columnWrap($text, $col+2);
         }
         return $ret;
     }

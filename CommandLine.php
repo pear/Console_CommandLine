@@ -160,6 +160,15 @@ class Console_CommandLine
     public $force_posix = false;
 
     /**
+     * Boolean that tells the parser to set relevant options default values, 
+     * according to the option action.
+     *
+     * @see Console_CommandLine_Option::setDefaults()
+     * @var bool $force_options_defaults Whether to force option default values
+     */
+    public $force_options_defaults = false;
+
+    /**
      * An array of Console_CommandLine_Option objects.
      *
      * @var array $options The options array
@@ -553,6 +562,9 @@ class Console_CommandLine
             $opt = new Console_CommandLine_Option($name, $params);
         }
         $opt->validate();
+        if ($this->force_options_defaults) {
+            $opt->setDefaults();
+        }
         $this->options[$opt->name] = $opt;
         if (!empty($opt->choices) && $opt->add_list_option) {
             $this->addOption('list_' . $opt->name, array(
