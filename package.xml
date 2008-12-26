@@ -20,11 +20,11 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-12-06</date>
- <time>13:00:00</time>
+ <date>2008-12-26</date>
+ <time>18:00:00</time>
  <version>
-  <release>1.0.5</release>
-  <api>1.0.5</api>
+  <release>1.0.6</release>
+  <api>1.0.6</api>
  </version>
  <stability>
   <release>stable</release>
@@ -32,11 +32,12 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-* implemented feature request #15251: Allow specifying optional arguments for
-  sub-commands,
-* use "name" instead of "help_name" when generating list-xxx options,
-* updated relevant unit tests,
-* added examples for sub-commands usage.
+Bugfix release:
+* fixed bug #15374 (RelaxNG validation should be less strict);
+* fixed bug #15375 (Cannot add a comment before the root node of the xml file);
+* fixed bug #15376 (short option and long options in separated lines in help);
+* fixed bug #15377 (StoreFalse/True actions should have a boolean default value);
+* added relevant unit tests.
  </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
@@ -157,6 +158,7 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlfile.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlfile_error.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_fromxmlstring.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_options_defaults.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_1.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_2.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_3.phpt" role="test"/>
@@ -177,6 +179,7 @@ Main features:
    <file baseinstalldir="Console" name="tests/console_commandline_parse_18.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_19.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_parse_20.phpt" role="test"/>
+   <file baseinstalldir="Console" name="tests/console_commandline_parse_21.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_1.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_2.phpt" role="test"/>
    <file baseinstalldir="Console" name="tests/console_commandline_webrequest_3.phpt" role="test"/>
@@ -410,6 +413,24 @@ Main features:
 - fixed bug #14762 (error message always tells me to use "-h" for help);
 - added relevant unit tests;
 - cleaned up phpdoc tags and some cosmetic changes.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.5</release>
+    <api>1.0.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+* implemented feature request #15251: Allow specifying optional arguments for
+  sub-commands,
+* use "name" instead of "help_name" when generating list-xxx options,
+* updated relevant unit tests,
+* added examples for sub-commands usage.
    </notes>
   </release>
  </changelog>
