@@ -106,8 +106,8 @@ class Console_CommandLine_XmlParser
                 . DIRECTORY_SEPARATOR . 'xmlschema.rng';
         } else {
             $rngfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' 
-                . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR 
-                . 'xmlschema.rng';
+                . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'
+                . DIRECTORY_SEPARATOR . 'xmlschema.rng';
         }
         if (!is_readable($rngfile)) {
             Console_CommandLine::triggerError('invalid_xml_file',

@@ -41,83 +41,83 @@ Bugfix release:
  </notes>
  <contents>
   <dir baseinstalldir="Console" name="/">
-   <file baseinstalldir="Console" name="CommandLine/Action.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Argument.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Argument.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Command.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Command.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Element.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Element.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Exception.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Exception.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/MessageProvider.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/MessageProvider.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Option.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Option.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Outputter.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Outputter.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Renderer.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Renderer.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Result.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Result.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/XmlParser.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/XmlParser.php" role="php">
     <tasks:replace from="@data_dir@" to="data_dir" type="pear-config" />
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/Callback.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/Callback.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/Counter.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/Counter.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/Help.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/Help.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/List.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/List.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/Password.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/Password.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreArray.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreArray.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreFalse.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreFalse.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreFloat.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreFloat.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreInt.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreInt.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreString.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreString.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/StoreTrue.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/StoreTrue.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Action/Version.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Action/Version.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/MessageProvider/Default.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/MessageProvider/Default.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Outputter/Default.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Outputter/Default.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine/Renderer/Default.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine/Renderer/Default.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="Console" name="data/xmlschema.rng" role="data">
@@ -187,7 +187,7 @@ Bugfix release:
    <file baseinstalldir="Console" name="tests/tests.inc.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="Console" name="CommandLine.php" role="php">
+   <file baseinstalldir="Console" name="Console/CommandLine.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
