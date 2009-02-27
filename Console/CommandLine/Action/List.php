@@ -46,6 +46,12 @@ class Console_CommandLine_Action_List extends Console_CommandLine_Action
 
     /**
      * Executes the action with the value entered by the user.
+     * Possible parameters are:
+     * - message: an alternative message to display instead of the default 
+     *   message,
+     * - delimiter: an alternative delimiter instead of the comma,
+     * - post: a string to append after the message (default is the new line 
+     *   char).
      *
      * @param mixed $value  The option value
      * @param array $params An optional array of parameters
@@ -55,8 +61,12 @@ class Console_CommandLine_Action_List extends Console_CommandLine_Action
     public function execute($value = false, $params = array())
     {
         $list = isset($params['list']) ? $params['list'] : array();
-        $msg  = $this->parser->message_provider->get('LIST_DISPLAYED_MESSAGE');
-        $this->parser->outputter->stdout($msg . implode(', ', $list) . "\n");
+        $msg  = isset($params['message']) 
+            ? $params['message'] 
+            : $this->parser->message_provider->get('LIST_DISPLAYED_MESSAGE');
+        $del  = isset($params['delimiter']) ? $params['delimiter'] : ', ';
+        $post = isset($params['post']) ? $params['post'] : "\n";
+        $this->parser->outputter->stdout($msg . implode($del, $list) . $post);
         exit(0);
     }
     // }}}
