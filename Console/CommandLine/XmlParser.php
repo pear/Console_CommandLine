@@ -158,6 +158,15 @@ class Console_CommandLine_XmlParser
             case 'command':
                 $obj->addCommand(self::_parseCommandNode($cNode));
                 break;
+            case 'aliases':
+                if (!$isRootNode) {
+                    foreach ($cNode->childNodes as $subChildNode) {
+                        if ($subChildNode->nodeName == 'alias') {
+                            $obj->aliases[] = trim($subChildNode->nodeValue);
+                        }
+                    }
+                }
+                break;
             default:
                 break;
             }

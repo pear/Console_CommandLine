@@ -45,4 +45,32 @@ require_once 'Console/CommandLine.php';
  */
 class Console_CommandLine_Command extends Console_CommandLine
 {
+    // Public properties {{{
+
+    /**
+     * An array of aliases for the subcommand.
+     *
+     * @var array $aliases Aliases for the subcommand.
+     */
+    public $aliases = array();
+
+    // }}}
+    // __construct() {{{
+
+    /**
+     * Constructor.
+     *
+     * @param array  $params An optional array of parameters
+     *
+     * @return void
+     */
+    public function __construct($params = array()) 
+    {
+        if (isset($params['aliases'])) {
+            $this->aliases = $params['aliases'];
+        }
+        parent::__construct($params);
+    }
+
+    // }}}
 }

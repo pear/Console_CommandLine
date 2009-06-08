@@ -33,6 +33,10 @@
         <short_name>-v</short_name>
     </option>
     <command>
+        <aliases>
+            <alias>compress</alias>
+            <alias>zp</alias>
+        </aliases>
         <name>zip</name>
         <!-- Comment -->
         <description>zip given files in the destination file</description>
@@ -50,6 +54,9 @@
             <description>destination directory</description>
         </argument>
         <name>unzip</name>
+        <aliases>
+            <alias>uzp</alias>
+        </aliases>
         <description>unzip given file in the destination dir</description>
         <argument name="zipfile">
             <description>path to the zip file to unzip</description>

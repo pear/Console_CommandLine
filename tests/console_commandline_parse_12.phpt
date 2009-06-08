@@ -3,7 +3,7 @@ Test for Console_CommandLine::parse() method (subcommand help 2).
 --SKIPIF--
 <?php if(php_sapi_name()!='cli') echo 'skip'; ?>
 --ARGS--
-install --help 2>&1
+inst --help 2>&1
 --FILE--
 <?php
 

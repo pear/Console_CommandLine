@@ -54,9 +54,10 @@ $foo_cmd->addArgument('text', array(
     'description' => 'the text to output'
 ));
 
-// add the bar subcommand
+// add the bar subcommand with a "baz" alias
 $bar_cmd = $parser->addCommand('bar', array(
-    'description' => 'output the given string with a bar prefix'
+    'description' => 'output the given string with a bar prefix',
+    'aliases'     => array('baz'),
 ));
 $bar_cmd->addOption('reverse', array(
     'short_name'  => '-r',

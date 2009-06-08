@@ -27,5 +27,5 @@ Options:
   --version                      show the program version and exit
 
 Commands:
-  install    install given package
+  install    install given package (aliases: inst, instbis)
   uninstall  uninstall given package

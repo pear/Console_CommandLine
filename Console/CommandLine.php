@@ -799,10 +799,9 @@ class Console_CommandLine
         while ($argc--) {
             $token = array_shift($argv);
             try {
-                if (isset($this->commands[$token])) {
-                    $result->command_name = $token;
-                    $result->command      = $this->commands[$token]->parse($argc,
-                        $argv);
+                if ($cmd = $this->_getSubCommand($token)) {
+                    $result->command_name = $cmd->name;
+                    $result->command      = $cmd->parse($argc, $argv);
                     break;
                 } else {
                     $this->parseToken($token, $result, $args, $argc);
@@ -1116,5 +1115,26 @@ class Console_CommandLine
             $option->dispatchAction($token, $result, $this);
         }
     }
+    // }}}
+    // _getSubCommand() {{{
+
+    /**
+     * Tries to return the subcommand that matches the given token or returns
+     * false if no subcommand was found.
+     *
+     * @param string $token Current command line token
+     *
+     * @return mixed An instance of Console_CommandLine_Command or false
+     */
+    private function _getSubCommand($token)
+    {
+        foreach ($this->commands as $cmd) {
+            if ($cmd->name == $token || in_array($token, $cmd->aliases)) {
+                return $cmd;
+            }
+        }
+        return false;
+    }
+
     // }}}
 }

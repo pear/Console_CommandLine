@@ -181,7 +181,8 @@ function buildParser2()
  
     // install subcommand
     $cmd1 = $parser->addCommand('install', array(
-        'description' => 'install given package'
+        'description' => 'install given package',
+        'aliases'     => array('inst', 'instbis'),
     ));
     $cmd1->addOption('force', array(
         'short_name'  => '-f',

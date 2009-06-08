@@ -30,5 +30,5 @@ Options:
   --version                         show the program version and exit
 
 Commands:
-  zip    zip given files in the destination file
-  unzip  unzip given file in the destination dir
+  zip    zip given files in the destination file (aliases: compress, zp)
+  unzip  unzip given file in the destination dir (alias: uzp)
