@@ -31,7 +31,7 @@ var_dump($parser->options);
 --EXPECT--
 array(4) {
   ["opt1"]=>
-  object(Console_CommandLine_Option)#5 (12) {
+  object(Console_CommandLine_Option)#5 (13) {
     ["short_name"]=>
     string(2) "-a"
     ["long_name"]=>
@@ -52,6 +52,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
+    ["overwrite_defaults"]=>
+    bool(true)
     ["name"]=>
     string(4) "opt1"
     ["help_name"]=>
@@ -60,7 +62,7 @@ array(4) {
     NULL
   }
   ["opt2"]=>
-  object(Console_CommandLine_Option)#6 (12) {
+  object(Console_CommandLine_Option)#6 (13) {
     ["short_name"]=>
     string(2) "-b"
     ["long_name"]=>
@@ -87,6 +89,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(true)
+    ["overwrite_defaults"]=>
+    bool(true)
     ["name"]=>
     string(4) "opt2"
     ["help_name"]=>
@@ -95,7 +99,7 @@ array(4) {
     string(19) "description of opt2"
   }
   ["list_opt2"]=>
-  object(Console_CommandLine_Option)#7 (12) {
+  object(Console_CommandLine_Option)#7 (13) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
@@ -125,6 +129,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
+    ["overwrite_defaults"]=>
+    bool(true)
     ["name"]=>
     string(9) "list_opt2"
     ["help_name"]=>
@@ -133,7 +139,7 @@ array(4) {
     string(35) "lists valid choices for option opt2"
   }
   ["opt3"]=>
-  object(Console_CommandLine_Option)#8 (12) {
+  object(Console_CommandLine_Option)#8 (13) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
@@ -154,6 +160,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
+    ["overwrite_defaults"]=>
+    bool(true)
     ["name"]=>
     string(4) "opt3"
     ["help_name"]=>

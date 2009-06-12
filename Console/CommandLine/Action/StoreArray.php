@@ -56,11 +56,10 @@ class Console_CommandLine_Action_StoreArray extends Console_CommandLine_Action
      */
     public function execute($value = false, $params = array())
     {
-        static $firstPass = true;
         $result = $this->getResult();
-        if (null === $result || $firstPass) {
-            $result    = array();
-            $firstPass = false;
+        if (null === $result || $this->option->overwrite_defaults) {
+            $result = array();
+            $this->option->overwrite_defaults = false;
         }
         $result[] = $value;
         $this->setResult($result);

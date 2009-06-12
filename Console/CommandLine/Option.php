@@ -143,6 +143,14 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      */
     public $add_list_option = false;
 
+    /**
+     * If defaults have already been assigned (or not), then we want to start
+     * with an empty array when we save the first entry from the command line.
+     *
+     * @var bool $overwrite_defaults Overwrite defaults
+     */
+    public $overwrite_defaults = true;
+
     // }}}
     // __construct() {{{
 
