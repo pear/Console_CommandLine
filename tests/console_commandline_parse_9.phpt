@@ -34,7 +34,12 @@ Password: array(11) {
   ["callback"]=>
   NULL
   ["array"]=>
-  NULL
+  array(2) {
+    [0]=>
+    string(4) "spam"
+    [1]=>
+    string(3) "egg"
+  }
   ["password"]=>
   string(10) "secretpass"
   ["help"]=>

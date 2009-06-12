@@ -38,7 +38,12 @@ object(Console_CommandLine_Result)#18 (4) {
     ["callback"]=>
     NULL
     ["array"]=>
-    NULL
+    array(2) {
+      [0]=>
+      string(4) "spam"
+      [1]=>
+      string(3) "egg"
+    }
     ["password"]=>
     NULL
     ["help"]=>

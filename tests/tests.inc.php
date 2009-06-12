@@ -129,6 +129,7 @@ function buildParser1()
     $parser->addOption('array', array(
         'short_name'  => '-a',
         'long_name'   => '--array',
+        'default'     => array('spam', 'egg'),
         'action'      => 'StoreArray',
         'help_name'   => 'ARRAY',
         'description' => 'test the StoreArray action'
