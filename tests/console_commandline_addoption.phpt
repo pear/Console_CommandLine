@@ -52,8 +52,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["overwrite_defaults"]=>
-    bool(true)
+    ["_action_instance:private"]=>
+    NULL
     ["name"]=>
     string(4) "opt1"
     ["help_name"]=>
@@ -89,8 +89,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(true)
-    ["overwrite_defaults"]=>
-    bool(true)
+    ["_action_instance:private"]=>
+    NULL
     ["name"]=>
     string(4) "opt2"
     ["help_name"]=>
@@ -129,8 +129,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["overwrite_defaults"]=>
-    bool(true)
+    ["_action_instance:private"]=>
+    NULL
     ["name"]=>
     string(9) "list_opt2"
     ["help_name"]=>
@@ -160,8 +160,8 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["overwrite_defaults"]=>
-    bool(true)
+    ["_action_instance:private"]=>
+    NULL
     ["name"]=>
     string(4) "opt3"
     ["help_name"]=>

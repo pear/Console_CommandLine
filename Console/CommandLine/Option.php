@@ -143,13 +143,15 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      */
     public $add_list_option = false;
 
+    // }}}
+    // Private properties {{{
+
     /**
-     * If defaults have already been assigned (or not), then we want to start
-     * with an empty array when we save the first entry from the command line.
+     * When an action is called remember it to allow for multiple calls.
      *
-     * @var bool $overwrite_defaults Overwrite defaults
+     * @var object $action_instance Placeholder for action
      */
-    public $overwrite_defaults = true;
+    private $_action_instance = null;
 
     // }}}
     // __construct() {{{
@@ -256,8 +258,10 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
             include_once implode('/', $tokens) . '.php';
         }
         $clsname = $actionInfo[0];
-        $action  = new $clsname($result, $this, $parser);
-        $action->execute($value, $this->action_params);
+        if ($this->_action_instance === null) {
+            $this->_action_instance  = new $clsname($result, $this, $parser);
+        }
+        $this->_action_instance->execute($value, $this->action_params);
     }
 
     // }}}
