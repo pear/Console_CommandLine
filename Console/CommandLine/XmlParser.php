@@ -233,6 +233,9 @@ class Console_CommandLine_XmlParser
             case 'multiple':
                 $obj->multiple = self::_bool(trim($cNode->nodeValue));
                 break;
+            case 'optional':
+                $obj->optional = self::_bool(trim($cNode->nodeValue));
+                break;
             default:
                 break;
             }

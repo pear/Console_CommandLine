@@ -166,6 +166,11 @@
             <ref name="ref_bool_choices"/>
           </element>
         </optional>
+        <optional>
+          <element name="optional">
+            <ref name="ref_bool_choices"/>
+          </element>
+        </optional>
       </interleave>
     </element>
   </define>
