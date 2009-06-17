@@ -810,6 +810,19 @@ class Console_CommandLine
                 throw $exc;
             }
         }
+        // Check if an invalid subcommand was specified. If there are
+        // subcommands and no arguments, but an argument was provided, it is
+        // an invalid subcommand.
+        if (   count($this->commands) > 0
+            && count($this->args) === 0
+            && count($args) > 0
+        ) {
+            throw Console_CommandLine_Exception::factory(
+                'INVALID_SUBCOMMAND',
+                array('command' => $args[0]),
+                $this
+            );
+        }
         // minimum argument number check
         $argnum = 0;
         foreach ($this->args as $name=>$arg) {

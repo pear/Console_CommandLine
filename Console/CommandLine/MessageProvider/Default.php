@@ -70,6 +70,7 @@ class Console_CommandLine_MessageProvider_Default implements Console_CommandLine
         'INVALID_CUSTOM_INSTANCE' => 'Instance does not implement the required interface',
         'LIST_OPTION_MESSAGE'     => 'lists valid choices for option {$name}',
         'LIST_DISPLAYED_MESSAGE'  => 'Valid choices are: ',
+        'INVALID_SUBCOMMAND'      => 'Command "{$command}" is not valid.',
     );
 
     // }}}

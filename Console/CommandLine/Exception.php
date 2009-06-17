@@ -51,6 +51,7 @@ class Console_CommandLine_Exception extends PEAR_Exception
     const OPTION_VALUE_TYPE_ERROR = 3;
     const OPTION_UNKNOWN          = 4;
     const ARGUMENT_REQUIRED       = 5;
+    const INVALID_SUBCOMMAND      = 6;
     /**#@-*/
 
     // }}}
