@@ -227,6 +227,38 @@ class Console_CommandLine
     );
 
     /**
+     * Custom errors messages for this command
+     *
+     * This array is of the form:
+     * <code>
+     * <?php
+     * array(
+     *     $messageName => $messageText,
+     *     $messageName => $messageText,
+     *     ...
+     * );
+     * ?>
+     * </code>
+     *
+     * If specified, these messages override the messages provided by the
+     * default message provider. For example:
+     * <code>
+     * <?php
+     * $messages = array(
+     *     'ARGUMENT_REQUIRED' => 'The argument foo is required.',
+     * );
+     * ?>
+     * </code>
+     *
+     * @var array
+     * @see Console_CommandLine_MessageProvider_Default
+     */
+    public $messages = array();
+
+    // }}}
+    // {{{ Private properties
+
+    /**
      * Array of options that must be dispatched at the end.
      *
      * @var array $_dispatchLater Options to be dispatched
@@ -283,6 +315,9 @@ class Console_CommandLine
         } else if (getenv('POSIXLY_CORRECT')) {
             $this->force_posix = true;
         }
+        if (isset($params['messages']) && is_array($params['messages'])) {
+            $this->messages = $params['messages'];
+        }
         // set default instances
         $this->renderer         = new Console_CommandLine_Renderer_Default($this);
         $this->outputter        = new Console_CommandLine_Outputter_Default();
@@ -317,7 +352,9 @@ class Console_CommandLine
         } else {
             throw Console_CommandLine_Exception::factory(
                 'INVALID_CUSTOM_INSTANCE',
-                array(), $this
+                array(),
+                $this,
+                $this->messages
             );
         }
     }
@@ -667,7 +704,8 @@ class Console_CommandLine
                 throw Console_CommandLine_Exception::factory(
                     'OPTION_AMBIGUOUS',
                     array('name' => $str, 'matches' => $matches_str),
-                    $this
+                    $this,
+                    $this->messages
                 );
             }
             return $matches[0];
@@ -820,7 +858,8 @@ class Console_CommandLine
             throw Console_CommandLine_Exception::factory(
                 'INVALID_SUBCOMMAND',
                 array('command' => $args[0]),
-                $this
+                $this,
+                $this->messages
             );
         }
         // minimum argument number check
@@ -834,7 +873,8 @@ class Console_CommandLine
             throw Console_CommandLine_Exception::factory(
                 'ARGUMENT_REQUIRED',
                 array('argnum' => $argnum, 'plural' => $argnum>1 ? 's': ''),
-                $this
+                $this,
+                $this->messages
             );
         }
         // handle arguments
@@ -890,7 +930,8 @@ class Console_CommandLine
                     throw Console_CommandLine_Exception::factory(
                         'OPTION_VALUE_REQUIRED',
                         array('name' => $lastopt->name),
-                        $this
+                        $this,
+                        $this->messages
                     );
                 }
             } else {
@@ -925,7 +966,8 @@ class Console_CommandLine
                 throw Console_CommandLine_Exception::factory(
                     'OPTION_UNKNOWN',
                     array('name' => $optkv[0]),
-                    $this
+                    $this,
+                    $this->messages
                 );
             }
             $value = isset($optkv[1]) ? $optkv[1] : false;
@@ -933,7 +975,8 @@ class Console_CommandLine
                 throw Console_CommandLine_Exception::factory(
                     'OPTION_VALUE_UNEXPECTED',
                     array('name' => $opt->name, 'value' => $value),
-                    $this
+                    $this,
+                    $this->messages
                 );
             }
             if ($opt->expectsArgument() && $value === false) {
@@ -943,7 +986,8 @@ class Console_CommandLine
                     throw Console_CommandLine_Exception::factory(
                         'OPTION_VALUE_REQUIRED',
                         array('name' => $opt->name),
-                        $this
+                        $this,
+                        $this->messages
                     );
                 }
                 // we will have a value next time
@@ -967,7 +1011,8 @@ class Console_CommandLine
                 throw Console_CommandLine_Exception::factory(
                     'OPTION_UNKNOWN',
                     array('name' => $optname),
-                    $this
+                    $this,
+                    $this->messages
                 );
             }
             // parse other options or set the value
@@ -980,7 +1025,8 @@ class Console_CommandLine
                         throw Console_CommandLine_Exception::factory(
                             'OPTION_VALUE_REQUIRED',
                             array('name' => $opt->name),
-                            $this
+                            $this,
+                            $this->messages
                         );
                     }
                     // we will have a value next time
@@ -999,7 +1045,8 @@ class Console_CommandLine
                         throw Console_CommandLine_Exception::factory(
                             'OPTION_UNKNOWN',
                             array('name' => $next),
-                            $this
+                            $this,
+                            $this->messages
                         );
                     }
                 }

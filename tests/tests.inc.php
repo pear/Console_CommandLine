@@ -285,6 +285,64 @@ function buildParser3()
 }
 
 // }}}
+// {{{ buildParser4()
+
+/**
+ * Build a parser instance and return it.
+ *
+ * For testing custom messages.
+ *
+ * @return object Console_CommandLine instance
+ */
+function buildParser4()
+{
+    $parser = new Console_CommandLine(array(
+        'messages' => array(
+            'INVALID_SUBCOMMAND' => 'Only "upgrade" is supported.',
+        ),
+    ));
+    $parser->name        = 'some_program';
+    $parser->version     = '0.1.0';
+    $parser->description = 'Description of our parser goes here...';
+
+    // some subcommand
+    $cmd1 = $parser->addCommand('upgrade', array(
+        'description' => 'upgrade given package',
+        'aliases'     => array('up'),
+        'messages'    => array(
+            'ARGUMENT_REQUIRED'       => 'Package name is required.',
+            'OPTION_VALUE_REQUIRED'   => 'Option requires value.',
+            'OPTION_VALUE_UNEXPECTED' => 'Option should not have a value.',
+            'OPTION_UNKNOWN'          => 'Mysterious option encountered.',
+        ),
+    ));
+    // add option
+    $cmd1->addOption('state', array(
+        'short_name'  => '-s',
+        'long_name'   => '--state',
+        'action'      => 'StoreString',
+        'choices'     => array('stable', 'beta'),
+        'description' => 'accepted package states',
+        'messages'    => array(
+            'OPTION_VALUE_NOT_VALID' => 'Valid states are "stable" and "beta".',
+        ),
+    ));
+    // add another option
+    $cmd1->addOption('dry_run', array(
+        'short_name'  => '-d',
+        'long_name'   => '--dry-run',
+        'action'      => 'StoreTrue',
+        'description' => 'dry run',
+    ));
+    // add argument
+    $cmd1->addArgument('package', array(
+        'description' => 'package to upgrade'
+    ));
+
+    return $parser;
+}
+
+// }}}
 // CustomRenderer() {{{
 
 /**

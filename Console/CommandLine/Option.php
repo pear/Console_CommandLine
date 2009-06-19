@@ -248,7 +248,9 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
                     'name'    => $this->name,
                     'choices' => implode('", "', $this->choices),
                     'value'   => $value,
-                ), $parser
+                ),
+                $parser,
+                $this->messages
             );
         }
         $actionInfo = Console_CommandLine::$actions[$this->action];

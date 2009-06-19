@@ -28,6 +28,11 @@
 require_once 'PEAR/Exception.php';
 
 /**
+ * Interface for custom message provider.
+ */
+require_once 'Console/CommandLine/CustomMessageProvider.php';
+
+/**
  * Class for exceptions raised by the Console_CommandLine package.
  *
  * @category  Console
@@ -58,18 +63,31 @@ class Console_CommandLine_Exception extends PEAR_Exception
     // factory() {{{
 
     /**
-     * Convenience method that builds the exception with the array of params by 
+     * Convenience method that builds the exception with the array of params by
      * calling the message provider class.
      *
-     * @param string              $code   The string identifier of the exception
-     * @param array               $params Array of template vars/values
-     * @param Console_CommandLine $parser An instance of the parser
+     * @param string              $code     The string identifier of the
+     *                                      exception.
+     * @param array               $params   Array of template vars/values
+     * @param Console_CommandLine $parser   An instance of the parser
+     * @param array               $messages An optional array of messages
+     *                                      passed to the message provider.
      *
      * @return object an instance of Console_CommandLine_Exception
      */
-    public static function factory($code, $params, $parser)
-    {
-        $msg   = $parser->message_provider->get($code, $params);
+    public static function factory(
+        $code, $params, $parser, array $messages = array()
+    ) {
+        $provider = $parser->message_provider;
+        if ($provider instanceof Console_CommandLine_CustomMessageProvider) {
+            $msg = $provider->getWithCustomMessages(
+                $code,
+                $params,
+                $messages
+            );
+        } else {
+            $msg = $provider->get($code, $params);
+        }
         $const = 'Console_CommandLine_Exception::' . $code;
         $code  = defined($const) ? constant($const) : 0;
         return new Console_CommandLine_Exception($msg, $code);

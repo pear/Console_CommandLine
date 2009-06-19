@@ -49,6 +49,9 @@
           <ref name="ref_bool_choices"/>
         </element>
       </optional>
+      <optional>
+        <ref name="ref_messages_common"/>
+      </optional>
       <zeroOrMore>
         <ref name="ref_option"/>
       </zeroOrMore>
@@ -90,6 +93,21 @@
     </element>
   </define>
 
+  <!-- custom messages common element -->
+
+  <define name="ref_messages_common">
+    <element name="messages">
+      <oneOrMore>
+        <element name="message">
+          <attribute name="name">
+            <data type="string"/>
+          </attribute>
+          <text/>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
   <!-- options and arguments common elements -->
 
   <define name="ref_option_argument_common">
@@ -108,6 +126,9 @@
         <element name="default">
           <text/>
         </element>
+      </optional>
+      <optional>
+        <ref name="ref_messages_common"/>
       </optional>
     </interleave>
   </define>

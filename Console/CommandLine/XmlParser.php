@@ -167,6 +167,9 @@ class Console_CommandLine_XmlParser
                     }
                 }
                 break;
+            case 'messages':
+                $obj->messages = self::_messages($cNode);
+                break;
             default:
                 break;
             }
@@ -191,14 +194,22 @@ class Console_CommandLine_XmlParser
         $obj = new Console_CommandLine_Option($node->getAttribute('name'));
         foreach ($node->childNodes as $cNode) {
             $cNodeName = $cNode->nodeName;
-            if ($cNodeName == 'choices') {
+            switch ($cNodeName) {
+            case 'choices':
                 foreach ($cNode->childNodes as $subChildNode) {
                     if ($subChildNode->nodeName == 'choice') {
                         $obj->choices[] = trim($subChildNode->nodeValue);
                     }
                 }
-            } elseif (property_exists($obj, $cNodeName)) {
-                $obj->$cNodeName = trim($cNode->nodeValue);
+                break;
+            case 'messages':
+                $obj->messages = self::_messages($cNode);
+                break;
+            default:
+                if (property_exists($obj, $cNodeName)) {
+                    $obj->$cNodeName = trim($cNode->nodeValue);
+                }
+                break;
             }
         }
         if ($obj->action == 'Password') {
@@ -236,6 +247,9 @@ class Console_CommandLine_XmlParser
             case 'optional':
                 $obj->optional = self::_bool(trim($cNode->nodeValue));
                 break;
+            case 'messages':
+                $obj->messages = self::_messages($cNode);
+                break;
             default:
                 break;
             }
@@ -256,6 +270,35 @@ class Console_CommandLine_XmlParser
     private static function _bool($str)
     {
         return in_array((string)$str, array('true', '1', 'on', 'yes'));
+    }
+
+    // }}}
+    // _messages() {{{
+
+    /**
+     * Returns an array of custom messages for the element
+     *
+     * @param DOMNode $node The messages node to process
+     *
+     * @return array an array of messages
+     *
+     * @see Console_CommandLine::$messages
+     * @see Console_CommandLine_Element::$messages
+     */
+    private static function _messages(DOMNode $node)
+    {
+        $messages = array();
+
+        foreach ($node->childNodes as $cNode) {
+            if ($cNode->nodeType == XML_ELEMENT_NODE) {
+                $name  = $cNode->getAttribute('name');
+                $value = trim($cNode->nodeValue);
+
+                $messages[$name] = $value;
+            }
+        }
+
+        return $messages;
     }
 
     // }}}

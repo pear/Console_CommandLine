@@ -60,6 +60,35 @@ abstract class Console_CommandLine_Element
      */
     public $description;
 
+    /**
+     * Custom errors messages for this element
+     *
+     * This array is of the form:
+     * <code>
+     * <?php
+     * array(
+     *     $messageName => $messageText,
+     *     $messageName => $messageText,
+     *     ...
+     * );
+     * ?>
+     * </code>
+     *
+     * If specified, these messages override the messages provided by the
+     * default message provider. For example:
+     * <code>
+     * <?php
+     * $messages = array(
+     *     'ARGUMENT_REQUIRED' => 'The argument foo is required.',
+     * );
+     * ?>
+     * </code>
+     *
+     * @var array
+     * @see Console_CommandLine_MessageProvider_Default
+     */
+    public $messages = array();
+
     // }}}
     // __construct() {{{
 
