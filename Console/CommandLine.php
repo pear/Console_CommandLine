@@ -277,8 +277,8 @@ class Console_CommandLine
      *     'name'               => 'yourprogram', // defaults to argv[0]
      *     'description'        => 'Description of your program',
      *     'version'            => '0.0.1', // your program version
-     *     'add_help_option'    => true, // or false to disable --version option
-     *     'add_version_option' => true, // or false to disable --help option
+     *     'add_help_option'    => true, // or false to disable --help option
+     *     'add_version_option' => true, // or false to disable --version option
      *     'force_posix'        => false // or true to force posix compliance
      * ));
      * </code>
