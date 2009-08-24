@@ -532,8 +532,30 @@ class Console_CommandLine
             include_once 'Console/CommandLine/Command.php';
             $params['name'] = $name;
             $command        = new Console_CommandLine_Command($params);
+            // some properties must cascade to the child command if not 
+            // passed explicitely. This is done only in this case, because if 
+            // we have a Command object we have no way to determine if theses 
+            // properties have already been set
+            $cascade = array(
+                'add_help_option',
+                'add_version_option',
+                'outputter',
+                'message_provider',
+                'force_posix',
+                'force_options_defaults'
+            );
+            foreach ($cascade as $property) {
+                if (!isset($params[$property])) {
+                    $command->$property = $this->$property;
+                }
+            }
+            if (!isset($params['renderer'])) {
+                $renderer          = clone $this->renderer;
+                $renderer->parser  = $command;
+                $command->renderer = $renderer;
+            }
         }
-        $command->parent                = $this;
+        $command->parent = $this;
         $this->commands[$command->name] = $command;
         return $command;
     }
