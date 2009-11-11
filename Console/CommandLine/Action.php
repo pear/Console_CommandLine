@@ -95,6 +95,22 @@ abstract class Console_CommandLine_Action
     }
 
     // }}}
+    // format() {{{
+
+    /**
+     * Allow a value to be pre-formatted prior to being used in a choices test.
+     * Setting $value to the new format will keep the formatting.
+     *
+     * @param mixed &$value The value to format
+     *
+     * @return mixed The formatted value
+     */
+    public function format(&$value)
+    {
+        return $value;
+    }
+
+    // }}}
     // setResult() {{{
 
     /**

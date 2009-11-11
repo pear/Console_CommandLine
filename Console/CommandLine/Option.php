@@ -240,8 +240,19 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
      */
     public function dispatchAction($value, $result, $parser)
     {
+        $actionInfo = Console_CommandLine::$actions[$this->action];
+        if (true === $actionInfo[1]) {
+            // we have a "builtin" action
+            $tokens = explode('_', $actionInfo[0]);
+            include_once implode('/', $tokens) . '.php';
+        }
+        $clsname = $actionInfo[0];
+        if ($this->_action_instance === null) {
+            $this->_action_instance  = new $clsname($result, $this, $parser);
+        }
+
         // check value is in option choices
-        if (!empty($this->choices) && !in_array($value, $this->choices)) {
+        if (!empty($this->choices) && !in_array($this->_action_instance->format($value), $this->choices)) {
             throw Console_CommandLine_Exception::factory(
                 'OPTION_VALUE_NOT_VALID',
                 array(
@@ -252,16 +263,6 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
                 $parser,
                 $this->messages
             );
-        }
-        $actionInfo = Console_CommandLine::$actions[$this->action];
-        if (true === $actionInfo[1]) {
-            // we have a "builtin" action
-            $tokens = explode('_', $actionInfo[0]);
-            include_once implode('/', $tokens) . '.php';
-        }
-        $clsname = $actionInfo[0];
-        if ($this->_action_instance === null) {
-            $this->_action_instance  = new $clsname($result, $this, $parser);
         }
         $this->_action_instance->execute($value, $this->action_params);
     }
