@@ -20,11 +20,10 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-06-19</date>
- <time>13:00:00</time>
+ <date>2009-11-11</date>
  <version>
-  <release>1.1.0</release>
-  <api>1.1.0</api>
+  <release>1.1.1</release>
+  <api>1.1.1</api>
  </version>
  <stability>
   <release>stable</release>
@@ -32,14 +31,12 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-* changed sources layout to make easier to use / run tests without installing the package with pear
-* implemented subcommand aliases (as requested by Greg for pyrus)
-* implemented request #15325: add ability to detect missing sub-command (patch by gauthierm, thanks)
-* implemented request #15324: add ability to set custom error messages (patch by gauthierm, thanks)
-* fixed bug #16320: storeArray default value not cleared when options arguments given (patch by Richard Quadling, thanks!)
-* fixed bug #16329: sub command aliases do not work (was a "too early documentation" issue)
-* fixed bug #16330: nested subCommands help output not quite right
-* implemented request #16332: add support for optional arguments in XML (patch by gauthierm, thanks)
+Bugfix release:
+* fixed bug #16507: typo in code example (thanks Richard)
+* fixed bug #16497: cascade command properties to sub-commands
+* fixed bug #16370: allow pre-processing of arguments for list (thanks rquadling for the patch)
+* fixed bug #16764: Invalid Package.xml (thanks mklappstuhl for the patch)
+* fixed some test cases
  </notes>
  <contents>
   <dir baseinstalldir="" name="/">
@@ -471,6 +468,28 @@ Bugfix release:
 * fixed bug #15376 (short option and long options in separated lines in help);
 * fixed bug #15377 (StoreFalse/True actions should have a boolean default value);
 * added relevant unit tests.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-06-19</date>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+* changed sources layout to make easier to use / run tests without installing the package with pear
+* implemented subcommand aliases (as requested by Greg for pyrus)
+* implemented request #15325: add ability to detect missing sub-command (patch by gauthierm, thanks)
+* implemented request #15324: add ability to set custom error messages (patch by gauthierm, thanks)
+* fixed bug #16320: storeArray default value not cleared when options arguments given (patch by Richard Quadling, thanks!)
+* fixed bug #16329: sub command aliases do not work (was a "too early documentation" issue)
+* fixed bug #16330: nested subCommands help output not quite right
+* implemented request #16332: add support for optional arguments in XML (patch by gauthierm, thanks)
    </notes>
   </release>
  </changelog>
