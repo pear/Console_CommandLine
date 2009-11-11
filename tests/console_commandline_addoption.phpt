@@ -28,7 +28,7 @@ $parser->addOption($opt3);
 var_dump($parser->options);
 
 ?>
---EXPECT--
+--EXPECTF--
 array(4) {
   ["opt1"]=>
   object(Console_CommandLine_Option)#5 (14) {
@@ -52,7 +52,7 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["_action_instance:private"]=>
+    [%s]=>
     NULL
     ["name"]=>
     string(4) "opt1"
@@ -92,7 +92,7 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(true)
-    ["_action_instance:private"]=>
+    [%s]=>
     NULL
     ["name"]=>
     string(4) "opt2"
@@ -135,7 +135,7 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["_action_instance:private"]=>
+    [%s]=>
     NULL
     ["name"]=>
     string(9) "list_opt2"
@@ -169,7 +169,7 @@ array(4) {
     bool(false)
     ["add_list_option"]=>
     bool(false)
-    ["_action_instance:private"]=>
+    [%s]=>
     NULL
     ["name"]=>
     string(4) "opt3"
