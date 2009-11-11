@@ -341,6 +341,7 @@ Main features:
     <release>beta</release>
     <api>beta</api>
    </stability>
+   <date>2008-03-12</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
 - changed behaviour when a StoreArray option is positioned at the end;
@@ -355,6 +356,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-05-22</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- doc is now in peardoc format (thanks to cweiske for his precious help);
 - better handling of custom instances (added an accept() method);
@@ -371,6 +373,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-08-01</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- Better code coverage of tests (nearly 100%);
 - fixed two bad include_once;
@@ -387,6 +390,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-08-22</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - fixed bug #14454 (Console_Commandline hangs when called via browser);
@@ -403,6 +407,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-09-30</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - now handles stdin with the "-" special switch;
@@ -420,6 +425,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-10-09</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - implemented feature request #14753 (add_list_option parameter for --list-XXX option);
@@ -437,6 +443,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-12-06</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 * implemented feature request #15251: Allow specifying optional arguments for
@@ -455,6 +462,7 @@ Main features:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2008-12-26</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 Bugfix release:
