@@ -937,7 +937,6 @@ class Console_CommandLine
         static $lastopt  = false;
         static $stopflag = false;
         $last  = $argc === 0;
-        $token = trim($token);
         if (!$stopflag && $lastopt) {
             if (substr($token, 0, 1) == '-') {
                 if ($lastopt->argument_optional) {
@@ -1152,7 +1151,7 @@ class Console_CommandLine
                             $opt->short_name : $opt->long_name;
                         foreach ($value as $v) {
                             if ($opt->expectsArgument()) {
-                                $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
+                                $argv[] = isset($_REQUEST[$key]) ? urldecode($v) : $v;
                             } else if ($v == '0' || $v == 'false') {
                                 array_pop($argv);
                             }
@@ -1160,7 +1159,7 @@ class Console_CommandLine
                     } else if (isset($this->args[$key])) {
                         // match a configured argument
                         foreach ($value as $v) {
-                            $argv[] = isset($_GET[$key]) ? urldecode($v) : $v;
+                            $argv[] = isset($_REQUEST[$key]) ? urldecode($v) : $v;
                         }
                     }
                 }

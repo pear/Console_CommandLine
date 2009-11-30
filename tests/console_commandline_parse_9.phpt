@@ -17,8 +17,8 @@ var_dump($result->options);
 var_dump($result->args);
 
 ?>
---EXPECT--
-Password: array(11) {
+--EXPECTF--
+Password%s array(11) {
   ["true"]=>
   NULL
   ["false"]=>
