@@ -643,47 +643,62 @@ class Console_CommandLine
     // displayError() {{{
 
     /**
-     * Displays an error to the user and exit with $exitCode.
+     * Displays an error to the user via stderr and exit with $exitCode if its
+     * value is not equals to false.
      *
      * @param string $error    The error message
-     * @param int    $exitCode The exit code number
+     * @param int    $exitCode The exit code number (default: 1). If set to
+     *                         false, the exit() function will not be called
      *
      * @return void
      */
     public function displayError($error, $exitCode = 1)
     {
         $this->outputter->stderr($this->renderer->error($error));
-        exit($exitCode);
+        if ($exitCode !== false) {
+            exit($exitCode);
+        }
     }
 
     // }}}
     // displayUsage() {{{
 
     /**
-     * Displays the usage help message to the user and exit with $exitCode
+     * Displays the usage help message to the user via stdout and exit with
+     * $exitCode if its value is not equals to false.
      *
-     * @param int $exitCode The exit code number
+     * @param int $exitCode The exit code number (default: 0). If set to
+     *                      false, the exit() function will not be called
      *
      * @return void
      */
-    public function displayUsage($exitCode = 1)
+    public function displayUsage($exitCode = 0)
     {
-        $this->outputter->stderr($this->renderer->usage());
-        exit($exitCode);
+        $this->outputter->stdout($this->renderer->usage());
+        if ($exitCode !== false) {
+            exit($exitCode);
+        }
     }
 
     // }}}
     // displayVersion() {{{
 
     /**
-     * Displays the program version to the user
+     * Displays the program version to the user via stdout and exit with
+     * $exitCode if its value is not equals to false.
+     *
+     *
+     * @param int $exitCode The exit code number (default: 0). If set to
+     *                      false, the exit() function will not be called
      *
      * @return void
      */
-    public function displayVersion()
+    public function displayVersion($exitCode = 0)
     {
         $this->outputter->stdout($this->renderer->version());
-        exit(0);
+        if ($exitCode !== false) {
+            exit($exitCode);
+        }
     }
 
     // }}}
