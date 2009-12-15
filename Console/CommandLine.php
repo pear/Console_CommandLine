@@ -865,7 +865,7 @@ class Console_CommandLine
             array_shift($argv);
             $argc--;
         }
-        // will contain aruments
+        // will contain arguments
         $args = array();
         foreach ($this->options as $name=>$option) {
             $result->options[$name] = $option->default;
