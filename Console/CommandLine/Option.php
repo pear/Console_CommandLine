@@ -73,7 +73,7 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     public $default;
 
     /**
-     * An array of possible values for the option if this array is not empty 
+     * An array of possible values for the option. If this array is not empty 
      * and the value passed is not in the array an exception is raised.
      * This only make sense for actions that accept values of course.
      *
