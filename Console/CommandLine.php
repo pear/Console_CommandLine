@@ -885,6 +885,8 @@ class Console_CommandLine
                 throw $exc;
             }
         }
+        // Parse a null token to allow any undespatched actions to be despatched.
+        $this->parseToken(null, $result, $args, 0);
         // Check if an invalid subcommand was specified. If there are
         // subcommands and no arguments, but an argument was provided, it is
         // an invalid subcommand.
@@ -978,10 +980,14 @@ class Console_CommandLine
                 if ($lastopt->action == 'StoreArray' && 
                     !empty($result->options[$lastopt->name]) &&
                     count($this->args) > ($argc + count($args))) {
-                    $args[] = $token;
+                    if (!is_null($token)) {
+                        $args[] = $token;
+                    }
                     return;
                 }
-                $this->_dispatchAction($lastopt, $token, $result);
+                if (!is_null($token) || $lastopt->action == 'Password') {
+                    $this->_dispatchAction($lastopt, $token, $result);
+                }
                 if ($lastopt->action != 'StoreArray') {
                     $lastopt = false;
                 }
@@ -1099,7 +1105,9 @@ class Console_CommandLine
             if (!$stopflag && $this->force_posix) {
                 $stopflag = true;
             }
-            $args[] = $token;
+            if (!is_null($token)) {
+                $args[] = $token;
+            }
         }
     }
 
