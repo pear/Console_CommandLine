@@ -20,10 +20,16 @@ Main features:
   <email>izimobil@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-11-11</date>
+ <lead>
+  <name>Richard Quadling</name>
+  <user>rquadling</user>
+  <email>rquadling@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-04-10</date>
  <version>
-  <release>1.1.1</release>
-  <api>1.1.1</api>
+  <release>1.1.2</release>
+  <api>1.1.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -32,11 +38,13 @@ Main features:
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
 Bugfix release:
-* fixed bug #16507: typo in code example (thanks Richard)
-* fixed bug #16497: cascade command properties to sub-commands
-* fixed bug #16370: allow pre-processing of arguments for list (thanks rquadling for the patch)
-* fixed bug #16764: Invalid Package.xml (thanks mklappstuhl for the patch)
-* fixed some test cases
+* fixed bug #16848: Trailing spaces in quoted argument are truncated,
+* fixed bug #16849: Replaced $_GET by $_REQUEST to handle POST correctly, 
+* fixed bug #16850: Parse9 test (password) fails (on windows),
+* fixed bug #16914: Password action now operates as expected when it is the last parameter or the last parameter before a command,
+* displayUsage() should output to stdout instead of stderr,
+* added the possibility to pass "false" as exitCode to the display*() methods to prevent exit() calls,
+* fixed some typos in code comments.
  </notes>
  <contents>
   <dir baseinstalldir="" name="/">
@@ -490,6 +498,25 @@ Bugfix release:
 * fixed bug #16329: sub command aliases do not work (was a "too early documentation" issue)
 * fixed bug #16330: nested subCommands help output not quite right
 * implemented request #16332: add support for optional arguments in XML (patch by gauthierm, thanks)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1.1</release>
+    <api>1.1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+Bugfix release:
+* fixed bug #16507: typo in code example (thanks Richard)
+* fixed bug #16497: cascade command properties to sub-commands
+* fixed bug #16370: allow pre-processing of arguments for list (thanks rquadling for the patch)
+* fixed bug #16764: Invalid Package.xml (thanks mklappstuhl for the patch)
+* fixed some test cases
    </notes>
   </release>
  </changelog>
