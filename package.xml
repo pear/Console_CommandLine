@@ -509,6 +509,7 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
+   <date>2009-11-11</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 Bugfix release:
