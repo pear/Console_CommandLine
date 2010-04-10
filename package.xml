@@ -28,7 +28,7 @@ Main features:
  </lead>
  <date>2010-04-10</date>
  <version>
-  <release>1.1.2</release>
+  <release>1.1.3</release>
   <api>1.1.0</api>
  </version>
  <stability>
@@ -37,14 +37,7 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-Bugfix release:
-* fixed bug #16848: Trailing spaces in quoted argument are truncated,
-* fixed bug #16849: Replaced $_GET by $_REQUEST to handle POST correctly, 
-* fixed bug #16850: Parse9 test (password) fails (on windows),
-* fixed bug #16914: Password action now operates as expected when it is the last parameter or the last parameter before a command,
-* displayUsage() should output to stdout instead of stderr,
-* added the possibility to pass "false" as exitCode to the display*() methods to prevent exit() calls,
-* fixed some typos in code comments.
+* fixed package.xml to allow installation via pyrus.
  </notes>
  <contents>
   <dir baseinstalldir="" name="/">
@@ -223,6 +216,7 @@ Bugfix release:
  <phprelease />
  <changelog>
   <release>
+   <date>2007-12-19</date>
    <version>
     <release>0.1.0</release>
     <api>0.1.0</api>
@@ -231,11 +225,11 @@ Bugfix release:
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2007-12-19</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>Initial release.</notes>
   </release>
   <release>
+   <date>2007-12-21</date>
    <version>
     <release>0.1.1</release>
     <api>0.1.1</api>
@@ -244,7 +238,6 @@ Bugfix release:
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2007-12-21</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>* bugs
   - fixed bug #12711,
@@ -255,6 +248,7 @@ Bugfix release:
   - added a lot of phpt test files.</notes>
   </release>
   <release>
+   <date>2008-01-09</date>
    <version>
     <release>0.2.0</release>
     <api>0.2.0</api>
@@ -263,7 +257,6 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-01-09</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>- fixed a bug in Option::toString() (values were not displayed for short options),
 - fixed a parsing bug: if &quot;-&quot; is passed on the command line it should be treated as an argument,
@@ -272,6 +265,7 @@ Bugfix release:
 - added more regression tests.</notes>
   </release>
   <release>
+   <date>2008-01-09</date>
    <version>
     <release>0.2.1</release>
     <api>0.2.1</api>
@@ -280,11 +274,11 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-01-09</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>fixed bug #12859: xmlschema.rng gets searched at the wrong folder</notes>
   </release>
   <release>
+   <date>2008-01-18</date>
    <version>
     <release>1.0.0RC1</release>
     <api>1.0.0RC1</api>
@@ -293,7 +287,6 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-01-18</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>- fixed a missing check when a short option require an argument and is the last
   in the argv array,
@@ -306,6 +299,7 @@ Bugfix release:
 - added more tests.</notes>
   </release>
   <release>
+   <date>2008-03-10</date>
    <version>
     <release>1.0.0RC2</release>
     <api>1.0.0RC2</api>
@@ -314,7 +308,6 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-03-10</date>
    <license uri="http://www.example.com">MIT License</license>
    <notes>- allow &quot;force_posix&quot; option to be passed to the constructor;
 - fixed bug #13038 changed the signature of the parse method to allow the 
@@ -323,6 +316,7 @@ Bugfix release:
   &quot;force_posix&quot; attribute support in xml).</notes>
   </release>
   <release>
+   <date>2008-03-12</date>
    <version>
     <release>1.0.0RC3</release>
     <api>1.0.0RC3</api>
@@ -331,13 +325,13 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-03-12</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
 - changed behaviour when a StoreArray option is positioned at the end;
 - now use pfm (so removed package.php and package2.xml).</notes>
   </release>
   <release>
+   <date>2008-03-12</date>
    <version>
     <release>1.0.0RC3</release>
     <api>1.0.0RC3</api>
@@ -346,13 +340,13 @@ Bugfix release:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-03-12</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- fixed a strict standards notice: Console_CommandLine_Exception::build() should be static;
 - changed behaviour when a StoreArray option is positioned at the end;
 - now use pfm (so removed package.php and package2.xml).</notes>
   </release>
   <release>
+   <date>2008-05-22</date>
    <version>
     <release>1.0.0</release>
     <api>1.0.0</api>
@@ -361,7 +355,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-05-22</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- doc is now in peardoc format (thanks to cweiske for his precious help);
 - better handling of custom instances (added an accept() method);
@@ -370,6 +363,7 @@ Bugfix release:
 - some cosmetic changes.</notes>
   </release>
   <release>
+   <date>2008-08-01</date>
    <version>
     <release>1.0.1</release>
     <api>1.0.1</api>
@@ -378,7 +372,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-08-01</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>- Better code coverage of tests (nearly 100%);
 - fixed two bad include_once;
@@ -387,6 +380,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2008-08-22</date>
    <version>
     <release>1.0.2</release>
     <api>1.0.2</api>
@@ -395,7 +389,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-08-22</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - fixed bug #14454 (Console_Commandline hangs when called via browser);
@@ -404,6 +397,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2008-09-30</date>
    <version>
     <release>1.0.3</release>
     <api>1.0.3</api>
@@ -412,7 +406,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-09-30</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - now handles stdin with the "-" special switch;
@@ -422,6 +415,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2008-10-09</date>
    <version>
     <release>1.0.4</release>
     <api>1.0.4</api>
@@ -430,7 +424,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-10-09</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 - implemented feature request #14753 (add_list_option parameter for --list-XXX option);
@@ -440,6 +433,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2008-12-06</date>
    <version>
     <release>1.0.5</release>
     <api>1.0.5</api>
@@ -448,7 +442,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-12-06</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 * implemented feature request #15251: Allow specifying optional arguments for
@@ -459,6 +452,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2008-12-26</date>
    <version>
     <release>1.0.6</release>
     <api>1.0.6</api>
@@ -467,7 +461,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-12-26</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 Bugfix release:
@@ -479,6 +472,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2009-06-19</date>
    <version>
     <release>1.1.0</release>
     <api>1.1.0</api>
@@ -487,7 +481,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2009-06-19</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 * changed sources layout to make easier to use / run tests without installing the package with pear
@@ -501,6 +494,7 @@ Bugfix release:
    </notes>
   </release>
   <release>
+   <date>2009-11-11</date>
    <version>
     <release>1.1.1</release>
     <api>1.1.1</api>
@@ -509,7 +503,6 @@ Bugfix release:
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2009-11-11</date>
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 Bugfix release:
@@ -518,6 +511,28 @@ Bugfix release:
 * fixed bug #16370: allow pre-processing of arguments for list (thanks rquadling for the patch)
 * fixed bug #16764: Invalid Package.xml (thanks mklappstuhl for the patch)
 * fixed some test cases
+   </notes>
+  </release>
+  <release>
+   <date>2010-04-10</date>
+   <version>
+    <release>1.1.2</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+Bugfix release:
+* fixed bug #16848: Trailing spaces in quoted argument are truncated,
+* fixed bug #16849: Replaced $_GET by $_REQUEST to handle POST correctly, 
+* fixed bug #16850: Parse9 test (password) fails (on windows),
+* fixed bug #16914: Password action now operates as expected when it is the last parameter or the last parameter before a command,
+* displayUsage() should output to stdout instead of stderr,
+* added the possibility to pass "false" as exitCode to the display*() methods to prevent exit() calls,
+* fixed some typos in code comments.
    </notes>
   </release>
  </changelog>
