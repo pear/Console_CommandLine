@@ -78,6 +78,7 @@ class Console_CommandLine_MessageProvider_Default
         'LIST_OPTION_MESSAGE'     => 'lists valid choices for option {$name}',
         'LIST_DISPLAYED_MESSAGE'  => 'Valid choices are: ',
         'INVALID_SUBCOMMAND'      => 'Command "{$command}" is not valid.',
+        'SUBCOMMAND_REQUIRED'     => 'Please enter one of the following command: {$commands}.',
     );
 
     // }}}
