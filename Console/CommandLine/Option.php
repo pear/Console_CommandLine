@@ -66,13 +66,6 @@ class Console_CommandLine_Option extends Console_CommandLine_Element
     public $action = 'StoreString';
 
     /**
-     * The default value of the option if not provided on the command line.
-     *
-     * @var mixed $default Default value of the option.
-     */
-    public $default;
-
-    /**
      * An array of possible values for the option. If this array is not empty 
      * and the value passed is not in the array an exception is raised.
      * This only make sense for actions that accept values of course.

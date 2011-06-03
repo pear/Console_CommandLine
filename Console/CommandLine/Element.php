@@ -61,6 +61,13 @@ abstract class Console_CommandLine_Element
     public $description;
 
     /**
+     * The default value of the element if not provided on the command line.
+     *
+     * @var mixed $default Default value of the option.
+     */
+    public $default;
+
+    /**
      * Custom errors messages for this element
      *
      * This array is of the form:

@@ -207,7 +207,14 @@ class Console_CommandLine_Renderer_Default implements Console_CommandLine_Render
         }
         if (count($this->parser->args) > 0) {
             foreach ($this->parser->args as $name=>$arg) {
-                $ret .= ' <' . $arg->help_name . ($arg->multiple?'...':'') . '>';
+                $arg_str = $arg->help_name;
+                if ($arg->multiple) {
+                    $arg_str .= '1 ' . $arg->help_name . '2 ...';
+                }
+                if ($arg->optional) {
+                    $arg_str = '[' . $arg_str . ']';
+                }
+                $ret .= ' ' . $arg_str;
             }
         }
         return $this->columnWrap($ret, 2);

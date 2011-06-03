@@ -82,6 +82,12 @@ class Console_CommandLine_Argument extends Console_CommandLine_Element
                 array('{$name}' => $this->name)
             );
         }
+        if (!$this->optional && $this->default !== null) {
+            Console_CommandLine::triggerError(
+                'argument_no_default',
+                E_USER_ERROR
+            );
+        }
         parent::validate();
     }
 
