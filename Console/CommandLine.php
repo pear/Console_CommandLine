@@ -318,6 +318,9 @@ class Console_CommandLine
         if (isset($params['add_help_option'])) {
             $this->add_help_option = $params['add_help_option'];
         }
+        if (isset($params['subcommand_required'])) {
+            $this->subcommand_required = $params['subcommand_required'];
+        }
         if (isset($params['force_posix'])) {
             $this->force_posix = $params['force_posix'];
         } else if (getenv('POSIXLY_CORRECT')) {
