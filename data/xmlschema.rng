@@ -199,14 +199,26 @@
   <!-- boolean choices -->
   <define name="ref_bool_choices">
     <choice>
-      <value>true</value>
+      <data type="token">
+        <param name="pattern">[Tt][Rr][Uu][Ee]</param>
+      </data>
+      <data type="token">
+        <param name="pattern">[On][Nn]</param>
+      </data>
+      <data type="token">
+        <param name="pattern">[Yy][Ee][Ss]</param>
+      </data>
       <value>1</value>
-      <value>on</value>
-      <value>yes</value>
-      <value>false</value>
+      <data type="token">
+        <param name="pattern">[Ff][Aa][Ll][Ss][Ee]</param>
+      </data>
+      <data type="token">
+        <param name="pattern">[Of][Ff][Ff]</param>
+      </data>
+      <data type="token">
+        <param name="pattern">[Nn][Oo]</param>
+      </data>
       <value>0</value>
-      <value>off</value>
-      <value>no</value>
     </choice>
   </define>
 

@@ -269,7 +269,7 @@ class Console_CommandLine_XmlParser
      */
     private static function _bool($str)
     {
-        return in_array((string)$str, array('true', '1', 'on', 'yes'));
+        return in_array(strtolower((string)$str), array('true', '1', 'on', 'yes'));
     }
 
     // }}}
