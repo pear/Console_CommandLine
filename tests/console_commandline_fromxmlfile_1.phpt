@@ -17,7 +17,7 @@ $parser->parse();
 zip given files in the destination file
 
 Usage:
-  test [options] zip [options] <files...> <zipfile>
+  test [options] zip [options] files1 files2 ... zipfile
 
 Options:
   -h, --help  show this help message and exit
