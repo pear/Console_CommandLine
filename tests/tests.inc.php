@@ -21,8 +21,6 @@
  * @since     File available since release 0.1.0
  */
 
-error_reporting(E_ALL | E_STRICT);
-
 if (php_sapi_name() != 'cli') {
     // tests with php-cgi need this
     ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR 
