@@ -25,9 +25,14 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'Console_CommandLine_AllTests::main');
 }
 
-require_once 'PHPUnit/Framework.php';
-require_once 'PHPUnit/Extensions/PhptTestSuite.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
+if ($fp = @fopen('PHPUnit/Autoload.php', 'r', true)) {
+    require_once 'PHPUnit/Autoload.php';
+} elseif ($fp = @fopen('PHPUnit/Framework.php', 'r', true)) {
+    require_once 'PHPUnit/Framework.php';
+} else {
+    die("skip could not find PHPUnit");
+}
+fclose($fp);
 
 /**
  * Console_CommandLine phpt test suite.
