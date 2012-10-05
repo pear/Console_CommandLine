@@ -952,6 +952,23 @@ class Console_CommandLine
             if (!$result->args[$name] && $arg->optional && $arg->default) {
                 $result->args[$name] = $arg->default;
             }
+            // check value is in argument choices
+            if (!empty($this->args[$name]->choices)) {
+                foreach ($result->args[$name] as $value) {
+                    if (!in_array($value, $arg->choices)) {
+                        throw Console_CommandLine_Exception::factory(
+                            'ARGUMENT_VALUE_NOT_VALID',
+                            array(
+                                'name'    => $name,
+                                'choices' => implode('", "', $arg->choices),
+                                'value'   => implode(' ', $result->args[$name]),
+                            ),
+                            $this,
+                            $arg->messages
+                        );
+                    }
+                }
+            }
         }
         // dispatch deferred options
         foreach ($this->_dispatchLater as $optArray) {
