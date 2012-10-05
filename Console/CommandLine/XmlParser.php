@@ -11,11 +11,11 @@
  * through the world-wide-web at the following URI:
  * http://opensource.org/licenses/mit-license.php
  *
- * @category  Console 
+ * @category  Console
  * @package   Console_CommandLine
  * @author    David JEAN LOUIS <izimobil@gmail.com>
  * @copyright 2007 David JEAN LOUIS
- * @license   http://opensource.org/licenses/mit-license.php MIT License 
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     File available since release 0.1.0
@@ -34,7 +34,7 @@ require_once 'Console/CommandLine.php';
  * @package   Console_CommandLine
  * @author    David JEAN LOUIS <izimobil@gmail.com>
  * @copyright 2007 David JEAN LOUIS
- * @license   http://opensource.org/licenses/mit-license.php MIT License 
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Console_CommandLine
  * @since     Class available since release 0.1.0
@@ -51,7 +51,7 @@ class Console_CommandLine_XmlParser
      *
      * @return Console_CommandLine A parser instance
      */
-    public static function parse($xmlfile) 
+    public static function parse($xmlfile)
     {
         if (!is_readable($xmlfile)) {
             Console_CommandLine::triggerError('invalid_xml_file',
@@ -76,7 +76,7 @@ class Console_CommandLine_XmlParser
      *
      * @return Console_CommandLine A parser instance
      */
-    public static function parseString($xmlstr) 
+    public static function parseString($xmlstr)
     {
         $doc = new DomDocument();
         $doc->loadXml($xmlstr);
@@ -98,14 +98,14 @@ class Console_CommandLine_XmlParser
      * @throws Console_CommandLine_Exception
      * @todo use exceptions
      */
-    public static function validate($doc) 
+    public static function validate($doc)
     {
         if (is_dir('@data_dir@' . DIRECTORY_SEPARATOR . 'Console_CommandLine')) {
             $rngfile = '@data_dir@' . DIRECTORY_SEPARATOR
-                . 'Console_CommandLine' . DIRECTORY_SEPARATOR . 'data' 
+                . 'Console_CommandLine' . DIRECTORY_SEPARATOR . 'data'
                 . DIRECTORY_SEPARATOR . 'xmlschema.rng';
         } else {
-            $rngfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' 
+            $rngfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..'
                 . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'
                 . DIRECTORY_SEPARATOR . 'xmlschema.rng';
         }
@@ -128,9 +128,9 @@ class Console_CommandLine_XmlParser
      *
      * @return mixed Console_CommandLine or Console_CommandLine_Command
      */
-    private static function _parseCommandNode($node, $isRootNode = false) 
+    private static function _parseCommandNode($node, $isRootNode = false)
     {
-        if ($isRootNode) { 
+        if ($isRootNode) {
             $obj = new Console_CommandLine();
         } else {
             include_once 'Console/CommandLine/Command.php';
@@ -188,7 +188,7 @@ class Console_CommandLine_XmlParser
      *
      * @return Console_CommandLine_Option The built option
      */
-    private static function _parseOptionNode($node) 
+    private static function _parseOptionNode($node)
     {
         include_once 'Console/CommandLine/Option.php';
         $obj = new Console_CommandLine_Option($node->getAttribute('name'));
@@ -222,14 +222,14 @@ class Console_CommandLine_XmlParser
     // _parseArgumentNode() {{{
 
     /**
-     * Parses an argument node and returns the constructed 
+     * Parses an argument node and returns the constructed
      * Console_CommandLine_Argument instance.
      *
      * @param DomDocumentNode $node The node to parse
      *
      * @return Console_CommandLine_Argument The built argument
      */
-    private static function _parseArgumentNode($node) 
+    private static function _parseArgumentNode($node)
     {
         include_once 'Console/CommandLine/Argument.php';
         $obj = new Console_CommandLine_Argument($node->getAttribute('name'));
@@ -247,6 +247,13 @@ class Console_CommandLine_XmlParser
             case 'optional':
                 $obj->optional = self::_bool(trim($cNode->nodeValue));
                 break;
+            case 'choices':
+                foreach ($cNode->childNodes as $subChildNode) {
+                    if ($subChildNode->nodeName == 'choice') {
+                        $obj->choices[] = trim($subChildNode->nodeValue);
+                    }
+                }
+                break;
             case 'messages':
                 $obj->messages = self::_messages($cNode);
                 break;
@@ -262,7 +269,7 @@ class Console_CommandLine_XmlParser
 
     /**
      * Returns a boolean according to true/false possible strings.
-     * 
+     *
      * @param string $str The string to process
      *
      * @return boolean

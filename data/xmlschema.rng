@@ -192,6 +192,15 @@
             <ref name="ref_bool_choices"/>
           </element>
         </optional>
+        <optional>
+          <element name="choices">
+            <zeroOrMore>
+              <element name="choice">
+                <text/>
+              </element>
+            </zeroOrMore>
+           </element>
+         </optional>
       </interleave>
     </element>
   </define>
