@@ -27,11 +27,14 @@ $parser->addArgument('Some invalid name');
 --EXPECTF--
 array(4) {
   ["arg1"]=>
-  object(Console_CommandLine_Argument)#5 (7) {
+  object(Console_CommandLine_Argument)#5 (8) {
     ["multiple"]=>
     bool(false)
     ["optional"]=>
     bool(false)
+    ["choices"]=>
+    array(0) {
+    }
     ["name"]=>
     string(4) "arg1"
     ["help_name"]=>
@@ -45,11 +48,14 @@ array(4) {
     }
   }
   ["arg2"]=>
-  object(Console_CommandLine_Argument)#6 (7) {
+  object(Console_CommandLine_Argument)#6 (8) {
     ["multiple"]=>
     bool(true)
     ["optional"]=>
     bool(false)
+    ["choices"]=>
+    array(0) {
+    }
     ["name"]=>
     string(4) "arg2"
     ["help_name"]=>
@@ -63,11 +69,14 @@ array(4) {
     }
   }
   ["arg3"]=>
-  object(Console_CommandLine_Argument)#7 (7) {
+  object(Console_CommandLine_Argument)#7 (8) {
     ["multiple"]=>
     bool(true)
     ["optional"]=>
     bool(false)
+    ["choices"]=>
+    array(0) {
+    }
     ["name"]=>
     string(4) "arg3"
     ["help_name"]=>
@@ -81,11 +90,14 @@ array(4) {
     }
   }
   ["arg4"]=>
-  object(Console_CommandLine_Argument)#8 (7) {
+  object(Console_CommandLine_Argument)#8 (8) {
     ["multiple"]=>
     bool(false)
     ["optional"]=>
     bool(true)
+    ["choices"]=>
+    array(0) {
+    }
     ["name"]=>
     string(4) "arg4"
     ["help_name"]=>

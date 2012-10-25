@@ -28,7 +28,7 @@ Main features:
  </lead>
  <date>2012-10-25</date>
  <version>
-  <release>1.2.0</release>
+  <release>1.2.1</release>
   <api>1.2.0</api>
  </version>
  <stability>
@@ -37,11 +37,9 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-* Implemented feature request #18583 (default values for arguments) [izi]
-* Implemented feature request #18582 (add possibility to require a subcommand) [izi]
-* Booleans read from an XML file or string are now case insensitive [rquadling]
-* Fixed unit tests [CloCkWeRX]
-* arguments now accept "choices" [izi, thanks Laurent Laville]
+* Fixed bug #18682 (columnWrap() in Default Renderer eats up lines with only a EOL) [izi, thanks Helgi]
+* Fixed bug #18703 (No way to override reading of stdin with -) [izi, thanks Gwynne Raskind]
+* Fixed unit tests [izi]
  </notes>
  <contents>
   <dir baseinstalldir="" name="/">
@@ -171,6 +169,7 @@ Main features:
    <file baseinstalldir="" name="tests/console_commandline_addoption_errors_5.phpt" role="test"/>
    <file baseinstalldir="" name="tests/console_commandline_addoption_errors_6.phpt" role="test"/>
    <file baseinstalldir="" name="tests/console_commandline_addoption_errors_7.phpt" role="test"/>
+   <file baseinstalldir="" name="tests/console_commandline_bug18682.phpt" role="test"/>
    <file baseinstalldir="" name="tests/console_commandline_fromxmlfile.phpt" role="test"/>
    <file baseinstalldir="" name="tests/console_commandline_fromxmlfile_1.phpt" role="test"/>
    <file baseinstalldir="" name="tests/console_commandline_fromxmlfile_2.phpt" role="test"/>
@@ -563,6 +562,25 @@ Bugfix release:
    <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
    <notes>
 * fixed package.xml to allow installation via pyrus.
+   </notes>
+  </release>
+  <release>
+   <date>2012-10-25</date>
+   <version>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+  * Implemented feature request #18583 (default values for arguments) [izi]
+  * Implemented feature request #18582 (add possibility to require a subcommand) [izi]
+  * Booleans read from an XML file or string are now case insensitive [rquadling]
+  * Fixed unit tests [CloCkWeRX]
+  * arguments now accept "choices" [izi, thanks Laurent Laville]
    </notes>
   </release>
  </changelog>

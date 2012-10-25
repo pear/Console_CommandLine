@@ -176,6 +176,15 @@ class Console_CommandLine
      */
     public $force_options_defaults = false;
 
+ 
+   /**
+    * Boolean that tells the parser to treat a single - option as an argument
+    * instead of trying to read STDIN.
+    *
+    * @var bool $avoid_reading_stdin Whether to treat - as an argument
+    */
+    public $avoid_reading_stdin = false;
+
     /**
      * An array of Console_CommandLine_Option objects.
      *
@@ -999,7 +1008,8 @@ class Console_CommandLine
         static $stopflag = false;
         $last  = $argc === 0;
         if (!$stopflag && $lastopt) {
-            if (substr($token, 0, 1) == '-') {
+            if (strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
+                substr($token, 0, 1) == '-') {
                 if ($lastopt->argument_optional) {
                     $this->_dispatchAction($lastopt, '', $result);
                     if ($lastopt->action != 'StoreArray') {
@@ -1085,10 +1095,12 @@ class Console_CommandLine
                 $lastopt = $opt;
             }
             $this->_dispatchAction($opt, $value, $result);
-        } else if (!$stopflag && substr($token, 0, 1) == '-') {
+        } else if (!$stopflag &&
+                   strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
+                   substr($token, 0, 1) == '-') {
             // a short option
             $optname = substr($token, 0, 2);
-            if ($optname == '-') {
+            if ($optname == '-' && !$this->avoid_reading_stdin) {
                 // special case of "-": try to read stdin
                 $args[] = file_get_contents('php://stdin');
                 return;
