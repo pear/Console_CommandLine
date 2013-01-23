@@ -1,0 +1,24 @@
+{
+    "name": "pear/console_commandline",
+    "description": "A full featured command line options and arguments parser.",
+    "type": "library",
+    "keywords": [ "console" ],
+    "homepage": "https://github.com/pear/Console_CommandLine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Quadling",
+            "email": "rquadling@gmail.com"
+        },
+        {
+            "name": "David Jean Louis",
+            "email": "izimobil@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "autoload": {
+        "psr-0": { "Console_CommandLine": "" }
+    }
+}
