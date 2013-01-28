@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "php": ">=5.0.0"
+        "php": ">=5.1.0",
+        "pear/pear_exception": "dev-master"
     },
     "autoload": {
         "psr-0": { "Console_CommandLine": "" }
