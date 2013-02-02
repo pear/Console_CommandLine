@@ -21,5 +21,6 @@
     },
     "autoload": {
         "psr-0": { "Console_CommandLine": "" }
-    }
+    },
+    "include-path": [""]
 }
