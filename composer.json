@@ -2,7 +2,9 @@
     "name": "pear/console_commandline",
     "description": "A full featured command line options and arguments parser.",
     "type": "library",
-    "keywords": [ "console" ],
+    "keywords": [
+        "console"
+    ],
     "homepage": "https://github.com/pear/Console_CommandLine",
     "license": "MIT",
     "authors": [
@@ -17,10 +19,21 @@
     ],
     "require": {
         "php": ">=5.1.0",
-        "pear/pear_exception": "dev-master"
+        "pear/pear_exception": "*"
     },
     "autoload": {
-        "psr-0": { "Console_CommandLine": "" }
+        "psr-0": {
+            "Console_CommandLine": ""
+        }
     },
-    "include-path": [""]
+    "include-path": [
+        ""
+    ],
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Console_CommandLine",
+        "source": "https://github.com/pear/Console_CommandLine"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
 }
