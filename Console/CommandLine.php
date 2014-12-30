@@ -282,6 +282,9 @@ class Console_CommandLine
      */
     private $_dispatchLater = array();
 
+    private $_lastopt = false;
+    private $_stopflag = false;
+
     // }}}
     // __construct() {{{
 
@@ -870,6 +873,9 @@ class Console_CommandLine
      */
     public function parse($userArgc=null, $userArgv=null)
     {
+        $this->_lastopt  = false;
+        $this->_stopflag = false;
+
         $this->addBuiltinOptions();
         if ($userArgc !== null && $userArgv !== null) {
             $argc = $userArgc;
@@ -1004,24 +1010,22 @@ class Console_CommandLine
      */
     protected function parseToken($token, $result, &$args, $argc)
     {
-        static $lastopt  = false;
-        static $stopflag = false;
         $last  = $argc === 0;
-        if (!$stopflag && $lastopt) {
+        if (!$this->_stopflag && $this->_lastopt) {
             if (strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
                 substr($token, 0, 1) == '-') {
-                if ($lastopt->argument_optional) {
-                    $this->_dispatchAction($lastopt, '', $result);
-                    if ($lastopt->action != 'StoreArray') {
-                        $lastopt = false;
+                if ($this->_lastopt->argument_optional) {
+                    $this->_dispatchAction($this->_lastopt, '', $result);
+                    if ($this->_lastopt->action != 'StoreArray') {
+                        $this->_lastopt = false;
                     }
-                } else if (isset($result->options[$lastopt->name])) {
+                } else if (isset($result->options[$this->_lastopt->name])) {
                     // case of an option that expect a list of args
-                    $lastopt = false;
+                    $this->_lastopt = false;
                 } else {
                     throw Console_CommandLine_Exception::factory(
                         'OPTION_VALUE_REQUIRED',
-                        array('name' => $lastopt->name),
+                        array('name' => $this->_lastopt->name),
                         $this,
                         $this->messages
                     );
@@ -1031,8 +1035,8 @@ class Console_CommandLine
                 // is to consider that if there's already an element in the
                 // array, and the commandline expects one or more args, we
                 // leave last tokens to arguments
-                if ($lastopt->action == 'StoreArray'
-                    && !empty($result->options[$lastopt->name])
+                if ($this->_lastopt->action == 'StoreArray'
+                    && !empty($result->options[$this->_lastopt->name])
                     && count($this->args) > ($argc + count($args))
                 ) {
                     if (!is_null($token)) {
@@ -1040,22 +1044,22 @@ class Console_CommandLine
                     }
                     return;
                 }
-                if (!is_null($token) || $lastopt->action == 'Password') {
-                    $this->_dispatchAction($lastopt, $token, $result);
+                if (!is_null($token) || $this->_lastopt->action == 'Password') {
+                    $this->_dispatchAction($this->_lastopt, $token, $result);
                 }
-                if ($lastopt->action != 'StoreArray') {
-                    $lastopt = false;
+                if ($this->_lastopt->action != 'StoreArray') {
+                    $this->_lastopt = false;
                 }
                 return;
             }
         }
-        if (!$stopflag && substr($token, 0, 2) == '--') {
+        if (!$this->_stopflag && substr($token, 0, 2) == '--') {
             // a long option
             $optkv = explode('=', $token, 2);
             if (trim($optkv[0]) == '--') {
                 // the special argument "--" forces in all cases the end of 
                 // option scanning.
-                $stopflag = true;
+                $this->_stopflag = true;
                 return;
             }
             $opt = $this->findOption($optkv[0]);
@@ -1088,14 +1092,14 @@ class Console_CommandLine
                     );
                 }
                 // we will have a value next time
-                $lastopt = $opt;
+                $this->_lastopt = $opt;
                 return;
             }
             if ($opt->action == 'StoreArray') {
-                $lastopt = $opt;
+                $this->_lastopt = $opt;
             }
             $this->_dispatchAction($opt, $value, $result);
-        } else if (!$stopflag &&
+        } else if (!$this->_stopflag &&
                    strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
                    substr($token, 0, 1) == '-') {
             // a short option
@@ -1129,7 +1133,7 @@ class Console_CommandLine
                         );
                     }
                     // we will have a value next time
-                    $lastopt = $opt;
+                    $this->_lastopt = $opt;
                     return;
                 }
                 $value = false;
@@ -1150,7 +1154,7 @@ class Console_CommandLine
                     }
                 }
                 if ($opt->action == 'StoreArray') {
-                    $lastopt = $opt;
+                    $this->_lastopt = $opt;
                 }
                 $value = substr($token, 2);
             }
@@ -1159,8 +1163,8 @@ class Console_CommandLine
             // We have an argument.
             // if we are in POSIX compliant mode, we must set the stop flag to 
             // true in order to stop option parsing.
-            if (!$stopflag && $this->force_posix) {
-                $stopflag = true;
+            if (!$this->_stopflag && $this->force_posix) {
+                $this->_stopflag = true;
             }
             if (!is_null($token)) {
                 $args[] = $token;
