@@ -1122,7 +1122,7 @@ class Console_CommandLine
             // in short: handle -f<value> and -f <value>
             $next = substr($token, 2, 1);
             // check if we must wait for a value
-            if ($next === false) {
+            if (!$next) {
                 if ($opt->expectsArgument()) {
                     if ($last && !$opt->argument_optional) {
                         throw Console_CommandLine_Exception::factory(
