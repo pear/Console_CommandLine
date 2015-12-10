@@ -26,10 +26,10 @@ Main features:
   <email>rquadling@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2012-10-25</date>
+ <date>2015-12-10</date>
  <version>
   <release>1.2.1</release>
-  <api>1.2.0</api>
+  <api>1.2.1</api>
  </version>
  <stability>
   <release>stable</release>
@@ -37,9 +37,15 @@ Main features:
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
  <notes>
-* Fixed bug #18682 (columnWrap() in Default Renderer eats up lines with only a EOL) [izi, thanks Helgi]
-* Fixed bug #18703 (No way to override reading of stdin with -) [izi, thanks Gwynne Raskind]
+* Fixed bug #18397: List action example is wrong [cweiske]
+* Fixed bug #18682: columnWrap() in refault renderer eats up lines with only a EOL [izi, thanks Helgi]
+* Fixed bug #18703: No way to override reading of stdin with - [izi, thanks Gwynne Raskind]
+* Fixed bug #19683: Unit tests are broken [farell]
+* Fixed bug #19921: package dependencies don't include dom [cweiske]
 * Fixed unit tests [izi]
+* Fixed comparison on PHP 7 [Jan Olsen]
+* Allow multiple instances of the parser by making static variables private [Greg Oriol]
+* Add composer support
  </notes>
  <contents>
   <dir baseinstalldir="" name="/">
@@ -587,6 +593,30 @@ Bugfix release:
   * Booleans read from an XML file or string are now case insensitive [rquadling]
   * Fixed unit tests [CloCkWeRX]
   * arguments now accept "choices" [izi, thanks Laurent Laville]
+   </notes>
+  </release>
+
+  <release>
+   <date>2015-12-10</date>
+   <version>
+    <release>1.2.1</release>
+    <api>1.2.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+   <notes>
+    * Fixed bug #18397: List action example is wrong [cweiske]
+    * Fixed bug #18682: columnWrap() in refault renderer eats up lines with only a EOL [izi, thanks Helgi]
+    * Fixed bug #18703: No way to override reading of stdin with - [izi, thanks Gwynne Raskind]
+    * Fixed bug #19683: Unit tests are broken [farell]
+    * Fixed bug #19921: package dependencies don't include dom [cweiske]
+    * Fixed unit tests [izi]
+    * Fixed comparison on PHP 7 [Jan Olsen]
+    * Allow multiple instances of the parser by making static variables private [Greg Oriol]
+    * Add composer support
    </notes>
   </release>
  </changelog>
