@@ -225,6 +225,12 @@ Main features:
    <pearinstaller>
     <min>1.4.0b1</min>
    </pearinstaller>
+   <extension>
+    <name>dom</name>
+   </extension>
+   <extension>
+    <name>xml</name>
+   </extension>
   </required>
  </dependencies>
  <phprelease />
