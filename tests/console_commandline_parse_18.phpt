@@ -18,8 +18,8 @@ try {
 }
 
 ?>
---EXPECT--
-object(Console_CommandLine_Result)#16 (4) {
+--EXPECTF--
+object(Console_CommandLine_Result)#%d (4) {
   ["options"]=>
   array(4) {
     ["verbose"]=>
@@ -37,7 +37,7 @@ object(Console_CommandLine_Result)#16 (4) {
   ["command_name"]=>
   string(7) "install"
   ["command"]=>
-  object(Console_CommandLine_Result)#19 (4) {
+  object(Console_CommandLine_Result)#%d (4) {
     ["options"]=>
     array(2) {
       ["force"]=>

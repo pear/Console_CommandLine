@@ -27,7 +27,7 @@ $parser->addArgument('Some invalid name');
 --EXPECTF--
 array(4) {
   ["arg1"]=>
-  object(Console_CommandLine_Argument)#5 (8) {
+  object(Console_CommandLine_Argument)#%d (8) {
     ["multiple"]=>
     bool(false)
     ["optional"]=>
@@ -48,7 +48,7 @@ array(4) {
     }
   }
   ["arg2"]=>
-  object(Console_CommandLine_Argument)#6 (8) {
+  object(Console_CommandLine_Argument)#%d (8) {
     ["multiple"]=>
     bool(true)
     ["optional"]=>
@@ -69,7 +69,7 @@ array(4) {
     }
   }
   ["arg3"]=>
-  object(Console_CommandLine_Argument)#7 (8) {
+  object(Console_CommandLine_Argument)#%d (8) {
     ["multiple"]=>
     bool(true)
     ["optional"]=>
@@ -90,7 +90,7 @@ array(4) {
     }
   }
   ["arg4"]=>
-  object(Console_CommandLine_Argument)#8 (8) {
+  object(Console_CommandLine_Argument)#%d (8) {
     ["multiple"]=>
     bool(false)
     ["optional"]=>

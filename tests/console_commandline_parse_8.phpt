@@ -19,8 +19,8 @@ try {
 }
 
 ?>
---EXPECT--
-object(Console_CommandLine_Result)#18 (4) {
+--EXPECTF--
+object(Console_CommandLine_Result)#%d (4) {
   ["options"]=>
   array(11) {
     ["true"]=>

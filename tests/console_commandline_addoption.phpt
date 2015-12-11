@@ -31,7 +31,7 @@ var_dump($parser->options);
 --EXPECTF--
 array(4) {
   ["opt1"]=>
-  object(Console_CommandLine_Option)#5 (14) {
+  object(Console_CommandLine_Option)#%d (14) {
     ["short_name"]=>
     string(2) "-a"
     ["long_name"]=>
@@ -65,7 +65,7 @@ array(4) {
     }
   }
   ["opt2"]=>
-  object(Console_CommandLine_Option)#6 (14) {
+  object(Console_CommandLine_Option)#%d (14) {
     ["short_name"]=>
     string(2) "-b"
     ["long_name"]=>
@@ -105,7 +105,7 @@ array(4) {
     }
   }
   ["list_opt2"]=>
-  object(Console_CommandLine_Option)#7 (14) {
+  object(Console_CommandLine_Option)#%d (14) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
@@ -148,7 +148,7 @@ array(4) {
     }
   }
   ["opt3"]=>
-  object(Console_CommandLine_Option)#8 (14) {
+  object(Console_CommandLine_Option)#%d (14) {
     ["short_name"]=>
     NULL
     ["long_name"]=>
