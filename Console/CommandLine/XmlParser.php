@@ -100,19 +100,33 @@ class Console_CommandLine_XmlParser
      */
     public static function validate($doc)
     {
-        if (is_dir('@data_dir@' . DIRECTORY_SEPARATOR . 'Console_CommandLine')) {
-            $rngfile = '@data_dir@' . DIRECTORY_SEPARATOR
-                . 'Console_CommandLine' . DIRECTORY_SEPARATOR . 'data'
-                . DIRECTORY_SEPARATOR . 'xmlschema.rng';
-        } else {
-            $rngfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..'
-                . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'
-                . DIRECTORY_SEPARATOR . 'xmlschema.rng';
+        $ds    = DIRECTORY_SEPARATOR;
+        $root  = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds;
+        $paths = array(
+            // PEAR/Composer
+            '@data_dir@' . $ds . 'Console_CommandLine' . $ds . 'data',
+            // Composer
+            $root . 'data' . $ds . 'Console_CommandLine' . $ds . 'data',
+            $root . 'data' . $ds . 'console_commandline' . $ds . 'data',
+            // Git
+            $root . 'data',
+        );
+
+        foreach ($paths as $path) {
+            if (is_dir($path)) {
+                $rngfile = $path . $ds . 'xmlschema.rng';
+            }
         }
+
+        if (empty($rngfile)) {
+            $rngfile = 'xmlschema.rng';
+        }
+
         if (!is_readable($rngfile)) {
             Console_CommandLine::triggerError('invalid_xml_file',
                 E_USER_ERROR, array('{$file}' => $rngfile));
         }
+
         return $doc->relaxNGValidate($rngfile);
     }
 
