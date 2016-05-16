@@ -100,20 +100,26 @@ class Console_CommandLine_XmlParser
      */
     public static function validate($doc)
     {
-        if (is_dir('@data_dir@' . DIRECTORY_SEPARATOR . 'Console_CommandLine')) {
-            $rngfile = '@data_dir@' . DIRECTORY_SEPARATOR
-                . 'Console_CommandLine' . DIRECTORY_SEPARATOR . 'data'
-                . DIRECTORY_SEPARATOR . 'xmlschema.rng';
-        } else {
-            $rngfile = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..'
-                . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'
-                . DIRECTORY_SEPARATOR . 'xmlschema.rng';
+        $pkgRoot  = __DIR__ . '/../../';
+        $paths = array(
+            // PEAR/Composer
+            '@data_dir@/Console_CommandLine/data/xmlschema.rng',
+            // Composer
+            $pkgRoot . 'data/Console_CommandLine/data/xmlschema.rng',
+            $pkgRoot . 'data/console_commandline/data/xmlschema.rng',
+            // Git
+            $pkgRoot . 'data/xmlschema.rng',
+            'xmlschema.rng',
+        );
+
+        foreach ($paths as $path) {
+            if (is_readable($path)) {
+                return $doc->relaxNGValidate($path);
+            }
         }
-        if (!is_readable($rngfile)) {
-            Console_CommandLine::triggerError('invalid_xml_file',
-                E_USER_ERROR, array('{$file}' => $rngfile));
-        }
-        return $doc->relaxNGValidate($rngfile);
+        Console_CommandLine::triggerError(
+            'invalid_xml_file',
+            E_USER_ERROR, array('{$file}' => $rngfile));
     }
 
     // }}}
