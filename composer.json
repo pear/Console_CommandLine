@@ -28,6 +28,9 @@
             "Console": "./"
         }
     },
+    "autoload-dev": {
+        "classmap": ["tests/"]
+    },
     "include-path": [
         ""
     ],
