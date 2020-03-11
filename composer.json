@@ -24,9 +24,7 @@
         "ext-xml": "*"
     },
     "autoload": {
-        "psr-0": {
-            "Console": "./"
-        }
+        "classmap": ["Console/"]
     },
     "autoload-dev": {
         "classmap": ["tests/"]
