@@ -24,10 +24,10 @@
         "ext-xml": "*"
     },
     "autoload": {
-        "classmap": ["Console/"]
-    },
-    "autoload-dev": {
-        "classmap": ["tests/"]
+        "psr-0": {
+            "Console": "./"
+        },
+        "exclude-from-classmap": ["tests/"]
     },
     "include-path": [
         ""
