@@ -26,7 +26,8 @@
     "autoload": {
         "psr-0": {
             "Console": "./"
-        }
+        },
+        "exclude-from-classmap": ["tests/"]
     },
     "include-path": [
         ""
