@@ -935,7 +935,7 @@ class Console_CommandLine
         ) {
             throw Console_CommandLine_Exception::factory(
                 'SUBCOMMAND_REQUIRED',
-                array('commands' => implode(array_keys($this->commands), ', ')),
+                array('commands' => implode(', ', array_keys($this->commands))),
                 $this,
                 $this->messages
             );
