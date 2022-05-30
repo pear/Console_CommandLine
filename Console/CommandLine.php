@@ -737,7 +737,7 @@ class Console_CommandLine
      */
     public function findOption($str)
     {
-        $str = trim($str);
+        $str = trim((string) $str);
         if ($str === '') {
             return false;
         }
@@ -1010,6 +1010,7 @@ class Console_CommandLine
      */
     protected function parseToken($token, $result, &$args, $argc)
     {
+        $token = (string) $token;
         $last  = $argc === 0;
         if (!$this->_stopflag && $this->_lastopt) {
             if (strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
