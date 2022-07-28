@@ -1,11 +1,11 @@
 {
-    "name": "pear/console_commandline",
+    "name": "kornrunner/console_commandline",
     "description": "A full featured command line options and arguments parser.",
     "type": "library",
     "keywords": [
         "console"
     ],
-    "homepage": "https://github.com/pear/Console_CommandLine",
+    "homepage": "https://github.com/kornrunner/Console_CommandLine",
     "license": "MIT",
     "authors": [
         {
@@ -34,7 +34,7 @@
     ],
     "support": {
         "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Console_CommandLine",
-        "source": "https://github.com/pear/Console_CommandLine"
+        "source": "https://github.com/kornrunner/Console_CommandLine"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
