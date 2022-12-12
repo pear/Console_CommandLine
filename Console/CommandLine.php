@@ -1053,6 +1053,9 @@ class Console_CommandLine
                 return;
             }
         }
+        if (is_null($token)) {
+            $token = "";
+        }
         if (!$this->_stopflag && substr($token, 0, 2) == '--') {
             // a long option
             $optkv = explode('=', $token, 2);
