@@ -1010,11 +1010,12 @@ class Console_CommandLine
      */
     protected function parseToken($token, $result, &$args, $argc)
     {
-        $token = (string) $token;
         $last  = $argc === 0;
         if (!$this->_stopflag && $this->_lastopt) {
-            if (strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
-                substr($token, 0, 1) == '-') {
+            if ($token !== null
+                && strlen($token) > ($this->avoid_reading_stdin ? 1 : 0)
+                && substr($token, 0, 1) == '-'
+            ) {
                 if ($this->_lastopt->argument_optional) {
                     $this->_dispatchAction($this->_lastopt, '', $result);
                     if ($this->_lastopt->action != 'StoreArray') {
@@ -1054,7 +1055,7 @@ class Console_CommandLine
                 return;
             }
         }
-        if (!$this->_stopflag && substr($token, 0, 2) == '--') {
+        if ($token !== null && !$this->_stopflag && substr($token, 0, 2) == '--') {
             // a long option
             $optkv = explode('=', $token, 2);
             if (trim($optkv[0]) == '--') {
@@ -1100,9 +1101,11 @@ class Console_CommandLine
                 $this->_lastopt = $opt;
             }
             $this->_dispatchAction($opt, $value, $result);
-        } else if (!$this->_stopflag &&
-                   strlen($token) > ($this->avoid_reading_stdin ? 1 : 0) &&
-                   substr($token, 0, 1) == '-') {
+        } else if (!$this->_stopflag
+            && $token !== null
+            && strlen($token) > ($this->avoid_reading_stdin ? 1 : 0)
+            && substr($token, 0, 1) == '-'
+        ) {
             // a short option
             $optname = substr($token, 0, 2);
             if ($optname == '-' && !$this->avoid_reading_stdin) {
